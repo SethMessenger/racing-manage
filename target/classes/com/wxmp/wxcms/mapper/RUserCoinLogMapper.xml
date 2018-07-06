@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wxmp.wxcms.mapper.RUserCoinLogMapper">
+  <resultMap id="BaseResultMap" type="com.wxmp.wxcms.domain.RUserCoinLog">
+    <result column="uuid" jdbcType="VARCHAR" property="uuid" />
+    <result column="is_del" jdbcType="INTEGER" property="isDel" />
+    <result column="creater" jdbcType="VARCHAR" property="creater" />
+    <result column="updater" jdbcType="VARCHAR" property="updater" />
+    <result column="create_time" jdbcType="BIGINT" property="createTime" />
+    <result column="update_time" jdbcType="BIGINT" property="updateTime" />
+    <result column="user_uuid" jdbcType="VARCHAR" property="userUuid" />
+    <result column="user_coin_uuid" jdbcType="VARCHAR" property="userCoinUuid" />
+    <result column="log_type" jdbcType="INTEGER" property="logType" />
+    <result column="coin_amount" jdbcType="BIGINT" property="coinAmount" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <insert id="insert" parameterType="com.wxmp.wxcms.domain.RUserCoinLog">
+    insert into r_user_coin_log (uuid, is_del, creater, 
+      updater, create_time, update_time, 
+      user_uuid, user_coin_uuid, log_type, 
+      coin_amount, remark)
+    values (#{uuid,jdbcType=VARCHAR}, #{isDel,jdbcType=INTEGER}, #{creater,jdbcType=VARCHAR}, 
+      #{updater,jdbcType=VARCHAR}, #{createTime,jdbcType=BIGINT}, #{updateTime,jdbcType=BIGINT}, 
+      #{userUuid,jdbcType=VARCHAR}, #{userCoinUuid,jdbcType=VARCHAR}, #{logType,jdbcType=INTEGER}, 
+      #{coinAmount,jdbcType=BIGINT}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select uuid, is_del, creater, updater, create_time, update_time, user_uuid, user_coin_uuid, 
+    log_type, coin_amount, remark
+    from r_user_coin_log
+  </select>
+</mapper>

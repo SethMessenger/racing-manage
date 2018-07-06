@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wxmp.wxcms.mapper.RMatchResultMapper">
+  <resultMap id="BaseResultMap" type="com.wxmp.wxcms.domain.RMatchResult">
+    <result column="uuid" jdbcType="VARCHAR" property="uuid" />
+    <result column="is_del" jdbcType="INTEGER" property="isDel" />
+    <result column="creater" jdbcType="VARCHAR" property="creater" />
+    <result column="updater" jdbcType="VARCHAR" property="updater" />
+    <result column="create_time" jdbcType="BIGINT" property="createTime" />
+    <result column="update_time" jdbcType="BIGINT" property="updateTime" />
+    <result column="match_type" jdbcType="INTEGER" property="matchType" />
+    <result column="match_result" jdbcType="VARCHAR" property="matchResult" />
+    <result column="muti_amount" jdbcType="DOUBLE" property="mutiAmount" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <insert id="insert" parameterType="com.wxmp.wxcms.domain.RMatchResult">
+    insert into r_match_result (uuid, is_del, creater, 
+      updater, create_time, update_time, 
+      match_type, match_result, muti_amount, 
+      remark)
+    values (#{uuid,jdbcType=VARCHAR}, #{isDel,jdbcType=INTEGER}, #{creater,jdbcType=VARCHAR}, 
+      #{updater,jdbcType=VARCHAR}, #{createTime,jdbcType=BIGINT}, #{updateTime,jdbcType=BIGINT}, 
+      #{matchType,jdbcType=INTEGER}, #{matchResult,jdbcType=VARCHAR}, #{mutiAmount,jdbcType=DOUBLE}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select uuid, is_del, creater, updater, create_time, update_time, match_type, match_result, 
+    muti_amount, remark
+    from r_match_result
+  </select>
+</mapper>
