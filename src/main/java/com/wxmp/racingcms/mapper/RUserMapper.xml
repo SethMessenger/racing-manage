@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wxmp.racingcms.mapper.RUserMapper">
+    <resultMap id="BaseResultMap" type="com.wxmp.racingcms.domain.RUser">
+      <result column="uuid" jdbcType="VARCHAR" property="uuid" />
+      <result column="is_del" jdbcType="INTEGER" property="isDel" />
+      <result column="creater" jdbcType="VARCHAR" property="creater" />
+      <result column="updater" jdbcType="VARCHAR" property="updater" />
+      <result column="create_time" jdbcType="BIGINT" property="createTime" />
+      <result column="update_time" jdbcType="BIGINT" property="updateTime" />
+      <result column="user_name" jdbcType="VARCHAR" property="userName" />
+      <result column="user_nickname" jdbcType="VARCHAR" property="userNickname" />
+      <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+      <result column="wechat" jdbcType="VARCHAR" property="wechat" />
+      <result column="email" jdbcType="VARCHAR" property="email" />
+      <result column="password" jdbcType="VARCHAR" property="password" />
+      <result column="open_id" jdbcType="VARCHAR" property="openId" />
+      <result column="other" jdbcType="VARCHAR" property="other" />
+    </resultMap>
+
+    <insert id="insert" parameterType="com.wxmp.racingcms.domain.RUser">
+      insert into r_user (uuid, is_del, creater,
+        updater, create_time, update_time,
+        user_name, user_nickname, mobile,
+        wechat, email, password,
+        open_id, other)
+      values (#{uuid,jdbcType=VARCHAR}, #{isDel,jdbcType=INTEGER}, #{creater,jdbcType=VARCHAR},
+        #{updater,jdbcType=VARCHAR}, #{createTime,jdbcType=BIGINT}, #{updateTime,jdbcType=BIGINT},
+        #{userName,jdbcType=VARCHAR}, #{userNickname,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR},
+        #{wechat,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+        #{openId,jdbcType=VARCHAR}, #{other,jdbcType=VARCHAR})
+    </insert>
+
+    <select id="selectAll" resultMap="BaseResultMap">
+      select uuid, is_del, creater, updater, create_time, update_time, user_name, user_nickname,
+      mobile, wechat, email, password, open_id, other
+      from r_user
+    </select>
+
+    <select id="listForPage" resultMap="BaseResultMap">
+      select uuid, is_del, creater, updater, create_time, update_time, user_name, user_nickname,
+        mobile, wechat, email, password, open_id, other
+      from r_user
+      where
+        is_del = 0
+        <if test ="filter.userName != null">
+          and user_name = #{filter.userName,jdbcType=VARCHAR}
+        </if>
+        <if test ="filter.userNickname != null">
+          and user_nickname = #{filter.userNickname,jdbcType=VARCHAR}
+        </if>
+        <if test ="filter.mobile != null">
+          and mobile = #{filter.mobile,jdbcType=VARCHAR}
+        </if>
+        <if test ="filter.openId != null">
+          and open_id = #{filter.openId,jdbcType=VARCHAR}
+        </if>
+    </select>
+
+    <update id="update" parameterType="com.wxmp.racingcms.domain.RUser">
+      update r_user
+      <set>
+        <if test="isDel != null">
+          is_del = #{isDel,jdbcType=INTEGER},
+        </if>
+        <if test="creater != null">
+          creater = #{creater,jdbcType=VARCHAR},
+        </if>
+        <if test="updater != null">
+          updater = #{updater,jdbcType=VARCHAR},
+        </if>
+        <if test="createTime != null">
+          create_time = #{createTime,jdbcType=BIGINT},
+        </if>
+        <if test="updateTime != null">
+          update_time = #{updateTime,jdbcType=BIGINT},
+        </if>
+        <if test="userName != null">
+          user_name = #{userName,jdbcType=INTEGER},
+        </if>
+        <if test="userNickname != null">
+          user_nickname = #{userNickname,jdbcType=VARCHAR},
+        </if>
+        <if test="mobile != null">
+          mobile = #{mobile,jdbcType=VARCHAR},
+        </if>
+        <if test="wechat != null">
+          wechat = #{wechat,jdbcType=VARCHAR},
+        </if>
+        <if test="email != null">
+          email = #{email,jdbcType=VARCHAR},
+        </if>
+        <if test="password != null">
+          password = #{password,jdbcType=VARCHAR},
+        </if>
+        <if test="open_id != null">
+          openId = #{openId,jdbcType=VARCHAR},
+        </if>
+        <if test="other != null">
+          other = #{other,jdbcType=VARCHAR},
+        </if>
+      </set>
+      where uuid = #{uuid,jdbcType=VARCHAR}
+    </update>
+
+    <update id="deleteUser" parameterType="java.lang.String">
+      update r_user
+      <set>
+        is_del = 1
+      </set>
+      WHERE uuid = #{uuid,jdbcType=VARCHAR}
+    </update>
+
+    <select id="getById" resultMap="BaseResultMap">
+      select uuid, is_del, creater, updater, create_time, update_time, user_name, user_nickname,
+      mobile, wechat, email, password, open_id, other
+      from r_user
+      where
+      is_del = 0
+      <if test ="uuid != null">
+        and uuid = #{uuid,jdbcType=VARCHAR}
+      </if>
+    </select>
+
+</mapper>

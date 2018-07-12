@@ -98,7 +98,8 @@ CREATE TABLE `r_match_result` (
   `create_time` bigint(11) NOT NULL COMMENT '创建时间戳',
   `update_time` bigint(11) NOT NULL COMMENT '修改时间戳',
   `match_type` int(5) NOT NULL DEFAULT 0 COMMENT '比赛类型',
-  `match_result` varchar(50) NOT NULL COMMENT '比赛最终结果，json展示',
+  `match_status` int(5) NOT NULL DEFAULT 0 COMMENT '赛果状态 0新建，接收投注 1封板，停止下注',
+  `match_result` varchar(200) DEFAULT NULL COMMENT '比赛最终结果，json展示',
   `muti_amount` double(4,2) NOT NULL DEFAULT 0 COMMENT '比赛倍率',
   `remark` varchar(50) DEFAULT NULL COMMENT '备注信息',
   PRIMARY KEY (`uuid`)
@@ -113,7 +114,8 @@ CREATE TABLE `r_match_log` (
   `update_time` bigint(11) NOT NULL COMMENT '修改时间戳',
   `match_result_uuid` varchar(32) NOT NULL COMMENT '赛果uuid',
   `user_uuid` varchar(32) NOT NULL COMMENT '押注人uuid',
-  `log_type` int(2) DEFAULT 0 COMMENT '账户入账类型，0金币出账，1金币入账 2人民币入账 3人民币出账（不允许）',
+  `index` int(2) NOT NULL COMMENT '押注号码',
+  `log_type` int(2) DEFAULT 0 COMMENT '账户入账类型，0押注金币, 1系统发奖金币',
   `coin_amount` bigint(5) NOT NULL DEFAULT 0 COMMENT '押注金额',
   `remark` varchar(50) DEFAULT NULL COMMENT '备注信息',
   PRIMARY KEY (`uuid`)

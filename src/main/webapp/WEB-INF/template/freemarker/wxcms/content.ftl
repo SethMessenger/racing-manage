@@ -73,10 +73,10 @@
                         </a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a class="J_menuItem" href="/wxcms/urltoken/" data-index="0">用户列表</a>
+                                <a class="J_menuItem" href="/racingcms/ruser/listForPage" data-index="0">用户列表</a>
                             </li>
                             <li>
-                                <a class="J_menuItem" href="/wxcms/accountMenuGroup/paginationEntity/">运营列表</a>
+                                <a class="J_menuItem" href="/racingcms/accountMenuGroup/paginationEntity/">赛程列表</a>
                             </li>
                             <li>
                                 <a class="J_menuItem" href="#">赛程管理</a>
