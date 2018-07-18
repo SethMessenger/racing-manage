@@ -1,5 +1,7 @@
 package com.wxmp.racingcms.domain;
 
+import com.wxmp.core.util.UuidGenerator;
+
 public class RUserCoin {
     private String uuid;
 
@@ -22,6 +24,22 @@ public class RUserCoin {
     private String userMobile;
 
     private String userOpenid;
+
+    public RUserCoin() { super(); }
+
+    public RUserCoin(String creater, String userUuid, String userNickname, String userMobile, String userOpenid) {
+        this.uuid = UuidGenerator.getUUID32();
+        this.isDel = 0;
+        this.creater = creater;
+        this.updater = creater;
+        this.createTime = System.currentTimeMillis();
+        this.updateTime = this.createTime;
+        this.userUuid = userUuid;
+        this.total = 0L;
+        this.userNickname = userNickname;
+        this.userMobile = userMobile;
+        this.userOpenid = userOpenid;
+    }
 
     public String getUuid() {
         return uuid;

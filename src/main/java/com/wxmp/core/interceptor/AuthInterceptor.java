@@ -18,12 +18,16 @@ import com.wxmp.core.util.SessionUtilsWeb;
 public class AuthInterceptor extends HandlerInterceptorAdapter {
 	private final static Logger log= Logger.getLogger(AuthInterceptor.class);
 
-	/** 也可以注解 **/
+	/** 允许访问的链接 **/
 	public String[] allowUrls;
+	/** 允许路径下通行的基础链接 */
+	public String[] allowBaseUrls;
 
 	public void setAllowUrls(String[] allowUrls) {
 		this.allowUrls = allowUrls;
 	}
+
+	public void setAllowBaseUrls(String[] allowBaseUrls) { this.allowBaseUrls = allowBaseUrls; }
 
 	@Override
 	public boolean preHandle(HttpServletRequest request,
@@ -32,6 +36,11 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 		Auth auth = method.getMethod().getAnnotation(Auth.class); **/
 		String requestUrl = request.getRequestURI().replace(request.getContextPath(), "");
 		if (null != allowUrls && allowUrls.length >= 1) {
+			for (String url : allowBaseUrls){
+				if (requestUrl.contains(url)) {
+					return true;
+				}
+			}
 			for (String url : allowUrls) {
 				if (requestUrl.contains(".css") || requestUrl.contains(".js") || requestUrl.contains(".png") || requestUrl.contains(".jpg") || requestUrl.contains("/message") || requestUrl.equals(url)) {
 					return true;

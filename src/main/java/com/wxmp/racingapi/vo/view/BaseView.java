@@ -27,7 +27,16 @@ public abstract class BaseView implements Serializable{
 
         @Override
         public BaseCode getError(){
-            return new BaseCode(ErrorCodeEnum.SUCCESS);
+            return new BaseCode(ErrorCodeEnum.FAIL);
+        }
+    };
+
+    public static final BaseView PARAM_ERROR = new BaseView(ErrorCodeEnum.PARAM_ERROR) {
+        private static final long serialVersionUID = 1L;
+
+        @Override
+        public BaseCode getError(){
+            return new BaseCode(ErrorCodeEnum.PARAM_ERROR);
         }
     };
 

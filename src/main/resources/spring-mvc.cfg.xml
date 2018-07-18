@@ -48,6 +48,12 @@
                     <value>/wxapi/oauthOpenid.html</value>
                 </list>
             </property>
+            <property name="allowBaseUrls">
+                <list>
+                    <value>/racing</value>
+                    <value>/pay</value>
+                </list>
+            </property>
         </bean>
     </mvc:interceptors>
 

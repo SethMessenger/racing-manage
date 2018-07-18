@@ -29,4 +29,65 @@
     user_nickname, user_mobile, user_openid
     from r_user_coin
   </select>
+  <select id="selectByCondition" resultMap="BaseResultMap">
+    select uuid, is_del, creater,
+    updater, create_time, update_time,
+    user_uuid, total, user_nickname,
+    user_mobile, user_openid
+    from r_user_coin
+    where is_del = 0
+    <!--<if test="filter.videoUuids != null">-->
+    <!--and video_uuid in-->
+    <!--<foreach collection="filter.videoUuids" index="index" item="videoUuid"-->
+    <!--separator="," open="(" close=")">-->
+    <!--#{videoUuid,jdbcType=VARCHAR}-->
+    <!--</foreach>-->
+    <!--</if>-->
+    <if test="filter.userOpenid != null">
+      and user_openid = #{filter.userOpenid,jdbcType=VARCHAR}
+    </if>
+    <if test="filter.userUuid != null">
+      and user_uuid = #{filter.userUuid,jdbcType=VARCHAR}
+    </if>
+    <if test="filter.userNickname != null">
+      and user_nickname = #{filter.userNickname,jdbcType=VARCHAR}
+    </if>
+    <if test="filter.userMobile != null">
+      and user_mobile = #{filter.userMobile,jdbcType=VARCHAR}
+    </if>
+  </select>
+
+  <update id="dealWithCoins" >
+    UPDATE r_user_coin
+    <set>
+      <if test="amount != null and amount &gt;= 0">
+        total = total + #{amount}
+      </if>
+      <if test="amount != null and amount &lt;= 0">
+        total = total #{amount}
+      </if>
+    </set>
+    <where>
+      is_del = 0
+      and
+      user_uuid = #{useruuid,jdbcType=VARCHAR}
+    </where>
+  </update>
+
+  <update id="dealWithCoinsBatch" parameterType="java.util.Map">
+    <foreach item="amount" index="useruuid" collection="hostIds.entrySet()" separator=";" >
+      UPDATE r_user_coin
+      SET is_del = is_del
+      <if test="amount != null and amount &gt;= 0">
+        total = total + #{amount}
+      </if>
+      <if test="amount != null and amount &lt; 0">
+        total = total #{amount}
+      </if>
+      WHERE
+      is_del = 0
+      and user_uuid = #{useruuid}
+    </foreach>
+  </update>
+
 </mapper>

@@ -39,8 +39,8 @@ public class AutoMatchJob {
     /**
      * 生成赛程结果，每两分钟生成一个新的比赛，并将下个比赛进行入账
      */
-    @Scheduled(cron = "0 0/1 * * * ? ")
-//    @Scheduled(cron = "0 0 0/1 * * ? ")
+    @Scheduled(cron = "0 0/1 * * * ? ")//每分钟
+//    @Scheduled(cron = "0 0 0/1 * * ? ")//每小时
     public void autoMatchResult(){
         //结算上场
         this.settleLastMatch();

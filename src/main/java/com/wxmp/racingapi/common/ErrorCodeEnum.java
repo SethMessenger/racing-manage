@@ -7,9 +7,12 @@ package com.wxmp.racingapi.common;
  */
 public enum ErrorCodeEnum {
 
-    SUCCESS(1, "SUCCESS"),
+    SUCCESS(0, "SUCCESS"),
     FAIL(9999, "FAIL"),
-    PARAM_ERROR(1001, "param required");
+    /** 参数校验失败 */
+    PARAM_ERROR(1001, "param required"),
+    /** 账户异常 */
+    USER_ERROR(1002, "user account error");
 
     private int error;
     private String errorMsg;

@@ -1,7 +1,7 @@
 package com.wxmp.racingapi.service;
 
 import com.wxmp.racingapi.vo.form.UserRegisForm;
-import com.wxmp.racingcms.domain.RUser;
+import com.wxmp.racingapi.vo.view.UserAccountView;
 
 /**
  * @author xunbo.xu
@@ -14,6 +14,13 @@ public interface UserService {
      * 用户注册
      * @return
      */
-    RUser registerUser(UserRegisForm form);
+    UserAccountView registerUser(UserRegisForm form);
+
+    /**
+     * 获取用户信息
+     * @param userUuid
+     * @return
+     */
+    UserAccountView getUserInfo(String userUuid);
 
 }

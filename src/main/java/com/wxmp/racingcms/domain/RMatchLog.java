@@ -1,5 +1,6 @@
 package com.wxmp.racingcms.domain;
 
+import com.wxmp.backstage.common.RacingConstants;
 import com.wxmp.core.util.UuidGenerator;
 
 public class RMatchLog {
@@ -32,7 +33,7 @@ public class RMatchLog {
     public RMatchLog(String matchResultUuid, String userUuid, Integer logType, Long coinAmount, Integer coinIndex, String remark){
         this.uuid = UuidGenerator.getUUID32();
         this.isDel = 0;
-        this.creater = creater;
+        this.creater = RacingConstants.RACING_SYS_ACCOUNT;
         this.updater = creater;
         this.createTime = System.currentTimeMillis();
         this.updateTime = this.createTime;

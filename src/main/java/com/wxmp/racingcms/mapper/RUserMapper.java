@@ -36,14 +36,15 @@ public interface RUserMapper {
 
     /**
      * 冻结用户，不进行物理删除
+     * @param uuid
      * @return
      */
-    int deleteUser(String uuid);
+    int deleteUser(@Param("uuid")String uuid);
 
     /**
      * 主键查询
      * @param uuid
      * @return
      */
-    RUser getById(String uuid);
+    RUser getById(@Param("uuid") String uuid);
 }

@@ -50,4 +50,13 @@ public class ArithmeticAwardDTO {
     public void setCount(long count) {
         this.count = count;
     }
+
+    @Override
+    public String toString() {
+        return "ArithmeticAwardDTO{" +
+                "id='" + id + '\'' +
+                ", probability=" + probability +
+                ", count=" + count +
+                '}';
+    }
 }

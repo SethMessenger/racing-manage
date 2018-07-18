@@ -8,7 +8,9 @@ import com.wxmp.racingapi.vo.form.UserRegisForm;
 import com.wxmp.racingapi.vo.view.BaseView;
 import com.wxmp.racingapi.vo.form.UserPayForm;
 import com.wxmp.racingapi.vo.view.ObjectView;
+import com.wxmp.racingapi.vo.view.UserAccountView;
 import com.wxmp.racingcms.domain.RUser;
+import com.wxmp.racingcms.domain.RUserCoin;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -40,12 +42,13 @@ public class RacingApiController {
      * @param user
      * @return
      */
-    @RequestMapping(value = "/register",  method = RequestMethod.GET)
+    @RequestMapping(value = "/register",  method = RequestMethod.POST)
     @ResponseBody
     public BaseView registerUser(HttpServletRequest request, @RequestBody UserRegisForm user) {
-        RUser resultUser = this.userService.registerUser(user);
+        UserAccountView resultUser = this.userService.registerUser(user);
         if(null != resultUser){
-            return new ObjectView<RUser>(resultUser);
+            //暂时不返回账户信息
+            return new ObjectView<UserAccountView>(resultUser);
         }else {
             return BaseView.FAIL;
         }
@@ -86,7 +89,12 @@ public class RacingApiController {
     public BaseView getUser(HttpServletRequest request, @PathVariable String userUuid) {
         BaseView result = null;
         if(StringUtils.isNotEmpty(userUuid)){
-
+            UserAccountView view = this.userService.getUserInfo(userUuid);
+            if (null != view) {
+                result = new ObjectView<UserAccountView>(view);
+            }else {
+                result = new ObjectView<UserAccountView>(ErrorCodeEnum.USER_ERROR);
+            }
         }else {
             result = BaseView.FAIL;
         }
@@ -106,6 +114,7 @@ public class RacingApiController {
         BaseView result = null;
         if(StringUtils.isNotEmpty(userUuid)){
             this.userCoinService.payMatch(userUuid, form.getAmount(), form.getMatchUuid(), Integer.valueOf(form.getWins()));
+            result = BaseView.SUCCESS;
         }else {
             result = BaseView.FAIL;
         }

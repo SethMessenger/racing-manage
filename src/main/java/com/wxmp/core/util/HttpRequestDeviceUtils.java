@@ -1,9 +1,15 @@
 package com.wxmp.core.util;
 
+import org.apache.commons.lang.StringUtils;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.net.URL;
+import java.net.URLConnection;
+
 /**
  * 客户端判断工具
- * 
  */
 public class HttpRequestDeviceUtils {
 
@@ -106,5 +112,167 @@ public class HttpRequestDeviceUtils {
         }
         return false;
     }
-	
+
+    /**
+     * 判断当前请求是否为Ajax
+     * @param request
+     * @return
+     */
+    public static boolean isAjaxRequest(HttpServletRequest request) {
+        String header = request.getHeader("X-Requested-With");
+        return !StringUtils.isEmpty(header) && "XMLHttpRequest".equals(header);
+    }
+
+    /**
+     * 根据header信息获取请求IP地址
+     * @param request
+     * @return
+     */
+    public static String getRealIp(HttpServletRequest request) {
+        String ip = request.getHeader("x-forwarded-for");
+        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+            ip = request.getHeader("Proxy-Client-IP");
+        }
+        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+            ip = request.getHeader("WL-Proxy-Client-IP");
+        }
+        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+            ip = request.getRemoteAddr();
+        }
+        return ip;
+    }
+
+    /**
+     * 根据header信息获取请求IP地址 版本2
+     * @param request
+     * @return
+     */
+    public static String getRealIpV2(HttpServletRequest request) {
+        String accessIP = request.getHeader("x-forwarded-for");
+        if (null == accessIP)
+            return request.getRemoteAddr();
+        return accessIP;
+    }
+
+    /**
+     * 查询IP地址
+     * @param request
+     * @return
+     */
+    public static String getIpAddr(HttpServletRequest request) {
+        String ip = request.getHeader("X-Forwarded-For");
+        if (StringUtils.isNotEmpty(ip) && !"unKnown".equalsIgnoreCase(ip)) {
+            if(ip.indexOf("::ffff:")!=-1) {
+                ip = ip.replace("::ffff:", "");
+            }
+            int index = ip.indexOf(",");
+            if (index != -1) {
+                return ip.substring(0, index);
+            } else {
+                return ip;
+            }
+        }
+        ip = request.getHeader("X-Real-IP");
+        if (StringUtils.isNotEmpty(ip) && !"unKnown".equalsIgnoreCase(ip)) {
+            return ip;
+        }
+        return request.getRemoteAddr();
+    }
+
+    /**
+     * 重定向
+     * @param httpServletRequest
+     * @param httpServletResponse
+     * @param url
+     */
+    public static void redirectUrl(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, String url){
+        try {
+            httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + url);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 重定向到http://的url
+     * @param httpServletRequest
+     * @param httpServletResponse
+     * @param url
+     */
+    public static void redirectHttpUrl(HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse,String url){
+        try {
+            httpServletResponse.sendRedirect(url);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 判断当前连接是否能够打开
+     * @param httpPath
+     * @return
+     */
+    public static Boolean existHttpPath(String httpPath){
+        URL httpurl = null;
+        try {
+            httpurl = new URL(httpPath);
+            URLConnection rulConnection = httpurl.openConnection();
+            rulConnection.getInputStream();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    /**
+     * 返回请求被发送到的服务器的主机名。它是Host头值":"(如果有)之前的那部分的值。 或者解析服务器名称或服务器的IP地址
+     * @param request
+     * @return
+     */
+    public static String getDomain(HttpServletRequest request){
+        return request.getServerName();
+    }
+
+    /**
+     * 协议 + 域名
+     * @param request
+     * @return
+     */
+    public static String getHttpDomain(HttpServletRequest request){
+        return request.getScheme() + "://" + getDomain(request);
+    }
+
+    /**
+     * 页面路径
+     * @param request
+     * @return
+     */
+    public static String getContextHttpUri(HttpServletRequest request){
+        return request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
+    }
+
+    /**
+     *
+     * @param request
+     * @return
+     */
+    public static String getRealPath(HttpServletRequest request){
+        return request.getSession().getServletContext().getRealPath("/");
+    }
+
+    public static String getRequestFullUri(HttpServletRequest request){
+        String port = "";
+        if(request.getServerPort() != 80){
+            port = ":" + request.getServerPort();
+        }
+        return request.getScheme() + "://" + request.getServerName() + port + request.getContextPath() + request.getServletPath();
+    }
+
+    public static String getRequestFullUriNoContextPath(HttpServletRequest request){
+        String port = "";
+        if(request.getServerPort() != 80){
+            port = ":" + request.getServerPort();
+        }
+        return request.getScheme() + "://" + request.getServerName() + port + request.getServletPath();
+    }
 }

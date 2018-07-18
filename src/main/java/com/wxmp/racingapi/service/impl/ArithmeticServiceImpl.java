@@ -3,6 +3,7 @@ package com.wxmp.racingapi.service.impl;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.wxmp.backstage.common.RacingConstants;
+import com.wxmp.core.util.wx.LogUtils;
 import com.wxmp.racingapi.service.ArithmeticService;
 import com.wxmp.racingapi.vo.dto.ArithmeticAwardDTO;
 import com.wxmp.racingcms.domain.RMatchLog;
@@ -48,7 +49,7 @@ public class ArithmeticServiceImpl implements ArithmeticService{
                 }
             }
         }
-        for (int i = 1; i < RacingConstants.RACING_AMOUNT; i++) {
+        for (int i = 0; i < RacingConstants.RACING_AMOUNT; i++) {
             //支持6辆赛车
             racings.add(new ArithmeticAwardDTO(String.valueOf(i), this.caculateProbability(i, coinMap), this.caculateCounts(i, playerMap)));
         }
@@ -57,6 +58,7 @@ public class ArithmeticServiceImpl implements ArithmeticService{
         reslut.add(queryRandom(RacingConstants.RACING_AMOUNT));
         reslut.add(queryRandom(RacingConstants.RACING_AMOUNT));
         List<Integer> finals = Lists.newArrayList();
+        LogUtils.console(racings.toString());
         Integer champIndex = lottery(racings);
         if(null != champIndex){
             finals.add(champIndex);
@@ -73,7 +75,7 @@ public class ArithmeticServiceImpl implements ArithmeticService{
     /**
      * 依据赛车下注金额计算赛车第一名可能性
      * @param coinIndex
-     * @param coinMap
+     * @param coinMap   coinIndex VS coinTotal
      * @return
      */
     private float caculateProbability(Integer coinIndex, Map<Integer, Long> coinMap){
@@ -82,10 +84,10 @@ public class ArithmeticServiceImpl implements ArithmeticService{
             for (long coin : coinMap.values()){
                 total += coin;
             }
-            List<Float> probabilityList = Lists.newArrayList();
+            List<Float> probabilityList = this.initlizeProbability();
             if(total > 0){
                 for (int index : coinMap.keySet()){
-                    probabilityList.add(index, new BigDecimal(coinMap.get(index)/total).floatValue() );
+                    probabilityList.set(index, new BigDecimal(coinMap.get(index)).divide(new BigDecimal(total), 2, RoundingMode.HALF_UP).floatValue() );
                 }
                 if(CollectionUtils.isNotEmpty(probabilityList)){
                     //反序，押注的越多，概率越低
@@ -159,11 +161,26 @@ public class ArithmeticServiceImpl implements ArithmeticService{
      */
     private List<Integer> queryRandom(Integer length){
         List<Integer> nums = Lists.newArrayList();
-        for (int i = 1; i < length + 1 ; i++) {
+        for (int i = 0; i < length; i++) {
             nums.add(i);
         }
         Collections.shuffle(nums);
         return nums;
+    }
+
+    /**
+     * 初始化当前赛车的原始命中概率
+     * @return
+     */
+    private List<Float> initlizeProbability(){
+        List<Float> probabilityList = Lists.newArrayList();
+        Integer initSize = RacingConstants.RACING_AMOUNT;
+        Float initProbability = new BigDecimal(1).divide(new BigDecimal(initSize), 2, RoundingMode.HALF_UP).floatValue();
+
+        for (int i = 0; i < initSize; i++) {
+            probabilityList.add(initProbability);
+        }
+        return probabilityList;
     }
 
 }
