@@ -1,6 +1,7 @@
 package com.wxmp.racingapi.service.impl;
 
 import com.wxmp.backstage.common.RacingConstants;
+import com.wxmp.racingapi.service.ComponentService;
 import com.wxmp.racingapi.service.UserService;
 import com.wxmp.racingapi.vo.form.UserRegisForm;
 import com.wxmp.racingapi.vo.view.UserAccountView;
@@ -30,6 +31,8 @@ public class UserServiceImpl implements UserService{
     private RUserService rUserService;
     @Autowired
     private RUserCoinMapper rUserCoinMapper;
+    @Autowired
+    private ComponentService componentService;
 
     /** 验证码池,验证码 ： 手机号 */
     private ConcurrentHashMap<String, String> codePool = new ConcurrentHashMap<String, String>();
@@ -138,6 +141,7 @@ public class UserServiceImpl implements UserService{
             code = getIdentifyCode();
         }
         codePool.put(code, mobile);
+        this.componentService.pushIdentifyShortMessage(mobile, code);
         return code;
     }
 
