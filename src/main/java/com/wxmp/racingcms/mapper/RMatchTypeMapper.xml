@@ -28,4 +28,18 @@
     muti_amount, remark
     from r_match_type
   </select>
+
+  <select id="selectByCondition" resultMap="BaseResultMap">
+    select uuid, is_del, creater, updater, create_time, update_time, match_name, match_type,
+      muti_amount, remark
+    from r_match_type
+    where
+      is_del = 0
+      <if test="filter.matchType != null">
+        and match_type = #{filter.matchType,jdbcType=INTEGER}
+      </if>
+      <if test="filter.uuid != null">
+        and uuid = #{filter.uuid,jdbcType=VARCHAR}
+      </if>
+  </select>
 </mapper>

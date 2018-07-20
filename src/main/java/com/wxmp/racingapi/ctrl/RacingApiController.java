@@ -1,14 +1,13 @@
 package com.wxmp.racingapi.ctrl;
 
 import com.wxmp.racingapi.common.ErrorCodeEnum;
+import com.wxmp.racingapi.service.MatchService;
 import com.wxmp.racingapi.service.UserCoinService;
 import com.wxmp.racingapi.service.UserService;
 import com.wxmp.racingapi.vo.form.MatchForm;
 import com.wxmp.racingapi.vo.form.UserRegisForm;
-import com.wxmp.racingapi.vo.view.BaseView;
+import com.wxmp.racingapi.vo.view.*;
 import com.wxmp.racingapi.vo.form.UserPayForm;
-import com.wxmp.racingapi.vo.view.ObjectView;
-import com.wxmp.racingapi.vo.view.UserAccountView;
 import com.wxmp.racingcms.domain.RUser;
 import com.wxmp.racingcms.domain.RUserCoin;
 import org.apache.commons.lang.StringUtils;
@@ -35,6 +34,9 @@ public class RacingApiController {
     private UserService userService;
     @Autowired
     private UserCoinService userCoinService;
+    @Autowired
+    private MatchService matchService;
+
 
     /**
      * 用户注册
@@ -55,26 +57,36 @@ public class RacingApiController {
     }
 
     /**
-     * 绑定手机号
+     * 绑定手机号，直接进行账户创建
      * @param request
-     * @param user
+     * @param mobile
      * @return
      */
-    @RequestMapping(value = "/bindMobile/{userUuid}",  method = RequestMethod.GET)
+    @RequestMapping(value = "/bindMobile/{mobile}",  method = RequestMethod.GET)
     @ResponseBody
-    public BaseView bindMobile(HttpServletRequest request, @RequestBody UserRegisForm user) {
+    public BaseView bindMobile(HttpServletRequest request, @PathVariable String mobile, @RequestParam("code")String code) {
+        UserAccountView view = this.userService.registerUser(mobile, code);
+        if(null != view){
+            return new ObjectView<UserAccountView>(view);
+        }
         return BaseView.FAIL;
     }
 
     /**
-     * 校验手机号
+     * 生成验证码
      * @param request
-     * @param user
+     * @param mobile
      * @return
      */
-    @RequestMapping(value = "/checkMobile/{userUuid}",  method = RequestMethod.GET)
+    @RequestMapping(value = "/createCode/{mobile}",  method = RequestMethod.GET)
     @ResponseBody
-    public BaseView checkMobile(HttpServletRequest request, @RequestBody UserRegisForm user) {
+    public BaseView checkMobile(HttpServletRequest request, @PathVariable String mobile) {
+        try {
+            String code = this.userService.identifyCode(mobile);
+            return new ObjectView<String>(code);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         return BaseView.FAIL;
     }
 
@@ -141,12 +153,13 @@ public class RacingApiController {
      * @param matchType
      * @return
      */
-    @RequestMapping(value = "/match/{match_type}",  method = RequestMethod.GET)
+    @RequestMapping(value = "/match/{matchType}",  method = RequestMethod.GET)
     @ResponseBody
-    public BaseView matchInfo(HttpServletRequest request, @PathVariable String matchType) {
+    public BaseView matchInfo(HttpServletRequest request, @PathVariable Integer matchType) {
         BaseView result = null;
-        if(StringUtils.isNotEmpty(matchType)){
-
+        if(null != matchType && matchType == 1){
+            MatchDetailView view = this.matchService.queryMatchResults(matchType);
+            result = new ObjectView<MatchDetailView>(view);
         }else {
             result = new BaseView(ErrorCodeEnum.PARAM_ERROR) {};
         }
@@ -163,9 +176,13 @@ public class RacingApiController {
     @RequestMapping(value = "/match/result",  method = RequestMethod.POST)
     @ResponseBody
     public BaseView matchResult(HttpServletRequest request, @RequestBody MatchForm form) {
-        BaseView result = null;
-        result = BaseView.FAIL;
-        return result;
+        BaseView result = BaseView.FAIL;
+        if(null != form && StringUtils.isNotEmpty(form.getMatchUuid())) {
+            MatchDetailResultView view = this.matchService.queryMatchDetailRequest(form.getMatchUuid());
+            return new ObjectView<MatchDetailResultView>(view);
+        }else {
+            return BaseView.PARAM_ERROR;
+        }
     }
 
 }

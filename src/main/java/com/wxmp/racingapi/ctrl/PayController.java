@@ -26,7 +26,7 @@ public class PayController {
     @ResponseBody
     public BaseView toWechatH5Pay(HttpServletRequest request, HttpServletResponse response){
         BaseView result = BaseView.FAIL;
-
+        //组装微信
         return result;
     }
 

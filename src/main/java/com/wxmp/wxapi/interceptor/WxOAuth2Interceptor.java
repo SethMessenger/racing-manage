@@ -3,6 +3,7 @@ package com.wxmp.wxapi.interceptor;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.wxmp.core.util.HttpRequestDeviceUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -81,25 +82,25 @@ public class WxOAuth2Interceptor extends HandlerInterceptorAdapter {
 				MpAccount mpAccount = WxMemoryCacheClient.getSingleMpAccount();
 				//获取缓存中的唯一账号
 				log.info("-------------------------------------preHandle-----<3-1>-------------------mpAccount:"+mpAccount.getAccount());	
-				String redirectUrl = HttpUtil.getRequestFullUriNoContextPath(request);
+				String redirectUrl = HttpRequestDeviceUtils.getRequestFullUriNoContextPath(request);
 				//请求code的回调url
-				if(!HttpUtil.existHttpPath(redirectUrl)){
+				if(!HttpRequestDeviceUtils.existHttpPath(redirectUrl)){
 					//以上不存在就拼接全部url（包括context）
-					redirectUrl=HttpUtil.getRequestFullUri(request);
+					redirectUrl=HttpRequestDeviceUtils.getRequestFullUri(request);
 				}
 				log.info("-------------------------------------preHandle-----<3-2>-------------------redirectUrl:"+redirectUrl);
 				String state = OAuth2RequestParamHelper.prepareState(request);
 				log.info("-------------------------------------preHandle-----<3-3>-------------------state:"+state);
 				String url = WxApi.getOAuthCodeUrl(mpAccount.getAppid(), redirectUrl, OAuthScope.Base.toString(), state);
-				log.info("-------------------------------------preHandle-----<3-4>-------------------url:"+url);	
-				HttpUtil.redirectHttpUrl(request, response, url);
+				log.info("-------------------------------------preHandle-----<3-4>-------------------url:"+url);
+				HttpRequestDeviceUtils.redirectHttpUrl(request, response, url);
 				return false;
 			}
 		}else{
 			System.out.println("#### WxOAuth2Interceptor Session : openid = " + openid);
 			return true;
 		}
-		HttpUtil.redirectUrl(request, response, "/error/101.html");
+		HttpRequestDeviceUtils.redirectUrl(request, response, "/error/101.html");
 		return false;
 	}
 	

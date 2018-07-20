@@ -42,6 +42,9 @@
                 <!--#{videoUuid,jdbcType=VARCHAR}-->
             <!--</foreach>-->
         <!--</if>-->
+        <if test="filter.uuid != null">
+            and uuid = #{filter.uuid,jdbcType=VARCHAR}
+        </if>
         <if test="filter.matchType != null">
             and match_type = #{filter.matchType,jdbcType=INTEGER}
         </if>
@@ -49,6 +52,7 @@
             and match_status = #{filter.matchStatus,jdbcType=INTEGER}
         </if>
         ORDER BY create_time DESC
+        LIMIT 4
     </select>
 
     <update id="update" parameterType="com.wxmp.racingcms.domain.RMatchResult">

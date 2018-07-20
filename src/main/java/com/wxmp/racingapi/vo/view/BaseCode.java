@@ -9,10 +9,12 @@ public class BaseCode {
 
     private int error;
     private String errorMsg;
+    private long timeStamp;
 
     public BaseCode(ErrorCodeEnum code) {
         this.error = code.getError();
         this.errorMsg = code.getErrorMsg();
+        this.timeStamp = System.currentTimeMillis();
     }
 
     public int getError() {
@@ -29,5 +31,13 @@ public class BaseCode {
 
     public void setErrorMsg(String errorMsg) {
         this.errorMsg = errorMsg;
+    }
+
+    public long getTimeStamp() {
+        return timeStamp;
+    }
+
+    public void setTimeStamp(long timeStamp) {
+        this.timeStamp = timeStamp;
     }
 }

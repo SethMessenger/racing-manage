@@ -3,6 +3,7 @@ package com.wxmp.core.interceptor;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.wxmp.core.util.HttpRequestDeviceUtils;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.wxmp.core.util.HttpUtil;
@@ -35,7 +36,7 @@ public class TestCaseInterceptor extends HandlerInterceptorAdapter {
 				}
 			}
 		}
-		HttpUtil.redirectHttpUrl(request, response, "http://www.jeeweixin.com");
+		HttpRequestDeviceUtils.redirectHttpUrl(request, response, "http://www.jeeweixin.com");
 		return false;
 	}
 	
