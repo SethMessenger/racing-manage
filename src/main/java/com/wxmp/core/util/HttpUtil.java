@@ -76,7 +76,7 @@ public class HttpUtil{
 	 * @param url
 	 * @return
 	 */
-	private static String doGet(String url) {
+	public static String doGet(String url) {
 		return doGet(url, new HashMap<String, Object>(), false);
 	}
 
@@ -87,7 +87,7 @@ public class HttpUtil{
 	 * @param params
 	 * @return
 	 */
-	private static Header[] doGetHeaders(String url, Map<String, Object> params, boolean isHttps) {
+	public static Header[] doGetHeaders(String url, Map<String, Object> params, boolean isHttps) {
 		Header[] headers = null;
 		HttpResponse response = null;
 		String apiUrl = dealWithGetParams(url, params);
@@ -124,7 +124,7 @@ public class HttpUtil{
 	 * @param params
 	 * @return
 	 */
-	private static String doGet(String url, Map<String, Object> params, boolean isHttps) {
+	public static String doGet(String url, Map<String, Object> params, boolean isHttps) {
 		HttpResponse response = null;
 		String apiUrl = dealWithGetParams(url, params);
 
@@ -166,8 +166,8 @@ public class HttpUtil{
 	 * @param params
 	 * @return
 	 */
-	private static String dealWithGetParams(String url, Map<String, Object> params){
-		String apiUrl = "";
+	public static String dealWithGetParams(String url, Map<String, Object> params){
+		String apiUrl = url;
 		int i = 0;
 		StringBuffer param = new StringBuffer();
 		if (null != params && !params.isEmpty()) {
@@ -180,7 +180,7 @@ public class HttpUtil{
 				param.append(key).append("=").append(params.get(key));
 				i++;
 			}
-			if (url.contains("?")) {
+			if (apiUrl.contains("?")) {
 				apiUrl += param.substring(1);
 			} else {
 				apiUrl += param;
@@ -195,7 +195,7 @@ public class HttpUtil{
 	 * @param apiUrl
 	 * @return
 	 */
-	private static String doPost(String apiUrl) {
+	public static String doPost(String apiUrl) {
 		return doPost(apiUrl, new HashMap<String, Object>());
 	}
 
@@ -208,7 +208,7 @@ public class HttpUtil{
 	 *            参数map
 	 * @return
 	 */
-	private static String doPost(String apiUrl, Map<String, Object> params) {
+	public static String doPost(String apiUrl, Map<String, Object> params) {
 		CloseableHttpClient httpClient = HttpClients.createDefault();
 		String httpStr = null;
 		HttpPost httpPost = new HttpPost(apiUrl);
@@ -248,8 +248,7 @@ public class HttpUtil{
 	 *            json对象
 	 * @return
 	 */
-	@SuppressWarnings("unused")
-	private static String doPost(String apiUrl, Object json) {
+	public static String doPost(String apiUrl, Object json) {
 		CloseableHttpClient httpClient = HttpClients.createDefault();
 		String httpStr = null;
 		HttpPost httpPost = new HttpPost(apiUrl);
@@ -289,7 +288,7 @@ public class HttpUtil{
 	 *            参数map
 	 * @return
 	 */
-	private static String doPostSSL(String apiUrl, Map<String, Object> params) {
+	public static String doPostSSL(String apiUrl, Map<String, Object> params) {
 		CloseableHttpClient httpClient = HttpClients.custom().setSSLSocketFactory(createSSLConnSocketFactory())
 				.setConnectionManager(connMgr).setDefaultRequestConfig(requestConfig).build();
 		HttpPost httpPost = new HttpPost(apiUrl);
@@ -337,7 +336,7 @@ public class HttpUtil{
 	 *            JSON对象
 	 * @return
 	 */
-	private static String doPostSSL(String apiUrl, Object json) {
+	public static String doPostSSL(String apiUrl, Object json) {
 		CloseableHttpClient httpClient = HttpClients.custom().setSSLSocketFactory(createSSLConnSocketFactory())
 				.setConnectionManager(connMgr).setDefaultRequestConfig(requestConfig).build();
 		HttpPost httpPost = new HttpPost(apiUrl);
@@ -380,7 +379,7 @@ public class HttpUtil{
 	 *
 	 * @return
 	 */
-	private static SSLConnectionSocketFactory createSSLConnSocketFactory() {
+	public static SSLConnectionSocketFactory createSSLConnSocketFactory() {
 		SSLConnectionSocketFactory sslsf = null;
 		try {
 			SSLContext sslContext = new SSLContextBuilder().loadTrustMaterial(null, new TrustStrategy() {
@@ -396,7 +395,7 @@ public class HttpUtil{
 		return sslsf;
 	}
 
-	private static CloseableHttpClient createSSLClientDefault() {
+	public static CloseableHttpClient createSSLClientDefault() {
 		try {
 			SSLContext sslContext = new SSLContextBuilder().loadTrustMaterial(null, new TrustStrategy() {
 				// 信任所有

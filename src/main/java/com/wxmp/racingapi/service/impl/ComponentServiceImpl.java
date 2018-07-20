@@ -1,6 +1,8 @@
 package com.wxmp.racingapi.service.impl;
 
+import com.wxmp.core.agent.ComponentAgent;
 import com.wxmp.racingapi.service.ComponentService;
+import com.wxmp.racingapi.vo.agent.ShortMessageRes;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,7 +25,11 @@ public class ComponentServiceImpl implements ComponentService{
      */
     @Override
     public Integer pushIdentifyShortMessage(String mobile, String identifyCode) {
-
-        return null;
+        ShortMessageRes res = ComponentAgent.sendShortMessage(mobile, identifyCode);
+        if(null != res){
+            return 1;
+        }else {
+            return 0;
+        }
     }
 }
