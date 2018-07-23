@@ -1,6 +1,7 @@
 package com.wxmp.racingapi.service.impl;
 
 import com.wxmp.backstage.common.RacingConstants;
+import com.wxmp.core.util.MD5Utils;
 import com.wxmp.racingapi.service.ComponentService;
 import com.wxmp.racingapi.service.UserService;
 import com.wxmp.racingapi.vo.form.UserRegisForm;
@@ -10,6 +11,7 @@ import com.wxmp.racingcms.domain.RUserCoin;
 import com.wxmp.racingcms.mapper.RUserCoinMapper;
 import com.wxmp.racingcms.service.RUserService;
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,6 +38,9 @@ public class UserServiceImpl implements UserService{
 
     /** 验证码池,验证码 ： 手机号 */
     private ConcurrentHashMap<String, String> codePool = new ConcurrentHashMap<String, String>();
+
+    /** 验证码池,找回验证码 ： 手机号 */
+    private ConcurrentHashMap<String, String> findPool = new ConcurrentHashMap<String, String>();
 
     /**
      * 用户信息修改
@@ -143,6 +148,75 @@ public class UserServiceImpl implements UserService{
         codePool.put(code, mobile);
         this.componentService.pushIdentifyShortMessage(mobile, code);
         return code;
+    }
+
+    /**
+     * 更新账户信息
+     *
+     * @param form
+     * @return
+     */
+    @Override
+    public UserAccountView updateUserInfo(UserRegisForm form) {
+        //根据mobile或者openid查询当前账户
+        String openId = form.getOpenId();
+        String mobile = form.getMobile();
+        RUser condition = new RUser();
+        condition.setMobile(mobile);
+        condition.setOpenId(openId);
+        List<RUser> users = this.rUserService.listForPage(condition);
+        if(CollectionUtils.isNotEmpty(users)){
+            RUser user = users.get(0);
+            if(StringUtils.isNotEmpty(form.getUserName())){
+                //MD5
+                user.setPassword(MD5Utils.getPwd(form.getPwd()));
+            }
+            if(StringUtils.isNotEmpty(form.getUserName())){
+                user.setUserName(form.getUserName());
+            }
+            if(StringUtils.isNotEmpty(form.getUserNickName())){
+                user.setUserNickname(form.getUserNickName());
+            }
+            this.rUserService.update(user);
+            RUserCoin userCoinCondition = new RUserCoin();
+            userCoinCondition.setUserUuid(user.getUuid());
+            List<RUserCoin> coinAccount = this.rUserCoinMapper.selectByCondition(userCoinCondition);
+            return new UserAccountView(user, coinAccount.get(0));
+        }
+        return null;
+    }
+
+    /**
+     * 找回密码，生成验证码
+     *
+     * @param mobile
+     * @return
+     */
+    @Override
+    public String findCode(String mobile) {
+        String code = getIdentifyCode();
+        while (findPool.keySet().contains(code)){
+            code = getIdentifyCode();
+        }
+        findPool.put(code, mobile);
+        this.componentService.pushFindCodeShortMessage(mobile, code);
+        return code;
+    }
+
+    /**
+     * 找回密码，重新设置密码
+     *
+     * @param form
+     * @return
+     */
+    @Override
+    public UserAccountView resetPwd(String code, UserRegisForm form) {
+        if(findPool.keySet().contains(code) && findPool.get(code).equalsIgnoreCase(form.getMobile())){
+            //自动生成一个用户名和昵称
+            return updateUserInfo(form);
+        }else {
+            return null;
+        }
     }
 
     /****************************** 私有工具 ******************************

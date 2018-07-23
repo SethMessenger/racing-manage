@@ -37,6 +37,63 @@ public class RacingApiController {
     @Autowired
     private MatchService matchService;
 
+    /**
+     * 使用找回码，重新设置密码
+     * @param request
+     * @param user
+     * @return
+     */
+    @RequestMapping(value = "/resetPwd/{code}",  method = RequestMethod.POST)
+    @ResponseBody
+    public BaseView resetPwd(HttpServletRequest request, @RequestBody UserRegisForm user, @PathVariable String code) {
+        if(null == user || StringUtils.isEmpty(code)
+                || StringUtils.isEmpty(user.getPwd()) || StringUtils.isEmpty(user.getMobile())){
+            return BaseView.PARAM_ERROR;
+        }
+        UserAccountView resultUser = this.userService.resetPwd(code, user);
+        if(null != resultUser){
+            //暂时不返回账户信息
+            return new ObjectView<UserAccountView>(resultUser);
+        }else {
+            return BaseView.FAIL;
+        }
+    }
+
+    /**
+     * 找回密码 生成验证码
+     * @param request
+     * @param mobile
+     * @return
+     */
+    @RequestMapping(value = "/find/{mobile}",  method = RequestMethod.GET)
+    @ResponseBody
+    public BaseView find(HttpServletRequest request, @PathVariable String mobile) {
+        try {
+            String code = this.userService.findCode(mobile);
+            return new ObjectView<String>(code);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return BaseView.FAIL;
+    }
+
+    /**
+     * 更新信息
+     * @param request
+     * @param user
+     * @return
+     */
+    @RequestMapping(value = "/updateUserInfo",  method = RequestMethod.POST)
+    @ResponseBody
+    public BaseView updateUserInfo(HttpServletRequest request, @RequestBody UserRegisForm user) {
+        UserAccountView resultUser = this.userService.updateUserInfo(user);
+        if(null != resultUser){
+            //暂时不返回账户信息
+            return new ObjectView<UserAccountView>(resultUser);
+        }else {
+            return BaseView.FAIL;
+        }
+    }
 
     /**
      * 用户注册

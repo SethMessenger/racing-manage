@@ -11,6 +11,7 @@ public class UserRegisForm {
     private String userName;
     private String userNickName;
     private String openId;
+    private String pwd;
 
     public String getMobile() {
         return mobile;
@@ -42,5 +43,13 @@ public class UserRegisForm {
 
     public void setOpenId(String openId) {
         this.openId = openId;
+    }
+
+    public String getPwd() {
+        return pwd;
+    }
+
+    public void setPwd(String pwd) {
+        this.pwd = pwd;
     }
 }

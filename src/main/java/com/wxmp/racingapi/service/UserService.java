@@ -45,4 +45,25 @@ public interface UserService {
      */
     String identifyCode(String mobile);
 
+    /**
+     * 更新账户信息
+     * @param user
+     * @return
+     */
+    UserAccountView updateUserInfo(UserRegisForm user);
+
+    /**
+     * 找回密码，生成验证码
+     * @param mobile
+     * @return
+     */
+    String findCode(String mobile);
+
+    /**
+     * 找回密码，重新设置密码
+     * @param code
+     * @param user
+     * @return
+     */
+    UserAccountView resetPwd(String code, UserRegisForm user);
 }

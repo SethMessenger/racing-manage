@@ -36,4 +36,20 @@ public class ComponentServiceImpl implements ComponentService{
             return 0;
         }
     }
+
+    /**
+     * 找回验证码
+     * @param mobile
+     * @param identifyCode
+     * @return
+     */
+    @Override
+    public Integer pushFindCodeShortMessage(String mobile, String identifyCode) {
+        ShortMessageRes res = ComponentAgent.sendFindShortMessage(mobile, identifyCode);
+        if(null != res){
+            return 1;
+        }else {
+            return 0;
+        }
+    }
 }

@@ -121,6 +121,7 @@ CREATE TABLE `r_match_log` (
   PRIMARY KEY (`uuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+alter table `r_match_log` add coin_index int(2) DEFAULT 0 COMMENT '押注号码';
 
 
 

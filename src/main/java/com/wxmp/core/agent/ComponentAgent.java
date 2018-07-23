@@ -20,6 +20,7 @@ public class ComponentAgent {
     private static final String PUSH_SHORT_MESSAGE_URL = "http://v.juhe.cn/sms/send";
 
     private static final Integer IDENTIFY_CODE_TEMPLATE = 88911;
+    private static final Integer FIND_CODE_TEMPLATE = 89678;
     private static final String RETURN_TYPE_JSON = "json";
     private static final String RETURN_TYPE_XML = "xml";
 
@@ -37,5 +38,18 @@ public class ComponentAgent {
     }
 
 
-
+    /**
+     * 示例: http://v.juhe.cn/sms/send?mobile=手机号码&tpl_id=短信模板ID&tpl_value=%23code%23%3D654654&key=   <br/>
+     * 使用聚合数据API申请d短信发送权限，发送指定模板短信<br/>
+     * @param mobile
+     * @param mobile
+     * @param identifyCode
+     * @return
+     */
+    public static ShortMessageRes sendFindShortMessage(String mobile, String identifyCode) {
+        ShortMessageReq req = new ShortMessageReq(mobile, FIND_CODE_TEMPLATE, identifyCode, RETURN_TYPE_JSON);
+        String resultJSON = HttpUtil.doGet(PUSH_SHORT_MESSAGE_URL, BeanUtil.getAllFields(req), false);
+        ShortMessageRes res = JSONUtil.jsonToObject(new TypeReference<ShortMessageRes>(){}, resultJSON);
+        return res;
+    }
 }
