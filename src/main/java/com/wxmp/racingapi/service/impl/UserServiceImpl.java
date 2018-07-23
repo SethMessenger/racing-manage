@@ -4,6 +4,7 @@ import com.wxmp.backstage.common.RacingConstants;
 import com.wxmp.core.util.MD5Utils;
 import com.wxmp.racingapi.service.ComponentService;
 import com.wxmp.racingapi.service.UserService;
+import com.wxmp.racingapi.vo.form.LoginForm;
 import com.wxmp.racingapi.vo.form.UserRegisForm;
 import com.wxmp.racingapi.vo.view.UserAccountView;
 import com.wxmp.racingcms.domain.RUser;
@@ -217,6 +218,28 @@ public class UserServiceImpl implements UserService{
         }else {
             return null;
         }
+    }
+
+    /**
+     * 用户登录获取用户xinxi
+     *
+     * @param form
+     * @return
+     */
+    @Override
+    public RUser login(LoginForm form) {
+        String openId = form.getOpenId();
+        String mobile = form.getMobile();
+        String pwd = form.getPwd();
+        RUser condition = new RUser();
+        condition.setMobile(mobile);
+        condition.setOpenId(openId);
+        condition.setPassword(MD5Utils.getPwd(pwd));
+        List<RUser> users = this.rUserService.listForPage(condition);
+        if(CollectionUtils.isNotEmpty(users)) {
+            return users.get(0);
+        }
+        return null;
     }
 
     /****************************** 私有工具 ******************************

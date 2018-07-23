@@ -4,6 +4,7 @@ import com.wxmp.racingapi.common.ErrorCodeEnum;
 import com.wxmp.racingapi.service.MatchService;
 import com.wxmp.racingapi.service.UserCoinService;
 import com.wxmp.racingapi.service.UserService;
+import com.wxmp.racingapi.vo.form.LoginForm;
 import com.wxmp.racingapi.vo.form.MatchForm;
 import com.wxmp.racingapi.vo.form.UserRegisForm;
 import com.wxmp.racingapi.vo.view.*;
@@ -153,9 +154,9 @@ public class RacingApiController {
      * @param userUuid
      * @return
      */
-    @RequestMapping(value = "/user/{userUuid}",  method = RequestMethod.GET)
+    @RequestMapping(value = "/user/{userUuid}",  method = RequestMethod.POST)
     @ResponseBody
-    public BaseView getUser(HttpServletRequest request, @PathVariable String userUuid) {
+    public BaseView getUser(HttpServletRequest request, @PathVariable String userUuid, @RequestBody LoginForm form) {
         BaseView result = null;
         if(StringUtils.isNotEmpty(userUuid)){
             UserAccountView view = this.userService.getUserInfo(userUuid);
@@ -165,6 +166,17 @@ public class RacingApiController {
                 result = new ObjectView<UserAccountView>(ErrorCodeEnum.USER_ERROR);
             }
         }else {
+            if(null != form && StringUtils.isNotEmpty(form.getMobile()) && StringUtils.isNotEmpty(form.getPwd())){
+                RUser user = this.userService.login(form);
+                if(null != user){
+                    UserAccountView view = this.userService.getUserInfo(userUuid);
+                    if (null != view) {
+                        result = new ObjectView<UserAccountView>(view);
+                    }else {
+                        result = new ObjectView<UserAccountView>(ErrorCodeEnum.USER_ERROR);
+                    }
+                }
+            }
             result = BaseView.FAIL;
         }
         return result;

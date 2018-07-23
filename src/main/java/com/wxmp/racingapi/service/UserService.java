@@ -1,7 +1,9 @@
 package com.wxmp.racingapi.service;
 
+import com.wxmp.racingapi.vo.form.LoginForm;
 import com.wxmp.racingapi.vo.form.UserRegisForm;
 import com.wxmp.racingapi.vo.view.UserAccountView;
+import com.wxmp.racingcms.domain.RUser;
 
 /**
  * @author xunbo.xu
@@ -66,4 +68,11 @@ public interface UserService {
      * @return
      */
     UserAccountView resetPwd(String code, UserRegisForm user);
+
+    /**
+     * 用户登录获取用户xinxi
+     * @param form
+     * @return
+     */
+    RUser login(LoginForm form);
 }

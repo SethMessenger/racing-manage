@@ -55,6 +55,9 @@
         <if test ="filter.openId != null">
           and open_id = #{filter.openId,jdbcType=VARCHAR}
         </if>
+        <if test ="filter.password != null">
+          and password = #{filter.password,jdbcType=VARCHAR}
+        </if>
     </select>
 
     <update id="update" parameterType="com.wxmp.racingcms.domain.RUser">

@@ -16,4 +16,11 @@ public interface ComponentService {
     Integer pushIdentifyShortMessage(String mobile, String identifyCode);
 
 
+    /**
+     * 找回验证码
+     * @param mobile
+     * @param identifyCode
+     * @return
+     */
+    Integer pushFindCodeShortMessage(String mobile, String identifyCode);
 }
