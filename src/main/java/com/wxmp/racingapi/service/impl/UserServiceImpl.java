@@ -73,17 +73,17 @@ public class UserServiceImpl implements UserService{
     /**
      * 用户手机注册
      *
-     * @param mobile
+     * @param form
      * @param code
      * @return
      */
     @Override
-    public UserAccountView registerUser(String mobile, String code) {
+    public UserAccountView registerUser(String code, UserRegisForm form) {
+        String mobile = form.getMobile();
         if(codePool.keySet().contains(code) && codePool.get(code).equalsIgnoreCase(mobile)){
-            //自动生成一个用户名和昵称
-            String nickName = getStringRandom();
+            //默认用户名为手机号，昵称和
+            String nickName = form.getUserNickName();
             String userName = mobile;
-            UserRegisForm form = new UserRegisForm();
             form.setUserNickName(nickName);
             form.setUserName(userName);
             form.setMobile(mobile);
@@ -168,7 +168,7 @@ public class UserServiceImpl implements UserService{
         List<RUser> users = this.rUserService.listForPage(condition);
         if(CollectionUtils.isNotEmpty(users)){
             RUser user = users.get(0);
-            if(StringUtils.isNotEmpty(form.getUserName())){
+            if(StringUtils.isNotEmpty(form.getPwd())){
                 //MD5
                 user.setPassword(MD5Utils.getPwd(form.getPwd()));
             }

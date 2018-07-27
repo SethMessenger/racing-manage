@@ -43,19 +43,19 @@
       from r_user
       where
         is_del = 0
-        <if test ="filter.userName != null">
+        <if test ="filter.userName != null and filter.userName != ''">
           and user_name = #{filter.userName,jdbcType=VARCHAR}
         </if>
-        <if test ="filter.userNickname != null">
+        <if test ="filter.userNickname != null and filter.userNickname != ''">
           and user_nickname = #{filter.userNickname,jdbcType=VARCHAR}
         </if>
-        <if test ="filter.mobile != null">
+        <if test ="filter.mobile != null and filter.mobile != ''">
           and mobile = #{filter.mobile,jdbcType=VARCHAR}
         </if>
-        <if test ="filter.openId != null">
+        <if test ="filter.openId != null and filter.openId != ''">
           and open_id = #{filter.openId,jdbcType=VARCHAR}
         </if>
-        <if test ="filter.password != null">
+        <if test ="filter.password != null and filter.password != ''">
           and password = #{filter.password,jdbcType=VARCHAR}
         </if>
     </select>
@@ -120,7 +120,7 @@
       from r_user
       where
       is_del = 0
-      <if test ="uuid != null">
+      <if test ="uuid != null and uuid != ''">
         and uuid = #{uuid,jdbcType=VARCHAR}
       </if>
     </select>

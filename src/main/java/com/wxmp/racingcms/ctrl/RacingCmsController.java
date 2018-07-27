@@ -22,18 +22,6 @@ public class RacingCmsController {
     @Autowired
     private RUserService rUserService;
 
-    /**
-     * 客户端用户列表查询
-     * @param searchEntity
-     * @return
-     */
-    @RequestMapping(value = "/listForPage")
-    public ModelAndView listForPage(@ModelAttribute RUser searchEntity){
-        ModelAndView mv = new ModelAndView();
-        List<RUser> list = rUserService.listForPage(searchEntity);
-        mv.addObject("list",list);
-        return mv;
-    }
 
 
 

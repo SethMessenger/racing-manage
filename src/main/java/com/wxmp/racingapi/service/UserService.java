@@ -20,11 +20,11 @@ public interface UserService {
 
     /**
      * 用户手机注册
-     * @param mobile
      * @param code
+     * @param form
      * @return
      */
-    UserAccountView registerUser(String mobile, String code);
+    UserAccountView registerUser(String code, UserRegisForm form);
 
     /**
      * 校验用户注册信息

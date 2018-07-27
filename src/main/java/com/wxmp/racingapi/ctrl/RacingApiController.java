@@ -44,6 +44,7 @@ public class RacingApiController {
      * @param user
      * @return
      */
+    @CrossOrigin(maxAge = 3600)
     @RequestMapping(value = "/resetPwd/{code}",  method = RequestMethod.POST)
     @ResponseBody
     public BaseView resetPwd(HttpServletRequest request, @RequestBody UserRegisForm user, @PathVariable String code) {
@@ -66,6 +67,7 @@ public class RacingApiController {
      * @param mobile
      * @return
      */
+    @CrossOrigin(maxAge = 3600)
     @RequestMapping(value = "/find/{mobile}",  method = RequestMethod.GET)
     @ResponseBody
     public BaseView find(HttpServletRequest request, @PathVariable String mobile) {
@@ -84,6 +86,7 @@ public class RacingApiController {
      * @param user
      * @return
      */
+    @CrossOrigin(maxAge = 3600)
     @RequestMapping(value = "/updateUserInfo",  method = RequestMethod.POST)
     @ResponseBody
     public BaseView updateUserInfo(HttpServletRequest request, @RequestBody UserRegisForm user) {
@@ -97,35 +100,21 @@ public class RacingApiController {
     }
 
     /**
-     * 用户注册
-     * @param request
-     * @param user
-     * @return
-     */
-    @RequestMapping(value = "/register",  method = RequestMethod.POST)
-    @ResponseBody
-    public BaseView registerUser(HttpServletRequest request, @RequestBody UserRegisForm user) {
-        UserAccountView resultUser = this.userService.registerUser(user);
-        if(null != resultUser){
-            //暂时不返回账户信息
-            return new ObjectView<UserAccountView>(resultUser);
-        }else {
-            return BaseView.FAIL;
-        }
-    }
-
-    /**
      * 绑定手机号，直接进行账户创建
      * @param request
-     * @param mobile
      * @return
      */
-    @RequestMapping(value = "/bindMobile/{mobile}",  method = RequestMethod.GET)
+    @CrossOrigin(maxAge = 3600)
+    @RequestMapping(value = "/bindMobile",  method = RequestMethod.POST)
     @ResponseBody
-    public BaseView bindMobile(HttpServletRequest request, @PathVariable String mobile, @RequestParam("code")String code) {
-        UserAccountView view = this.userService.registerUser(mobile, code);
-        if(null != view){
-            return new ObjectView<UserAccountView>(view);
+    public BaseView bindMobile(HttpServletRequest request, @RequestParam("code")String code, @RequestBody UserRegisForm form) {
+        try {
+            UserAccountView view = this.userService.registerUser(code, form);
+            if(null != view){
+                return new ObjectView<UserAccountView>(view);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
         return BaseView.FAIL;
     }
@@ -136,6 +125,7 @@ public class RacingApiController {
      * @param mobile
      * @return
      */
+    @CrossOrigin(maxAge = 3600)
     @RequestMapping(value = "/createCode/{mobile}",  method = RequestMethod.GET)
     @ResponseBody
     public BaseView checkMobile(HttpServletRequest request, @PathVariable String mobile) {
@@ -148,15 +138,43 @@ public class RacingApiController {
         return BaseView.FAIL;
     }
 
+
+    /**
+     * 获取用户信息
+     * @param request
+     * @param form
+     * @return
+     */
+    @CrossOrigin(maxAge = 3600)
+    @RequestMapping(value = "/login",  method = RequestMethod.POST)
+    @ResponseBody
+    public BaseView login(HttpServletRequest request, @RequestBody LoginForm form) {
+        BaseView result = null;
+        if(null != form && StringUtils.isNotEmpty(form.getMobile()) && StringUtils.isNotEmpty(form.getPwd())){
+            RUser user = this.userService.login(form);
+            if(null != user){
+                UserAccountView view = this.userService.getUserInfo(user.getUuid());
+                if (null != view) {
+                    result = new ObjectView<UserAccountView>(view);
+                }else {
+                    result = new ObjectView<UserAccountView>(ErrorCodeEnum.USER_ERROR);
+                }
+            }
+
+        }
+        return result;
+    }
+
     /**
      * 获取用户信息
      * @param request
      * @param userUuid
      * @return
      */
-    @RequestMapping(value = "/user/{userUuid}",  method = RequestMethod.POST)
+    @CrossOrigin(maxAge = 3600)
+    @RequestMapping(value = "/user/{userUuid}",  method = RequestMethod.GET)
     @ResponseBody
-    public BaseView getUser(HttpServletRequest request, @PathVariable String userUuid, @RequestBody LoginForm form) {
+    public BaseView getUser(HttpServletRequest request, @PathVariable String userUuid) {
         BaseView result = null;
         if(StringUtils.isNotEmpty(userUuid)){
             UserAccountView view = this.userService.getUserInfo(userUuid);
@@ -165,19 +183,6 @@ public class RacingApiController {
             }else {
                 result = new ObjectView<UserAccountView>(ErrorCodeEnum.USER_ERROR);
             }
-        }else {
-            if(null != form && StringUtils.isNotEmpty(form.getMobile()) && StringUtils.isNotEmpty(form.getPwd())){
-                RUser user = this.userService.login(form);
-                if(null != user){
-                    UserAccountView view = this.userService.getUserInfo(userUuid);
-                    if (null != view) {
-                        result = new ObjectView<UserAccountView>(view);
-                    }else {
-                        result = new ObjectView<UserAccountView>(ErrorCodeEnum.USER_ERROR);
-                    }
-                }
-            }
-            result = BaseView.FAIL;
         }
         return result;
     }
@@ -189,6 +194,7 @@ public class RacingApiController {
      * @POST    {"accountUuid":"accountUuid", "amount":100, "matchUuid":"matchUuid", "wins":"winsId"}
      * @return
      */
+    @CrossOrigin(maxAge = 3600)
     @RequestMapping(value = "/coins/{userUuid}",  method = RequestMethod.POST)
     @ResponseBody
     public BaseView payMatch(HttpServletRequest request, @PathVariable String userUuid, @RequestBody UserPayForm form) {
@@ -207,6 +213,7 @@ public class RacingApiController {
      * @param request
      * @return
      */
+    @CrossOrigin(maxAge = 3600)
     @RequestMapping(value = "/match/list",  method = RequestMethod.GET)
     @ResponseBody
     public BaseView matchlist(HttpServletRequest request) {
@@ -222,6 +229,7 @@ public class RacingApiController {
      * @param matchType
      * @return
      */
+    @CrossOrigin(maxAge = 3600)
     @RequestMapping(value = "/match/{matchType}",  method = RequestMethod.GET)
     @ResponseBody
     public BaseView matchInfo(HttpServletRequest request, @PathVariable Integer matchType) {
@@ -242,6 +250,7 @@ public class RacingApiController {
      * @param form
      * @return
      */
+    @CrossOrigin(maxAge = 3600)
     @RequestMapping(value = "/match/result",  method = RequestMethod.POST)
     @ResponseBody
     public BaseView matchResult(HttpServletRequest request, @RequestBody MatchForm form) {

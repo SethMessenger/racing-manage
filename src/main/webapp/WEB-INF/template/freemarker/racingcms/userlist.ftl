@@ -69,7 +69,6 @@
                             <th>用户名</th>
                             <th>用户昵称</th>
                             <th>联系电话</th>
-                            <th>微信号</th>
                             <th>电子邮件</th>
                             <th>账户状态</th>
                             <th>操作</th>
@@ -79,11 +78,10 @@
                         <#list list as item>
                         <tr class="gradeX">
                             <td>${item_index + 1}</td>
-                            <td>${item.userName}</td>
-                            <td>${item.userNickname}</td>
-                            <td>${item.mobile}</td>
-                            <td>${item.wechat}</td>
-                            <td>${item.email}</td>
+                            <td>${item.userName!}</td>
+                            <td>${item.userNickname!}</td>
+                            <td>${item.mobile!}</td>
+                            <td>${item.email!}</td>
                             <#if item.isDel == 1>
                                 <td>冻结</td>
                             <#else >

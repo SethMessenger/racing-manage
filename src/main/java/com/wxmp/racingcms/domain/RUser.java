@@ -1,7 +1,9 @@
 package com.wxmp.racingcms.domain;
 
+import com.wxmp.core.util.MD5Utils;
 import com.wxmp.core.util.UuidGenerator;
 import com.wxmp.racingapi.vo.form.UserRegisForm;
+import org.apache.commons.lang.StringUtils;
 
 public class RUser {
     private String uuid;
@@ -46,8 +48,12 @@ public class RUser {
         this.userName = form.getUserName();
         this.userNickname = form.getUserNickName();
         this.mobile = form.getMobile();
-        /** MD5(666666) */
-        this.password = "f379eaf3c831b04de153469d1bec345e";
+        if(StringUtils.isNotEmpty(form.getPwd())){
+            this.password = MD5Utils.getPwd(form.getPwd());
+        }else {
+            /** MD5(666666) */
+            this.password = "f379eaf3c831b04de153469d1bec345e";
+        }
         this.openId = form.getOpenId();
     }
 
