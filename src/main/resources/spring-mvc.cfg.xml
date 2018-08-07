@@ -51,6 +51,7 @@
             <property name="allowBaseUrls">
                 <list>
                     <value>/racing</value>
+                    <value>/socket</value>
                     <value>/pay</value>
                     <value>/race</value>
                 </list>

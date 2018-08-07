@@ -139,6 +139,12 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <!-- NIO框架netty -->
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+            <version>4.0.24.Final</version>
+        </dependency>
         <!-- thrift包 -->
         <dependency>
             <groupId>org.apache.thrift</groupId>
