@@ -1,5 +1,7 @@
 package com.wxmp.racingapi.ctrl;
 
+import com.wxmp.core.util.JSONUtil;
+import com.wxmp.core.util.wx.LogUtils;
 import com.wxmp.racingapi.common.ErrorCodeEnum;
 import com.wxmp.racingapi.service.MatchService;
 import com.wxmp.racingapi.service.UserCoinService;
@@ -9,8 +11,10 @@ import com.wxmp.racingapi.vo.form.MatchForm;
 import com.wxmp.racingapi.vo.form.UserRegisForm;
 import com.wxmp.racingapi.vo.view.*;
 import com.wxmp.racingapi.vo.form.UserPayForm;
+import com.wxmp.racingapi.vo.vo.UserPayDetailForm;
 import com.wxmp.racingcms.domain.RUser;
 import com.wxmp.racingcms.domain.RUserCoin;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -199,10 +203,21 @@ public class RacingApiController {
     @ResponseBody
     public BaseView payMatch(HttpServletRequest request, @PathVariable String userUuid, @RequestBody UserPayForm form) {
         BaseView result = null;
-        if(StringUtils.isNotEmpty(userUuid)){
-            this.userCoinService.payMatch(userUuid, form.getAmount(), form.getMatchUuid(), Integer.valueOf(form.getWins()));
-            result = BaseView.SUCCESS;
-        }else {
+        try {
+            if(StringUtils.isNotEmpty(userUuid) && !CollectionUtils.isEmpty(form.getDetails())){
+                for (UserPayDetailForm detail : form.getDetails()){
+                    LogUtils.console(JSONUtil.objectToJson(form));
+                    if(StringUtils.isNotEmpty(detail.getWins()) && detail.getAmount() > 0){
+                        this.userCoinService.payMatch(userUuid, detail.getAmount(), form.getMatchUuid(), Integer.valueOf(detail.getWins()));
+                        LogUtils.console(userUuid + " AMOUNT ON " + detail.getWins() + "|| USED ||" + detail.getAmount() + "|| COINS ||" + " CUURENT MATCH IS " + form.getMatchUuid());
+                    }
+                }
+                result = BaseView.SUCCESS;
+            }else {
+                result = BaseView.FAIL;
+            }
+        } catch (Exception e){
+            e.printStackTrace();
             result = BaseView.FAIL;
         }
         return result;
@@ -251,7 +266,7 @@ public class RacingApiController {
      * @return
      */
     @CrossOrigin(maxAge = 3600)
-    @RequestMapping(value = "/match/result",  method = RequestMethod.POST)
+    @RequestMapping(value = "/matchresult",  method = RequestMethod.POST)
     @ResponseBody
     public BaseView matchResult(HttpServletRequest request, @RequestBody MatchForm form) {
         BaseView result = BaseView.FAIL;

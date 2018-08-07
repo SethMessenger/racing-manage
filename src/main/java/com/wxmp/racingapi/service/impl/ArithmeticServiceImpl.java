@@ -53,16 +53,16 @@ public class ArithmeticServiceImpl implements ArithmeticService{
             //支持6辆赛车
             racings.add(new ArithmeticAwardDTO(String.valueOf(i), this.caculateProbability(i, coinMap), this.caculateCounts(i, playerMap)));
         }
-        reslut.add(queryRandom(RacingConstants.RACING_AMOUNT));
-        reslut.add(queryRandom(RacingConstants.RACING_AMOUNT));
-        reslut.add(queryRandom(RacingConstants.RACING_AMOUNT));
-        reslut.add(queryRandom(RacingConstants.RACING_AMOUNT));
+        reslut.add(queryRandom(9999));
+        reslut.add(queryRandom(9999));
+        reslut.add(queryRandom(9999));
+        reslut.add(queryRandom(9999));
         List<Integer> finals = Lists.newArrayList();
         LogUtils.console(racings.toString());
         Integer champIndex = lottery(racings);
         if(null != champIndex){
             finals.add(champIndex);
-            finals.addAll(queryRandom(RacingConstants.RACING_AMOUNT - 1));
+            finals.addAll(queryRandom(champIndex));
             reslut.add(finals);
         }else {
             return Lists.newArrayList();
@@ -156,13 +156,15 @@ public class ArithmeticServiceImpl implements ArithmeticService{
 
     /**
      * 数字随机排列
-     * @param length
+     * @param except
      * @return
      */
-    private List<Integer> queryRandom(Integer length){
+    private List<Integer> queryRandom(int except){
         List<Integer> nums = Lists.newArrayList();
-        for (int i = 0; i < length; i++) {
-            nums.add(i);
+        for (int i = 0; i < RacingConstants.RACING_AMOUNT; i++) {
+            if(except != i){
+                nums.add(i);
+            }
         }
         Collections.shuffle(nums);
         return nums;

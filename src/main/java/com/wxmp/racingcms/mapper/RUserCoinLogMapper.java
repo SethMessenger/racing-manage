@@ -1,6 +1,8 @@
 package com.wxmp.racingcms.mapper;
 
 import com.wxmp.racingcms.domain.RUserCoinLog;
+import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 
 public interface RUserCoinLogMapper {
@@ -8,5 +10,5 @@ public interface RUserCoinLogMapper {
 
     List<RUserCoinLog> selectAll();
 
-    int insertBatch(List<RUserCoinLog> logs);
+    int insertBatch(@Param("list") List<RUserCoinLog> logs);
 }

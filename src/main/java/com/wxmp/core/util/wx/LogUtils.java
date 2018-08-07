@@ -8,7 +8,7 @@ package com.wxmp.core.util.wx;
 public class LogUtils {
 
     public static void console(String msg){
-        System.out.println(" LOG CONSOLE ====== " + msg);
+        System.out.println(Thread.currentThread().getId() + " LOG CONSOLE ====== " + msg);
     }
 
 

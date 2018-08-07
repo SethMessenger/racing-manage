@@ -38,6 +38,14 @@ public interface UserCoinService {
     boolean withdrawAmount(String useruuid, BigDecimal amount);
 
     /**
+     * 用户人民币进账，仅允许整数充值
+     * @param useruuid
+     * @param amount
+     * @return
+     */
+    boolean withdrawRMBAmount(String useruuid, BigDecimal amount);
+
+    /**
      * 用户金币集中入账(充值)
      * @param userCoin
      * @return

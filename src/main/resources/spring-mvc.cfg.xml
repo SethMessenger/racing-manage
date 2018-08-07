@@ -52,6 +52,7 @@
                 <list>
                     <value>/racing</value>
                     <value>/pay</value>
+                    <value>/race</value>
                 </list>
             </property>
         </bean>

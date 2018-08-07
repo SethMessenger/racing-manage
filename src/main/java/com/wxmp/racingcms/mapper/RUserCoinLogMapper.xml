@@ -24,6 +24,20 @@
       #{userUuid,jdbcType=VARCHAR}, #{userCoinUuid,jdbcType=VARCHAR}, #{logType,jdbcType=INTEGER}, 
       #{coinAmount,jdbcType=BIGINT}, #{remark,jdbcType=VARCHAR})
   </insert>
+  <insert id="insertBatch" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
+    INSERT INTO r_user_coin_log
+    (uuid, is_del, creater,
+    updater, create_time, update_time,
+    user_uuid, user_coin_uuid, log_type,
+    coin_amount, remark)
+    VALUES
+    <foreach collection="list" item="item" separator=",">
+      (#{item.uuid,jdbcType=VARCHAR}, #{item.isDel,jdbcType=INTEGER}, #{item.creater,jdbcType=VARCHAR},
+      #{item.updater,jdbcType=VARCHAR}, #{item.createTime,jdbcType=BIGINT}, #{item.updateTime,jdbcType=BIGINT},
+      #{item.userUuid,jdbcType=VARCHAR}, #{item.userCoinUuid,jdbcType=VARCHAR}, #{item.logType,jdbcType=INTEGER},
+      #{item.coinAmount,jdbcType=BIGINT}, #{item.remark,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
   <select id="selectAll" resultMap="BaseResultMap">
     select uuid, is_del, creater, updater, create_time, update_time, user_uuid, user_coin_uuid, 
     log_type, coin_amount, remark

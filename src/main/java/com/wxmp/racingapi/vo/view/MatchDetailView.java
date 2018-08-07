@@ -20,6 +20,7 @@ public class MatchDetailView {
     private String remark;
     private MatchResultView current;
     private List<MatchResultView> history;
+    private Long countDown;
 
     public MatchDetailView() { super(); }
 
@@ -38,7 +39,7 @@ public class MatchDetailView {
      * @param type
      * @param results   按照创建时间倒序排列
      */
-    public MatchDetailView(RMatchType type, List<RMatchResult> results) {
+    public MatchDetailView(RMatchType type, List<RMatchResult> results, Long countDown) {
         this.matchName = type.getMatchName();
         this.mutiAmount = type.getMutiAmount();
         this.remark = type.getRemark();
@@ -54,6 +55,15 @@ public class MatchDetailView {
                 history.add(new MatchResultView(bean));
             }
         }
+        this.countDown = countDown;
+    }
+
+    public Long getCountDown() {
+        return countDown;
+    }
+
+    public void setCountDown(Long countDown) {
+        this.countDown = countDown;
     }
 
     public String getMatchName() {
