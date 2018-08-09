@@ -19,6 +19,10 @@
     <listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+	<!-- Spring加载完成后开始加载 netty的websocket服务 -->
+	<listener>
+		<listener-class>com.wxmp.racingapi.netty.NettyStartListener</listener-class>
+	</listener>
 	<!--springmvc前端控制器拦截所有的请求-->
     <servlet>
 		<servlet-name>spring-mvc</servlet-name>

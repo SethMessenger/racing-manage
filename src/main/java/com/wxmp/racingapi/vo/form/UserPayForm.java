@@ -1,5 +1,9 @@
 package com.wxmp.racingapi.vo.form;
 
+import com.wxmp.racingapi.vo.vo.UserPayDetailForm;
+
+import java.util.List;
+
 /**
  * @author xunbo.xu
  * @desc    用户下注对象<br/>
@@ -10,12 +14,10 @@ public class UserPayForm {
 
     /** 账户uuid */
     private String accountUuid;
-    /** 下注金额 */
-    private long amount;
     /** 赛程ID */
     private String matchUuid;
-    /** 下注对象 */
-    private String wins;
+    /** 下注明细 */
+    private List<UserPayDetailForm> details;
 
     public String getAccountUuid() {
         return accountUuid;
@@ -23,14 +25,6 @@ public class UserPayForm {
 
     public void setAccountUuid(String accountUuid) {
         this.accountUuid = accountUuid;
-    }
-
-    public long getAmount() {
-        return amount;
-    }
-
-    public void setAmount(long amount) {
-        this.amount = amount;
     }
 
     public String getMatchUuid() {
@@ -41,11 +35,11 @@ public class UserPayForm {
         this.matchUuid = matchUuid;
     }
 
-    public String getWins() {
-        return wins;
+    public List<UserPayDetailForm> getDetails() {
+        return details;
     }
 
-    public void setWins(String wins) {
-        this.wins = wins;
+    public void setDetails(List<UserPayDetailForm> details) {
+        this.details = details;
     }
 }

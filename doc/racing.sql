@@ -114,14 +114,12 @@ CREATE TABLE `r_match_log` (
   `update_time` bigint(11) NOT NULL COMMENT '修改时间戳',
   `match_result_uuid` varchar(32) NOT NULL COMMENT '赛果uuid',
   `user_uuid` varchar(32) NOT NULL COMMENT '押注人uuid',
-  `index` int(2) NOT NULL COMMENT '押注号码',
+  `coin_index` int(2) NOT NULL COMMENT '押注号码',
   `log_type` int(2) DEFAULT 0 COMMENT '账户入账类型，0押注金币, 1系统发奖金币',
   `coin_amount` bigint(5) NOT NULL DEFAULT 0 COMMENT '押注金额',
   `remark` varchar(50) DEFAULT NULL COMMENT '备注信息',
   PRIMARY KEY (`uuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-alter table `r_match_log` add coin_index int(2) DEFAULT 0 COMMENT '押注号码';
 
 
 

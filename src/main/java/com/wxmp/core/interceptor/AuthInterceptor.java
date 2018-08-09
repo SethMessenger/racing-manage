@@ -43,6 +43,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 			}
 			for (String url : allowUrls) {
 				if (requestUrl.contains(".css") || requestUrl.contains(".js") || requestUrl.contains(".png") || requestUrl.contains(".jpg") || requestUrl.contains("/message") || requestUrl.equals(url)) {
+					//拦截
 					return true;
 				}
 			}

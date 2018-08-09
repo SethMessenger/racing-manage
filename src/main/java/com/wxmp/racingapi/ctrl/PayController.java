@@ -1,9 +1,12 @@
 package com.wxmp.racingapi.ctrl;
 
+import com.wxmp.core.util.HttpRequestDeviceUtils;
+import com.wxmp.core.util.wx.LogUtils;
+import com.wxmp.racingapi.vo.form.WechatPayOrderForm;
 import com.wxmp.racingapi.vo.view.BaseView;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  * @date 18/7/17
  */
 @Controller
-@RequestMapping("pay")
+@RequestMapping("racing/pay")
 public class PayController {
 
     /**
@@ -22,11 +25,31 @@ public class PayController {
      * 直接302跳转
      * @return
      */
-    @RequestMapping("toWechatH5")
+    @RequestMapping(name = "toWechatH5", method = RequestMethod.POST)
     @ResponseBody
-    public BaseView toWechatH5Pay(HttpServletRequest request, HttpServletResponse response){
+    public BaseView toWechatH5Pay(HttpServletRequest request, HttpServletResponse response, @RequestBody WechatPayOrderForm form){
         BaseView result = BaseView.FAIL;
+        System.out.println("--pay start--");
+        String ip = HttpRequestDeviceUtils.getRealIp(request);
+        if (StringUtils.isBlank(ip)) {
+            ip = "127.0.0.1";
+        }
         //组装微信
+        return result;
+    }
+
+    /**
+     * 测试支付前的用户回调（获取临时openID进行支付）
+     * @param request
+     * @param response
+     * @param userUuid
+     * @return
+     */
+    @RequestMapping(name = "openid_callback/{userUuid}", method = RequestMethod.GET)
+    @ResponseBody
+    public BaseView openIdCallback(HttpServletRequest request, HttpServletResponse response, @PathVariable String userUuid){
+        BaseView result = BaseView.SUCCESS;
+        LogUtils.console(" openIdCallback " + request.getRequestURL().toString());
         return result;
     }
 

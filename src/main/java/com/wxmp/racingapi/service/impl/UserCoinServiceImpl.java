@@ -2,6 +2,7 @@ package com.wxmp.racingapi.service.impl;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import com.wxmp.backstage.common.RacingConstants;
 import com.wxmp.racingapi.service.UserCoinService;
 import com.wxmp.racingcms.domain.RMatchLog;
 import com.wxmp.racingcms.domain.RUserCoinLog;
@@ -98,6 +99,27 @@ public class UserCoinServiceImpl implements UserCoinService{
     }
 
     /**
+     * 用户人民币进账，仅允许整数充值
+     * @param useruuid
+     * @param amount
+     * @return
+     */
+    @Override
+    public boolean withdrawRMBAmount(String useruuid, BigDecimal amount){
+        BigDecimal rmb = amount.multiply(new BigDecimal(RacingConstants.RACING_RMB_RATE));
+        if(this.rUserCoinMapper.dealWithCoins(useruuid, rmb.intValue()) > 0){
+            RUserCoinLog log = new RUserCoinLog(useruuid, "", 2, amount.longValue(), null);
+            if(this.rUserCoinLogMapper.insert(log) > 0){
+                return true;
+            }else {
+                return false;
+            }
+        }else {
+            return false;
+        }
+    }
+
+    /**
      * 用户金币集中入账(充值)<br/>
      *
      * @param userCoin
@@ -105,13 +127,14 @@ public class UserCoinServiceImpl implements UserCoinService{
      */
     @Override
     public boolean withdrawAmountBatchOne(Map<String, BigDecimal> userCoin) {
-        //TODO
         if(MapUtils.isNotEmpty(userCoin)){
             List<RUserCoinLog> logs = Lists.newArrayList();
             for (String useruuid : userCoin.keySet()){
                 if(null != userCoin.get(useruuid)){
+                    //金币入账
                     RUserCoinLog log = new RUserCoinLog(useruuid, "", 1, userCoin.get(useruuid).longValue(), null);
                     logs.add(log);
+                    this.rUserCoinMapper.dealWithCoins(useruuid, userCoin.get(useruuid).intValue());
                 }
             }
             if(logs.size() > 0){

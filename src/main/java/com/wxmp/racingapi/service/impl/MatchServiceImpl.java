@@ -1,5 +1,6 @@
 package com.wxmp.racingapi.service.impl;
 
+import com.wxmp.core.quartz.AutoMatchJob;
 import com.wxmp.racingapi.service.MatchService;
 import com.wxmp.racingapi.vo.view.MatchDetailResultView;
 import com.wxmp.racingapi.vo.view.MatchDetailView;
@@ -27,6 +28,8 @@ public class MatchServiceImpl implements MatchService{
     private RMatchTypeMapper matchTypeMapper;
     @Autowired
     private RMatchResultMapper matchResultMapper;
+    @Autowired
+    private AutoMatchJob autoMatchJob;
 
     /**
      * 查询当前赛程
@@ -62,7 +65,7 @@ public class MatchServiceImpl implements MatchService{
             condition.setMatchType(matchType);
             List<RMatchResult> results = this.matchResultMapper.selectByCondition(condition);
             if(CollectionUtils.isNotEmpty(results)){
-                view = new MatchDetailView(type, results);
+                view = new MatchDetailView(type, results, this.autoMatchJob.getNextMatchCount());
             }
         }
         return view;

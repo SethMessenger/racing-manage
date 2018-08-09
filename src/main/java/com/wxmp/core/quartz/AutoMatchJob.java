@@ -3,6 +3,7 @@ package com.wxmp.core.quartz;
 import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Maps;
 import com.wxmp.backstage.common.RacingConstants;
+import com.wxmp.core.util.wx.LogUtils;
 import com.wxmp.racingapi.service.ArithmeticService;
 import com.wxmp.racingapi.service.UserCoinService;
 import com.wxmp.racingcms.domain.RMatchLog;
@@ -36,16 +37,45 @@ public class AutoMatchJob {
     @Autowired
     private RMatchLogMapper rMatchLogMapper;
 
+    /** 上次执行时间 */
+    private static Long lastTime;
+    /** 下次执行时间 */
+    private static Long nextTime;
+
+    /**
+     * 冠军赛赛程下场结算时间，倒计时ms为单位
+     * @return
+     */
+    public Long getNextMatchCount(){
+        try {
+             //当前时间戳
+             Long current = System.currentTimeMillis();
+             return nextTime - current;
+        } catch (Exception e) {
+            e.printStackTrace();
+            LogUtils.console("getNextMatchCount ERROR !!!");
+        }
+        return 1000 * 60 * 60 * 24 * 7L;
+    }
+
     /**
      * 生成赛程结果，每两分钟生成一个新的比赛，并将下个比赛进行入账
+     * 每分钟
      */
-    @Scheduled(cron = "0 0/1 * * * ? ")//每分钟
-//    @Scheduled(cron = "0 0 0/1 * * ? ")//每小时
+    @Scheduled(cron = "0 0/2 * * * ? ")
     public void autoMatchResult(){
+        LogUtils.console("Start autoMatchResult");
         //结算上场
+        LogUtils.console("settleLastMatch autoMatchResult");
         this.settleLastMatch();
         //开启下场
+        LogUtils.console("beginNextMatch autoMatchResult");
         this.beginNextMatch();
+        LogUtils.console("lastTime autoMatchResult");
+        lastTime = System.currentTimeMillis();
+        LogUtils.console("nextTime autoMatchResult");
+        nextTime = lastTime + 2 * 60 * 1000L;
+        LogUtils.console("END autoMatchResult");
     }
 
     /**
@@ -105,6 +135,7 @@ public class AutoMatchJob {
     private void beginNextMatch(){
         //新建下一场比赛，状态为 新建
         RMatchResult newMatch = new RMatchResult(null, RacingConstants.RACING_CHAMP_MUTI, 0, null);
+        LogUtils.console("create r_match_result UUID = " + newMatch.getUuid());
         this.rMatchResultMapper.insert(newMatch);
     }
 
