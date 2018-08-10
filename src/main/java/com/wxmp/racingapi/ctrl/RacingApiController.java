@@ -1,7 +1,7 @@
 package com.wxmp.racingapi.ctrl;
 
+import com.wxmp.core.log.CommonLog;
 import com.wxmp.core.util.JSONUtil;
-import com.wxmp.core.util.wx.LogUtils;
 import com.wxmp.racingapi.common.ErrorCodeEnum;
 import com.wxmp.racingapi.service.MatchService;
 import com.wxmp.racingapi.service.UserCoinService;
@@ -13,7 +13,6 @@ import com.wxmp.racingapi.vo.view.*;
 import com.wxmp.racingapi.vo.form.UserPayForm;
 import com.wxmp.racingapi.vo.vo.UserPayDetailForm;
 import com.wxmp.racingcms.domain.RUser;
-import com.wxmp.racingcms.domain.RUserCoin;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.LogManager;
@@ -206,10 +205,10 @@ public class RacingApiController {
         try {
             if(StringUtils.isNotEmpty(userUuid) && !CollectionUtils.isEmpty(form.getDetails())){
                 for (UserPayDetailForm detail : form.getDetails()){
-                    LogUtils.console(JSONUtil.objectToJson(form));
+                    CommonLog.getLogger(PayController.class).info("payMatch params ===>>>> " + JSONUtil.objectToJson(form));
                     if(StringUtils.isNotEmpty(detail.getWins()) && detail.getAmount() > 0){
                         this.userCoinService.payMatch(userUuid, detail.getAmount(), form.getMatchUuid(), Integer.valueOf(detail.getWins()));
-                        LogUtils.console(userUuid + " AMOUNT ON " + detail.getWins() + "|| USED ||" + detail.getAmount() + "|| COINS ||" + " CUURENT MATCH IS " + form.getMatchUuid());
+                        CommonLog.getLogger(RacingApiController.class).info(" ===>>>> " + userUuid + " AMOUNT ON " + detail.getWins() + "|| USED ||" + detail.getAmount() + "|| COINS ||" + " CUURENT MATCH IS " + form.getMatchUuid());
                     }
                 }
                 result = BaseView.SUCCESS;

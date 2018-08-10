@@ -1,11 +1,30 @@
 package com.wxmp.core.util;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.TypeReference;
+import com.alibaba.fastjson.*;
 import org.apache.commons.lang.StringUtils;
 
 public class JSONUtil {
+
+	/**
+	 * 判断当前字符串是否为json格式
+	 * @param str
+	 * @return
+	 */
+	public static boolean isJson(String str){
+		if(StringUtils.isNotEmpty(str)){
+			try {
+				JSONObject.parseObject(str);
+			} catch (JSONException ex) {
+				try {
+					JSONObject.parseArray(str);
+				} catch (JSONException ex1) {
+					return false;
+				}
+			}
+			return true;
+		}
+		return false;
+	}
 
 	/**
 	 * <p>

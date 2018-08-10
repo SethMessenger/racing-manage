@@ -1,7 +1,7 @@
 package com.wxmp.racingapi.ctrl;
 
+import com.wxmp.core.log.CommonLog;
 import com.wxmp.core.util.HttpRequestDeviceUtils;
-import com.wxmp.core.util.wx.LogUtils;
 import com.wxmp.racingapi.vo.form.WechatPayOrderForm;
 import com.wxmp.racingapi.vo.view.BaseView;
 import org.apache.commons.lang.StringUtils;
@@ -49,7 +49,8 @@ public class PayController {
     @ResponseBody
     public BaseView openIdCallback(HttpServletRequest request, HttpServletResponse response, @PathVariable String userUuid){
         BaseView result = BaseView.SUCCESS;
-        LogUtils.console(" openIdCallback " + request.getRequestURL().toString());
+        CommonLog.getLogger(PayController.class).info("openIdCallback ===>>>> " + request.getRequestURL().toString());
+
         return result;
     }
 

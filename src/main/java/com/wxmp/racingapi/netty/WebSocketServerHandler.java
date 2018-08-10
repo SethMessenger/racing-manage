@@ -1,11 +1,15 @@
 package com.wxmp.racingapi.netty;
 
+import com.alibaba.fastjson.JSON;
+import com.wxmp.core.util.SpringContextHolder;
+import com.wxmp.racingapi.netty.service.WebSocketBizService;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
+import io.netty.channel.socket.SocketChannel;
 import io.netty.handler.codec.http.DefaultFullHttpResponse;
 import io.netty.handler.codec.http.FullHttpRequest;
 import io.netty.handler.codec.http.HttpResponseStatus;
@@ -23,8 +27,7 @@ public class WebSocketServerHandler extends SimpleChannelInboundHandler<Object> 
     private WebSocketServerHandshaker handshaker;
 
     @Override
-    protected void channelRead0(ChannelHandlerContext ctx, Object msg)
-            throws Exception {
+    protected void channelRead0(ChannelHandlerContext ctx, Object msg) throws Exception {
 
         if(msg instanceof FullHttpRequest){
             /** HTTP接入，WebSocket第一次连接使用HTTP连接,用于握手 */
@@ -38,16 +41,24 @@ public class WebSocketServerHandler extends SimpleChannelInboundHandler<Object> 
 
     @Override
     public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
+        //频道结束读取
         ctx.flush();
     }
+
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause)
             throws Exception {
+        //长连接异常状态处理
         ctx.close();
     }
 
 
+    /**
+     * HTTP接入，WebSocket第一次连接使用HTTP连接,用于握手
+     * @param ctx
+     * @param req
+     */
     private void handleHttpRequest(ChannelHandlerContext ctx,FullHttpRequest req){
         if (!req.getDecoderResult().isSuccess()
                 || (!"websocket".equals(req.headers().get("Upgrade")))) {
@@ -65,6 +76,12 @@ public class WebSocketServerHandler extends SimpleChannelInboundHandler<Object> 
         }
     }
 
+    /**
+     * 返回应答 到 客户端
+     * @param ctx
+     * @param req
+     * @param res
+     */
     private static void sendHttpResponse(ChannelHandlerContext ctx,
                                          FullHttpRequest req, DefaultFullHttpResponse res) {
         // 返回应答给客户端
@@ -81,42 +98,48 @@ public class WebSocketServerHandler extends SimpleChannelInboundHandler<Object> 
         }
     }
 
+    /**
+     * 叛党当前的累计额是否需要保持通讯的协议
+     * @param req
+     * @return
+     */
     private static boolean isKeepAlive(FullHttpRequest req) {
         return false;
     }
 
-    private void handlerWebSocketFrame(ChannelHandlerContext ctx,
-                                       WebSocketFrame frame) {
+    /**
+     * WS协议下 依据客户端不同的消息类型进行 路由
+     * @param ctx
+     * @param frame
+     */
+    private void handlerWebSocketFrame(ChannelHandlerContext ctx, WebSocketFrame frame) {
 
-        /**
-         * 判断是否关闭链路的指令
-         */
+        /** 判断是否关闭链路的指令 */
         if (frame instanceof CloseWebSocketFrame) {
-            handshaker.close(ctx.channel(),
-                    (CloseWebSocketFrame) frame.retain());
+            handshaker.close(ctx.channel(), (CloseWebSocketFrame) frame.retain());
             return;
         }
 
-        /**
-         * 判断是否ping消息
-         */
+        /** 判断是否ping消息 */
         if (frame instanceof PingWebSocketFrame) {
-            ctx.channel().write(
-                    new PongWebSocketFrame(frame.content().retain()));
+            ctx.channel().write(new PongWebSocketFrame(frame.content().retain()));
             return;
         }
 
-        /**
-         * 本例程仅支持文本消息，不支持二进制消息
-         */
+        /** 本例程仅支持文本消息，不支持二进制消息 */
         if (frame instanceof BinaryWebSocketFrame) {
-            throw new UnsupportedOperationException(String.format(
-                    "%s frame types not supported", frame.getClass().getName()));
+            throw new UnsupportedOperationException(String.format("%s frame types not supported", frame.getClass().getName()));
         }
+
+        /** 业务处理，根据枚举类型组装对象分发service进行处理 */
         if(frame instanceof TextWebSocketFrame){
             // 返回应答消息
             String request = ((TextWebSocketFrame) frame).text();
             System.out.println("服务端收到：" + request);
+//            WebSocketBizService webSocketBizService = SpringContextHolder.getBean(WebSocketBizService.class);
+            WebSocketBizService webSocketBizService = SpringContextHolder.getBean(WebSocketBizService.class);
+
+            webSocketBizService.handleRequest(request, ctx);
             ctx.channel().write(new TextWebSocketFrame("服务器收到并返回："+request));
         }
 

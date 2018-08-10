@@ -3,7 +3,7 @@ package com.wxmp.racingapi.service.impl;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.wxmp.backstage.common.RacingConstants;
-import com.wxmp.core.util.wx.LogUtils;
+import com.wxmp.core.log.CommonLog;
 import com.wxmp.racingapi.service.ArithmeticService;
 import com.wxmp.racingapi.vo.dto.ArithmeticAwardDTO;
 import com.wxmp.racingcms.domain.RMatchLog;
@@ -58,7 +58,7 @@ public class ArithmeticServiceImpl implements ArithmeticService{
         reslut.add(queryRandom(9999));
         reslut.add(queryRandom(9999));
         List<Integer> finals = Lists.newArrayList();
-        LogUtils.console(racings.toString());
+        CommonLog.getLogger(ArithmeticServiceImpl.class).info(" caculateMatchResult ===>>>> " + racings.toString());
         Integer champIndex = lottery(racings);
         if(null != champIndex){
             finals.add(champIndex);

@@ -1,9 +1,15 @@
 package com.wxmp.core.quartz;
 
 import com.alibaba.fastjson.JSON;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.wxmp.backstage.common.RacingConstants;
-import com.wxmp.core.util.wx.LogUtils;
+import com.wxmp.core.log.CommonLog;
+import com.wxmp.racingapi.netty.ClientQuene;
+import com.wxmp.racingapi.netty.MessageEnum;
+import com.wxmp.racingapi.netty.ServerMessage;
+import com.wxmp.racingapi.netty.service.WebSocketBizService;
+import com.wxmp.racingapi.netty.service.WebSocketService;
 import com.wxmp.racingapi.service.ArithmeticService;
 import com.wxmp.racingapi.service.UserCoinService;
 import com.wxmp.racingcms.domain.RMatchLog;
@@ -36,6 +42,8 @@ public class AutoMatchJob {
     private RMatchResultMapper rMatchResultMapper;
     @Autowired
     private RMatchLogMapper rMatchLogMapper;
+    @Autowired
+    private WebSocketService webSocketService;
 
     /** 上次执行时间 */
     private static Long lastTime;
@@ -53,29 +61,36 @@ public class AutoMatchJob {
              return nextTime - current;
         } catch (Exception e) {
             e.printStackTrace();
-            LogUtils.console("getNextMatchCount ERROR !!!");
+            CommonLog.getLogger(AutoMatchJob.class).info("getNextMatchCount ERROR ===>>>> ");
         }
         return 1000 * 60 * 60 * 24 * 7L;
     }
 
     /**
-     * 生成赛程结果，每两分钟生成一个新的比赛，并将下个比赛进行入账
+     * 生成赛程结果，每两分钟生成一个新的比赛，并将下个比赛进行入账，55秒开始，停顿5秒给前端长连接通知进行记账
      * 每分钟
      */
-    @Scheduled(cron = "0 0/2 * * * ? ")
+    @Scheduled(cron = "55 0/2 * * * ? ")
     public void autoMatchResult(){
-        LogUtils.console("Start autoMatchResult");
+        //提醒前端上传
+        ServerMessage msg = new ServerMessage();
+        msg.setType(MessageEnum.EVENT_AMOUNT);
+        msg.setUserUuid("");
+        msg.setData("data");
+        this.webSocketService.sendNotice(ClientQuene.getClients(), msg);
+
+        CommonLog.getLogger(AutoMatchJob.class).info("Start autoMatchResult ===>>>> ");
         //结算上场
-        LogUtils.console("settleLastMatch autoMatchResult");
+        CommonLog.getLogger(AutoMatchJob.class).info("settleLastMatch autoMatchResult ===>>>> ");
         this.settleLastMatch();
         //开启下场
-        LogUtils.console("beginNextMatch autoMatchResult");
+        CommonLog.getLogger(AutoMatchJob.class).info("beginNextMatch autoMatchResult ===>>>> ");
         this.beginNextMatch();
-        LogUtils.console("lastTime autoMatchResult");
+        CommonLog.getLogger(AutoMatchJob.class).info("lastTime autoMatchResult ===>>>> ");
         lastTime = System.currentTimeMillis();
-        LogUtils.console("nextTime autoMatchResult");
+        CommonLog.getLogger(AutoMatchJob.class).info("nextTime autoMatchResult ===>>>> ");
         nextTime = lastTime + 2 * 60 * 1000L;
-        LogUtils.console("END autoMatchResult");
+        CommonLog.getLogger(AutoMatchJob.class).info("END autoMatchResult ===>>>> ");
     }
 
     /**
@@ -135,7 +150,7 @@ public class AutoMatchJob {
     private void beginNextMatch(){
         //新建下一场比赛，状态为 新建
         RMatchResult newMatch = new RMatchResult(null, RacingConstants.RACING_CHAMP_MUTI, 0, null);
-        LogUtils.console("create r_match_result UUID = " + newMatch.getUuid());
+        CommonLog.getLogger(AutoMatchJob.class).info("create r_match_result UUID ===>>>> " + newMatch.getUuid());
         this.rMatchResultMapper.insert(newMatch);
     }
 

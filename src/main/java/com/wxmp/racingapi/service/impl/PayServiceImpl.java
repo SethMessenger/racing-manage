@@ -1,7 +1,8 @@
 package com.wxmp.racingapi.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.wxmp.backstage.common.RacingConstants;
-import com.wxmp.core.util.wx.LogUtils;
+import com.wxmp.core.log.CommonLog;
 import com.wxmp.racingapi.common.WxPayApi;
 import com.wxmp.racingapi.common.WxPayApiConfig;
 import com.wxmp.racingapi.common.WxPayUtils;
@@ -50,12 +51,12 @@ public class PayServiceImpl implements PayService{
         String return_code = result.get("return_code");
         String return_msg = result.get("return_msg");
         if (!WxPayUtils.codeIsOK(return_code)) {
-            LogUtils.console("return_code>"+return_code+" return_msg>"+return_msg);
+            CommonLog.getLogger(PayServiceImpl.class).info("return_code ===>>>> "+return_code+"return_msg ===>>>> "+return_msg);
             throw new RuntimeException(return_msg);
         }
         String result_code = result.get("result_code");
         if (!WxPayUtils.codeIsOK(result_code)) {
-            LogUtils.console("result_code>"+result_code+" return_msg>"+return_msg);
+            CommonLog.getLogger(PayServiceImpl.class).info("result_code ===>>>> "+return_code+"return_msg ===>>>> "+return_msg);
             throw new RuntimeException(return_msg);
         }
         // 以下字段在return_code 和result_code都为SUCCESS的时候有返回
@@ -63,7 +64,7 @@ public class PayServiceImpl implements PayService{
         String prepay_id = result.get("prepay_id");
         String mweb_url = result.get("mweb_url");
 
-        LogUtils.console("prepay_id:"+prepay_id+" mweb_url:"+mweb_url);
+        CommonLog.getLogger(PayServiceImpl.class).info("prepay_id ===>>>> "+return_code+"mweb_url ===>>>> "+return_msg);
 //        try {
 //            response.sendRedirect(mweb_url);
 //        } catch (IOException e) {
