@@ -10,6 +10,7 @@ import com.wxmp.racingapi.netty.ServerMessage;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
+import org.apache.commons.lang.StringUtils;
 import org.eclipse.jetty.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,8 +48,9 @@ public class WebSocketBizServiceImpl implements WebSocketBizService {
                         break;
                     case LOGIN:
                         userLogin(msg.getUserUuid(), ctx);
-                        ServerMessage cientLog = ServerMessage.build(MessageEnum.EVENT_SERVER_CLIENTLOG, jsonStr, null);
-                        this.socketService.sendEvent(msg.getUserUuid(), cientLog);
+                        break;
+                    case LOGOUT:
+                        userLogout(msg.getUserUuid(), ctx);
                         break;
                     case EVENT_DEFAULT:
                         break;
@@ -56,6 +58,10 @@ public class WebSocketBizServiceImpl implements WebSocketBizService {
                         break;
                     default:
                         CommonLog.getLogger(WebSocketBizServiceImpl.class).info("handleRequest default null ");
+                }
+                if(StringUtils.isNotBlank(msg.getUserUuid())){
+                    ServerMessage cientLog = ServerMessage.build(MessageEnum.EVENT_SERVER_CLIENTLOG, jsonStr, null);
+                    this.socketService.sendEvent(msg.getUserUuid(), cientLog);
                 }
             }
         }else {
@@ -80,9 +86,20 @@ public class WebSocketBizServiceImpl implements WebSocketBizService {
      * @param ctx
      */
     private void userLogin(String userUuid, ChannelHandlerContext ctx){
-        ServerMessage event =  ServerMessage.build(MessageEnum.LOGIN, "data", userUuid);
+        ServerMessage event =  ServerMessage.build(MessageEnum.LOGIN, "login success", userUuid);
 
         this.socketService.login(userUuid, event, ctx);
+    }
+
+    /**
+     * 用户登出
+     * @param userUuid
+     * @param ctx
+     */
+    private void userLogout(String userUuid, ChannelHandlerContext ctx){
+        ServerMessage event =  ServerMessage.build(MessageEnum.LOGOUT, "logout success", userUuid);
+
+        this.socketService.loginout(userUuid, event, ctx);
     }
 
     /**

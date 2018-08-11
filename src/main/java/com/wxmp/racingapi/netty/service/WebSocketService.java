@@ -46,5 +46,12 @@ public interface WebSocketService {
      */
     boolean receiveEvent(String jsonMsg);
 
-
+    /**
+     * 用户登出
+     * @param userUuid
+     * @param event
+     * @param ctx
+     * @return
+     */
+    boolean loginout(String userUuid, ServerMessage event, ChannelHandlerContext ctx);
 }

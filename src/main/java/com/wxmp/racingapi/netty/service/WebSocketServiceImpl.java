@@ -116,4 +116,29 @@ public class WebSocketServiceImpl implements WebSocketService{
         return false;
     }
 
+    /**
+     * 用户登出
+     *
+     * @param userUuid
+     * @param event
+     * @param ctx
+     * @return
+     */
+    @Override
+    public boolean loginout(String userUuid, ServerMessage event, ChannelHandlerContext ctx) {
+        SocketChannel  channel = ClientQuene.get(userUuid);
+        if(null == channel){
+            //发送消息，关闭连接
+            channel = (SocketChannel) ctx.channel();
+            sendEvent(userUuid, event);
+            channel.shutdownOutput();
+        }else {
+            //关闭连接，移除队列 TODO 关闭与否的Future
+            sendEvent(userUuid, event);
+            channel.shutdownOutput();
+            ClientQuene.remove(channel);
+        }
+        return false;
+    }
+
 }

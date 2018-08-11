@@ -7,19 +7,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="19b9147e-8b7f-4b2e-913d-00f75ee4bf3f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/netty/BaseMessage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wxmp/core/quartz/AutoMatchJob.java" afterPath="$PROJECT_DIR$/src/main/java/com/wxmp/core/quartz/AutoMatchJob.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/ctrl/RacingSocketController.java" afterPath="$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/ctrl/RacingSocketController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/netty/ClientMessage.java" afterPath="$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/netty/ClientMessage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/netty/ClientQuene.java" afterPath="$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/netty/ClientQuene.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/netty/MessageEnum.java" afterPath="$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/netty/MessageEnum.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/netty/ServerMessage.java" afterPath="$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/netty/ServerMessage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/netty/WebSocketServerHandler.java" afterPath="$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/netty/WebSocketServerHandler.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/netty/service/WebSocketBizServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/netty/service/WebSocketBizServiceImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/netty/service/WebSocketService.java" afterPath="$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/netty/service/WebSocketService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/netty/service/WebSocketServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/netty/service/WebSocketServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/spring-mvc.cfg.xml" afterPath="$PROJECT_DIR$/src/main/resources/spring-mvc.cfg.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/websocket.html" afterPath="$PROJECT_DIR$/src/main/webapp/websocket.html" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -52,8 +42,8 @@
           <file leaf-file-name="WebSocketServerHandler.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/netty/WebSocketServerHandler.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="127">
-                  <caret line="105" column="26" lean-forward="false" selection-start-line="105" selection-start-column="26" selection-end-line="105" selection-end-column="26" />
+                <state relative-caret-position="97">
+                  <caret line="103" column="14" lean-forward="true" selection-start-line="103" selection-start-column="14" selection-end-line="103" selection-end-column="14" />
                   <folding />
                 </state>
               </provider>
@@ -67,7 +57,19 @@
             <entry file="file://$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/netty/service/WebSocketService.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="180">
-                  <caret line="12" column="17" lean-forward="false" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
+                  <caret line="12" column="24" lean-forward="true" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="24" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="WebSocketServiceImpl.java" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/netty/service/WebSocketServiceImpl.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="336">
+                  <caret line="138" column="0" lean-forward="false" selection-start-line="138" selection-start-column="0" selection-end-line="138" selection-end-column="0" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -78,34 +80,12 @@
           <file leaf-file-name="WebSocketBizServiceImpl.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/netty/service/WebSocketBizServiceImpl.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="197">
-                  <caret line="49" column="45" lean-forward="false" selection-start-line="49" selection-start-column="45" selection-end-line="49" selection-end-column="45" />
+                <state relative-caret-position="363">
+                  <caret line="101" column="0" lean-forward="false" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
                   <folding>
-                    <element signature="e#2540#2541#0" expanded="true" />
-                    <element signature="e#2562#2563#0" expanded="true" />
+                    <element signature="e#2781#2782#0" expanded="true" />
+                    <element signature="e#2803#2804#0" expanded="true" />
                   </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="WebSocketServiceImpl.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/netty/service/WebSocketServiceImpl.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="945">
-                  <caret line="63" column="37" lean-forward="false" selection-start-line="63" selection-start-column="24" selection-end-line="63" selection-end-column="37" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="MessageEnum.java" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/netty/MessageEnum.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="270">
-                  <caret line="18" column="30" lean-forward="false" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="30" />
-                  <folding />
                 </state>
               </provider>
             </entry>
@@ -113,21 +93,11 @@
           <file leaf-file-name="ClientQuene.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/netty/ClientQuene.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="271">
-                  <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+                <state relative-caret-position="555">
+                  <caret line="37" column="22" lean-forward="false" selection-start-line="37" selection-start-column="22" selection-end-line="37" selection-end-column="22" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="websocket.html" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/webapp/websocket.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="307">
-                  <caret line="25" column="27" lean-forward="true" selection-start-line="25" selection-start-column="27" selection-end-line="25" selection-end-column="27" />
-                  <folding />
                 </state>
               </provider>
             </entry>
@@ -174,8 +144,8 @@
       <find>context</find>
       <find>channel</find>
       <find>channel()</find>
-      <find>writeAndFlush</find>
       <find>109</find>
+      <find>writeAndFlush</find>
     </findStrings>
     <replaceStrings>
       <replace>StringUtils</replace>
@@ -239,13 +209,13 @@
         <option value="$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/netty/ServerMessage.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/netty/ClientMessage.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/wxmp/core/quartz/AutoMatchJob.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/websocket.html" />
         <option value="$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/netty/ClientQuene.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/netty/MessageEnum.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/netty/service/WebSocketService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/netty/WebSocketServerHandler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/netty/service/WebSocketServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/netty/service/WebSocketService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/netty/service/WebSocketBizServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/websocket.html" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/netty/service/WebSocketServiceImpl.java" />
       </list>
     </option>
   </component>
@@ -315,7 +285,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="SearchEverywhereHistoryKey" value="message&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/racingapi/netty/MessageEnum.java&#10;clientmess&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/racingapi/netty/ClientMessage.java&#10;auto&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/core/quartz/AutoMatchJob.java&#10;spring-mv&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/resources/spring-mvc.cfg.xml&#10;spring-&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/resources/spring-mvc.cfg.xml&#10;logutil&#9;PSI&#9;JAVA://com.wxmp.core.util.wx.LogUtils&#10;Navigate&#9;ACTION&#9;GoToMenu&#10;plugin&#9;ACTION&#9;WelcomeScreen.Plugins&#10;ChannelInboundHandlerAdapter&#9;FILE&#9;jar:///Users/user/.m2/repository/io/netty/netty-all/4.0.24.Final/netty-all-4.0.24.Final-sources.jar!/io/netty/channel/ChannelInboundHandlerAdapter.java&#10;ServletContextListener&#9;PSI&#9;JAVA://javax.servlet.ServletContextListener&#10;jsonutil&#9;PSI&#9;JAVA://com.wxmp.core.util.JSONUtil&#10;interc&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/core/interceptor/AuthInterceptor.java&#10;paycon&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/racingapi/ctrl/PayController.java&#10;racingco&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/racingapi/ctrl/RacingApiController.java&#10;racingcons&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/backstage/common/RacingConstants.java&#10;rusercoinlog&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/racingcms/domain/RUserCoinLog.java&#10;RUserCoinLogMapper&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/racingcms/mapper/RUserCoinLogMapper.xml&#10;auth&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/core/interceptor/AuthInterceptor.java&#10;racingapi&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/racingapi/ctrl/RacingApiController.java&#10;InvokerInvocationHandler&#9;FILE&#9;jar:///Users/user/.m2/repository/com/alibaba/dubbo/2.5.3/dubbo-2.5.3.jar!/com/alibaba/dubbo/rpc/proxy/InvokerInvocationHandler.class&#10;javassistproxyfa&#9;FILE&#9;jar:///Users/user/.m2/repository/com/alibaba/dubbo/2.5.3/dubbo-2.5.3-sources.jar!/com/alibaba/dubbo/rpc/proxy/javassist/JavassistProxyFactory.java&#10;ReferenceConfig&#9;PSI&#9;JAVA://com.alibaba.dubbo.config.ReferenceConfig&#10;javassistproxyfactory&#9;FILE&#9;jar:///Users/user/.m2/repository/com/alibaba/dubbo/2.5.3/dubbo-2.5.3.jar!/com/alibaba/dubbo/rpc/proxy/javassist/JavassistProxyFactory.class&#10;pom.xml&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/pom.xml&#10;open&#9;ACTION&#9;OpenFile&#10;javassis&#9;PSI&#9;JAVA://org.apache.ibatis.executor.loader.javassist.JavassistProxyFactory&#10;inter&#9;PSI&#9;JAVA://com.wxmp.core.interceptor.AuthInterceptor&#10;racingconsta&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/backstage/common/RacingConstants.java&#10;racingcon&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/backstage/common/RacingConstants.java&#10;constan&#9;PSI&#9;JAVA://com.wxmp.backstage.common.RacingConstants&#10;usercoinservice&#9;PSI&#9;JAVA://com.wxmp.racingapi.service.impl.UserCoinServiceImpl&#10;payservice&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/racingapi/service/impl/PayServiceImpl.java&#10;paycont&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/racingapi/ctrl/PayController.java&#10;racingap&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/racingapi/ctrl/RacingApiController.java&#10;racingcms/userlist.ftl&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/webapp/WEB-INF/template/freemarker/racingcms/userlist.ftl&#10;wxpayu&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/racingapi/common/WxPayUtils.java&#10;matjob&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/core/quartz/AutoMatchJob.java&#10;threadlocal&#9;PSI&#9;JAVA://java.lang.ThreadLocal&#10;userlist.f&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/webapp/WEB-INF/template/freemarker/racingcms/userlist.ftl&#10;componentage&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/core/agent/ComponentAgent.java&#10;loginc&#9;PSI&#9;JAVA://com.wxmp.backstage.sys.ctrl.LoginCtrl&#10;component&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/core/agent/ComponentAgent.java&#10;rusermapper&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/racingcms/mapper/RUserMapper.xml&#10;rusermapper.xml&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/racingcms/mapper/RUserMapper.xml&#10;matchjob&#9;PSI&#9;JAVA://com.wxmp.core.quartz.AutoMatchJob" />
+    <property name="SearchEverywhereHistoryKey" value="webs.html&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/webapp/websocket.html&#10;message&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/racingapi/netty/MessageEnum.java&#10;clientmess&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/racingapi/netty/ClientMessage.java&#10;auto&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/core/quartz/AutoMatchJob.java&#10;spring-mv&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/resources/spring-mvc.cfg.xml&#10;spring-&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/resources/spring-mvc.cfg.xml&#10;logutil&#9;PSI&#9;JAVA://com.wxmp.core.util.wx.LogUtils&#10;Navigate&#9;ACTION&#9;GoToMenu&#10;plugin&#9;ACTION&#9;WelcomeScreen.Plugins&#10;ChannelInboundHandlerAdapter&#9;FILE&#9;jar:///Users/user/.m2/repository/io/netty/netty-all/4.0.24.Final/netty-all-4.0.24.Final-sources.jar!/io/netty/channel/ChannelInboundHandlerAdapter.java&#10;ServletContextListener&#9;PSI&#9;JAVA://javax.servlet.ServletContextListener&#10;jsonutil&#9;PSI&#9;JAVA://com.wxmp.core.util.JSONUtil&#10;interc&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/core/interceptor/AuthInterceptor.java&#10;paycon&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/racingapi/ctrl/PayController.java&#10;racingco&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/racingapi/ctrl/RacingApiController.java&#10;racingcons&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/backstage/common/RacingConstants.java&#10;rusercoinlog&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/racingcms/domain/RUserCoinLog.java&#10;RUserCoinLogMapper&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/racingcms/mapper/RUserCoinLogMapper.xml&#10;auth&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/core/interceptor/AuthInterceptor.java&#10;racingapi&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/racingapi/ctrl/RacingApiController.java&#10;InvokerInvocationHandler&#9;FILE&#9;jar:///Users/user/.m2/repository/com/alibaba/dubbo/2.5.3/dubbo-2.5.3.jar!/com/alibaba/dubbo/rpc/proxy/InvokerInvocationHandler.class&#10;javassistproxyfa&#9;FILE&#9;jar:///Users/user/.m2/repository/com/alibaba/dubbo/2.5.3/dubbo-2.5.3-sources.jar!/com/alibaba/dubbo/rpc/proxy/javassist/JavassistProxyFactory.java&#10;ReferenceConfig&#9;PSI&#9;JAVA://com.alibaba.dubbo.config.ReferenceConfig&#10;javassistproxyfactory&#9;FILE&#9;jar:///Users/user/.m2/repository/com/alibaba/dubbo/2.5.3/dubbo-2.5.3.jar!/com/alibaba/dubbo/rpc/proxy/javassist/JavassistProxyFactory.class&#10;pom.xml&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/pom.xml&#10;open&#9;ACTION&#9;OpenFile&#10;javassis&#9;PSI&#9;JAVA://org.apache.ibatis.executor.loader.javassist.JavassistProxyFactory&#10;inter&#9;PSI&#9;JAVA://com.wxmp.core.interceptor.AuthInterceptor&#10;racingconsta&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/backstage/common/RacingConstants.java&#10;racingcon&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/backstage/common/RacingConstants.java&#10;constan&#9;PSI&#9;JAVA://com.wxmp.backstage.common.RacingConstants&#10;usercoinservice&#9;PSI&#9;JAVA://com.wxmp.racingapi.service.impl.UserCoinServiceImpl&#10;payservice&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/racingapi/service/impl/PayServiceImpl.java&#10;paycont&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/racingapi/ctrl/PayController.java&#10;racingap&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/racingapi/ctrl/RacingApiController.java&#10;racingcms/userlist.ftl&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/webapp/WEB-INF/template/freemarker/racingcms/userlist.ftl&#10;wxpayu&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/racingapi/common/WxPayUtils.java&#10;matjob&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/core/quartz/AutoMatchJob.java&#10;threadlocal&#9;PSI&#9;JAVA://java.lang.ThreadLocal&#10;userlist.f&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/webapp/WEB-INF/template/freemarker/racingcms/userlist.ftl&#10;componentage&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/core/agent/ComponentAgent.java&#10;loginc&#9;PSI&#9;JAVA://com.wxmp.backstage.sys.ctrl.LoginCtrl&#10;component&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/core/agent/ComponentAgent.java&#10;rusermapper&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/racingcms/mapper/RUserMapper.xml&#10;rusermapper.xml&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/racingcms/mapper/RUserMapper.xml&#10;matchjob&#9;PSI&#9;JAVA://com.wxmp.core.quartz.AutoMatchJob" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
@@ -595,12 +565,12 @@
       <workItem from="1533609031548" duration="471000" />
       <workItem from="1533627276950" duration="3114000" />
       <workItem from="1533658491735" duration="30239000" />
-      <workItem from="1533925227774" duration="15724000" />
+      <workItem from="1533925227774" duration="16552000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="147789000" />
+    <option name="totallyTimeSpent" value="148617000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -619,7 +589,7 @@
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292683" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17310444" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17310444" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3955224" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -650,7 +620,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24892704" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973376" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33706468" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33706468" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Code Iris" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960597" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -664,7 +634,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292683" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17310444" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3955224" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3955224" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
     </layout-to-restore>
   </component>
@@ -738,7 +708,7 @@
           <option name="timeStamp" value="126" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="159" />
+      <option name="time" value="160" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1050,24 +1020,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/websocket.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="307">
-          <caret line="25" column="27" lean-forward="true" selection-start-line="25" selection-start-column="27" selection-end-line="25" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/netty/ClientQuene.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.0.24.Final/netty-all-4.0.24.Final-sources.jar!/io/netty/channel/ChannelHandlerContext.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="146">
@@ -1128,17 +1080,33 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/netty/service/WebSocketService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
-          <caret line="12" column="17" lean-forward="false" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
+          <caret line="12" column="24" lean-forward="true" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/netty/service/WebSocketServiceImpl.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/netty/MessageEnum.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="945">
-          <caret line="63" column="37" lean-forward="false" selection-start-line="63" selection-start-column="24" selection-end-line="63" selection-end-column="37" />
+        <state relative-caret-position="146">
+          <caret line="14" column="4" lean-forward="false" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/websocket.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="199">
+          <caret line="41" column="38" lean-forward="true" selection-start-line="41" selection-start-column="38" selection-end-line="41" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/netty/ClientQuene.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="555">
+          <caret line="37" column="22" lean-forward="false" selection-start-line="37" selection-start-column="22" selection-end-line="37" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1147,27 +1115,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/netty/service/WebSocketBizServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="49" column="45" lean-forward="false" selection-start-line="49" selection-start-column="45" selection-end-line="49" selection-end-column="45" />
+        <state relative-caret-position="363">
+          <caret line="101" column="0" lean-forward="false" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
           <folding>
-            <element signature="e#2540#2541#0" expanded="true" />
-            <element signature="e#2562#2563#0" expanded="true" />
+            <element signature="e#2781#2782#0" expanded="true" />
+            <element signature="e#2803#2804#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/netty/MessageEnum.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/netty/service/WebSocketServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="30" lean-forward="false" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="30" />
-          <folding />
+        <state relative-caret-position="336">
+          <caret line="138" column="0" lean-forward="false" selection-start-line="138" selection-start-column="0" selection-end-line="138" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/netty/WebSocketServerHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
-          <caret line="105" column="26" lean-forward="false" selection-start-line="105" selection-start-column="26" selection-end-line="105" selection-end-column="26" />
+        <state relative-caret-position="97">
+          <caret line="103" column="14" lean-forward="true" selection-start-line="103" selection-start-column="14" selection-end-line="103" selection-end-column="14" />
           <folding />
         </state>
       </provider>
