@@ -52,6 +52,7 @@
                 <list>
                     <value>/racing</value>
                     <value>/socket</value>
+                    <value>/websocket</value>
                     <value>/pay</value>
                     <value>/race</value>
                 </list>

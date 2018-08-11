@@ -9,6 +9,8 @@ import com.wxmp.racingapi.netty.MessageEnum;
 import com.wxmp.racingapi.netty.ServerMessage;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.socket.SocketChannel;
+import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
+import org.eclipse.jetty.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,23 +37,30 @@ public class WebSocketBizServiceImpl implements WebSocketBizService {
      */
     @Override
     public void handleRequest(String jsonStr, ChannelHandlerContext ctx) {
-        if(JSONUtil.isJson(jsonStr)){
-            ClientMessage msg = JSONUtil.jsonToObject(new TypeReference<ClientMessage>(){}, jsonStr);
-            switch (msg.getType()){
-                case PING:
-                    break;
-                case DEFAULT:
-                    break;
-                case LOGIN:
-                    userHandShake(msg.getUserUuid(), ctx);
-                    break;
-                case EVENT_DEFAULT:
-                    break;
-                case MESSAGE_DEFAULT:
-                    break;
-                default:
-                    CommonLog.getLogger(WebSocketBizServiceImpl.class).info("handleRequest default null ");
+        if(StringUtil.isNotBlank(jsonStr)){
+            if(JSONUtil.isJson(jsonStr)){
+                ClientMessage msg = JSONUtil.jsonToObject(new TypeReference<ClientMessage>(){}, jsonStr);
+                switch (msg.getType()){
+                    case PING:
+                        break;
+                    case DEFAULT:
+                        break;
+                    case LOGIN:
+                        userLogin(msg.getUserUuid(), ctx);
+                        ServerMessage cientLog = ServerMessage.build(MessageEnum.EVENT_SERVER_CLIENTLOG, jsonStr, null);
+                        this.socketService.sendEvent(msg.getUserUuid(), cientLog);
+                        break;
+                    case EVENT_DEFAULT:
+                        break;
+                    case MESSAGE_DEFAULT:
+                        break;
+                    default:
+                        CommonLog.getLogger(WebSocketBizServiceImpl.class).info("handleRequest default null ");
+                }
             }
+        }else {
+            ServerMessage cientLog = ServerMessage.build(MessageEnum.DEFAULT, jsonStr, null);
+            ctx.channel().write(new TextWebSocketFrame(JSONUtil.objectToJson(cientLog)));
         }
     }
 
@@ -62,18 +71,18 @@ public class WebSocketBizServiceImpl implements WebSocketBizService {
      * @param ctx
      */
     private void userHandShake(String userUuid, ChannelHandlerContext ctx) {
-        SocketChannel channel = ClientQuene.get(userUuid);
-//        if(null == channel){
-            //自动注册用户访问频道
-            channel = (SocketChannel)ctx.channel();
-            ClientQuene.add(userUuid, channel);
-//        }
-        System.out.println("用户握手完成");
-        ServerMessage event = new ServerMessage();
-        event.setUserUuid("seth");
-        event.setData("data");
-        event.setType(MessageEnum.PING);
-        this.socketService.sendEvent(userUuid, event);
+        return;
+    }
+
+    /**
+     * 用户完成登录，单点登录，其他节点下线
+     * @param userUuid
+     * @param ctx
+     */
+    private void userLogin(String userUuid, ChannelHandlerContext ctx){
+        ServerMessage event =  ServerMessage.build(MessageEnum.LOGIN, "data", userUuid);
+
+        this.socketService.login(userUuid, event, ctx);
     }
 
     /**

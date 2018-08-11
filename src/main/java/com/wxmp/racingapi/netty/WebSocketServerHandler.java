@@ -135,12 +135,9 @@ public class WebSocketServerHandler extends SimpleChannelInboundHandler<Object> 
         if(frame instanceof TextWebSocketFrame){
             // 返回应答消息
             String request = ((TextWebSocketFrame) frame).text();
-            System.out.println("服务端收到：" + request);
-//            WebSocketBizService webSocketBizService = SpringContextHolder.getBean(WebSocketBizService.class);
             WebSocketBizService webSocketBizService = SpringContextHolder.getBean(WebSocketBizService.class);
 
             webSocketBizService.handleRequest(request, ctx);
-            ctx.channel().write(new TextWebSocketFrame("服务器收到并返回："+request));
         }
 
     }

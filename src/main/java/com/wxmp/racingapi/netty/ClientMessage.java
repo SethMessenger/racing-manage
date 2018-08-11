@@ -9,7 +9,7 @@ import java.io.Serializable;
  * @desc
  * @date 18/8/10
  */
-public class ClientMessage implements Serializable {
+public class ClientMessage extends BaseMessage implements Serializable {
 
     private static final long serialVersionUID = -5756901646411393269L;
 
@@ -19,6 +19,12 @@ public class ClientMessage implements Serializable {
     private String data;
     /** 用户唯一标志 */
     private String userUuid;
+    /** 上传备注 */
+    private String remark;
+
+    public ClientMessage(){
+        super();
+    }
 
     public MessageEnum getType() {
         return type;
@@ -44,7 +50,11 @@ public class ClientMessage implements Serializable {
         this.userUuid = userUuid;
     }
 
-    public ClientMessage(){
-        super();
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 }

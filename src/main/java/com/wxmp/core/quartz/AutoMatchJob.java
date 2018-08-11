@@ -73,10 +73,7 @@ public class AutoMatchJob {
     @Scheduled(cron = "55 0/2 * * * ? ")
     public void autoMatchResult(){
         //提醒前端上传
-        ServerMessage msg = new ServerMessage();
-        msg.setType(MessageEnum.EVENT_AMOUNT);
-        msg.setUserUuid("");
-        msg.setData("data");
+        ServerMessage msg = ServerMessage.build(MessageEnum.EVENT_SERVER_AMOUNT, "", "");
         this.webSocketService.sendNotice(ClientQuene.getClients(), msg);
 
         CommonLog.getLogger(AutoMatchJob.class).info("Start autoMatchResult ===>>>> ");

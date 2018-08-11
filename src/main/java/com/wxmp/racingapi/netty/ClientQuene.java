@@ -24,6 +24,9 @@ public class ClientQuene {
      * @param channel
      */
     public static void add(String clientId, SocketChannel channel) {
+        if(map.keySet().contains(clientId)){
+            map.remove(clientId);
+        }
         map.put(clientId, channel);
     }
 

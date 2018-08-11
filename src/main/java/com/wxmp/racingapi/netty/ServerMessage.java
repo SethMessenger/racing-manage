@@ -7,22 +7,44 @@ import java.io.Serializable;
  * @desc    服务器端发送消息格式
  * @date 18/8/11
  */
-public class ServerMessage implements Serializable{
+public class ServerMessage extends BaseMessage implements Serializable{
 
     private static final long serialVersionUID = -5756901646411393226L;
 
     /** 事件类型,  */
-    private MessageEnum type;
+    private Integer type;
     /** 事件内容 ,使用json格式，对前端进行返回 */
     private String data;
     /** 用户唯一标志 */
     private String userUuid;
+    /** 备注 */
+    private String remark;
 
-    public MessageEnum getType() {
+    public static ServerMessage build(MessageEnum type, String data, String userUuid){
+        return new ServerMessage(type,data,userUuid);
+    }
+
+    private ServerMessage(MessageEnum type, String data, String userUuid) {
+        super();
+        this.type = type.getCode();
+        this.remark = type.getMsg();
+        this.data = data;
+        this.userUuid = userUuid;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    private void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    public Integer getType() {
         return type;
     }
 
-    public void setType(MessageEnum type) {
+    private void setType(Integer type) {
         this.type = type;
     }
 
@@ -30,7 +52,7 @@ public class ServerMessage implements Serializable{
         return data;
     }
 
-    public void setData(String data) {
+    private void setData(String data) {
         this.data = data;
     }
 
@@ -38,7 +60,7 @@ public class ServerMessage implements Serializable{
         return userUuid;
     }
 
-    public void setUserUuid(String userUuid) {
+    private void setUserUuid(String userUuid) {
         this.userUuid = userUuid;
     }
 }

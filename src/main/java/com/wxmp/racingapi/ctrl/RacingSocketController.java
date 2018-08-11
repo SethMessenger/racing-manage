@@ -1,7 +1,7 @@
 package com.wxmp.racingapi.ctrl;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author  xunbo.xu
@@ -11,6 +11,5 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("socket")
 public class RacingSocketController {
-
 
 }

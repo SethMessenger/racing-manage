@@ -10,15 +10,19 @@ public enum MessageEnum {
     /** 心跳包 */
     PING(0, "heartBeat"),
     /** 登录 */
-    LOGIN(1, "login"),
+    LOGIN(1, "login success"),
+    /** 登出 */
+    LOGOUT(2, "logout"),
     /** 上传记账 */
-    EVENT_AMOUNT(101, "上传用户押注记录"),
+    EVENT_SERVER_AMOUNT(101, "上传用户押注记录"),
+    /** 回传前端请求参数 log */
+    EVENT_SERVER_CLIENTLOG(109, "回传前端请求参数，作为前端log"),
     /** 事件 */
     EVENT_DEFAULT(109, "defaultEvent"),
     /** 消息 */
     MESSAGE_DEFAULT(209, "deafultMessage"),
     /** 容错默认 */
-    DEFAULT(999, "dafault");
+    DEFAULT(999, "dafault error");
 
     public static MessageEnum getMessageEnum(Integer enumCode){
         if(enumCode != null){
