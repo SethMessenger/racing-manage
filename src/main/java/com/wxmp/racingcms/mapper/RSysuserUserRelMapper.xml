@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wxmp.racingcms.mapper.RSysuserUserRelMapper">
+  <resultMap id="BaseResultMap" type="com.wxmp.racingcms.domain.RSysuserUserRel">
+    <id column="uuid" jdbcType="VARCHAR" property="uuid" />
+    <result column="is_del" jdbcType="INTEGER" property="isDel" />
+    <result column="creater" jdbcType="VARCHAR" property="creater" />
+    <result column="updater" jdbcType="VARCHAR" property="updater" />
+    <result column="create_time" jdbcType="BIGINT" property="createTime" />
+    <result column="update_time" jdbcType="BIGINT" property="updateTime" />
+    <result column="user_uuid" jdbcType="VARCHAR" property="userUuid" />
+    <result column="sysuser_uuid" jdbcType="VARCHAR" property="sysuserUuid" />
+    <result column="sysuser_user_uuid" jdbcType="VARCHAR" property="sysuserUserUuid" />
+    <result column="rel_type" jdbcType="TINYINT" property="relType" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    uuid, is_del, creater, updater, create_time, update_time, user_uuid, sysuser_uuid, 
+    sysuser_user_uuid, rel_type, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from r_sysuser_user_rel
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from r_sysuser_user_rel
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.wxmp.racingcms.domain.RSysuserUserRel">
+    insert into r_sysuser_user_rel (uuid, is_del, creater, 
+      updater, create_time, update_time, 
+      user_uuid, sysuser_uuid, sysuser_user_uuid, 
+      rel_type, remark)
+    values (#{uuid,jdbcType=VARCHAR}, #{isDel,jdbcType=INTEGER}, #{creater,jdbcType=VARCHAR}, 
+      #{updater,jdbcType=VARCHAR}, #{createTime,jdbcType=BIGINT}, #{updateTime,jdbcType=BIGINT}, 
+      #{userUuid,jdbcType=VARCHAR}, #{sysuserUuid,jdbcType=VARCHAR}, #{sysuserUserUuid,jdbcType=VARCHAR}, 
+      #{relType,jdbcType=TINYINT}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wxmp.racingcms.domain.RSysuserUserRel">
+    insert into r_sysuser_user_rel
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uuid != null">
+        uuid,
+      </if>
+      <if test="isDel != null">
+        is_del,
+      </if>
+      <if test="creater != null">
+        creater,
+      </if>
+      <if test="updater != null">
+        updater,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="userUuid != null">
+        user_uuid,
+      </if>
+      <if test="sysuserUuid != null">
+        sysuser_uuid,
+      </if>
+      <if test="sysuserUserUuid != null">
+        sysuser_user_uuid,
+      </if>
+      <if test="relType != null">
+        rel_type,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uuid != null">
+        #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="isDel != null">
+        #{isDel,jdbcType=INTEGER},
+      </if>
+      <if test="creater != null">
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updater != null">
+        #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=BIGINT},
+      </if>
+      <if test="userUuid != null">
+        #{userUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="sysuserUuid != null">
+        #{sysuserUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="sysuserUserUuid != null">
+        #{sysuserUserUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="relType != null">
+        #{relType,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wxmp.racingcms.domain.RSysuserUserRel">
+    update r_sysuser_user_rel
+    <set>
+      <if test="isDel != null">
+        is_del = #{isDel,jdbcType=INTEGER},
+      </if>
+      <if test="creater != null">
+        creater = #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updater != null">
+        updater = #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=BIGINT},
+      </if>
+      <if test="userUuid != null">
+        user_uuid = #{userUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="sysuserUuid != null">
+        sysuser_uuid = #{sysuserUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="sysuserUserUuid != null">
+        sysuser_user_uuid = #{sysuserUserUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="relType != null">
+        rel_type = #{relType,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wxmp.racingcms.domain.RSysuserUserRel">
+    update r_sysuser_user_rel
+    set is_del = #{isDel,jdbcType=INTEGER},
+      creater = #{creater,jdbcType=VARCHAR},
+      updater = #{updater,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=BIGINT},
+      user_uuid = #{userUuid,jdbcType=VARCHAR},
+      sysuser_uuid = #{sysuserUuid,jdbcType=VARCHAR},
+      sysuser_user_uuid = #{sysuserUserUuid,jdbcType=VARCHAR},
+      rel_type = #{relType,jdbcType=TINYINT},
+      remark = #{remark,jdbcType=VARCHAR}
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </update>
+</mapper>

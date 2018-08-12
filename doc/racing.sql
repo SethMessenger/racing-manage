@@ -389,7 +389,7 @@ ALTER  TABLE `t_wxcms_sys_user` RENAME TO `s_sys_user`;
 -- 业务：新增冗余表s_company，以便于根据公司维度进行微信业务的区分，并且将微信账户和公司账户进行关联
 -- 作者：SethMessenger
 -- 日期: 2018-03-30
--- 执行状态： 未执行
+-- 执行状态： 已执行
 
 CREATE TABLE `s_company` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -408,3 +408,23 @@ CREATE TABLE `s_company` (
 alter table s_sys_user add companyId varchar(11) not null default '';
 
 alter table `s_account` add companyId varchar(11) not null default '';
+
+-- 业务：新增前后端用户的二级分销系统，作为中间表将 后端用户t_wxcms_sys_user 和 r_user进行关联
+-- 作者：SethMessenger
+-- 日期: 2018-08-12
+-- 执行状态： 待执行
+
+CREATE TABLE `r_sysuser_user_rel` (
+  `uuid` varchar(32) NOT NULL DEFAULT '' COMMENT '唯一主键',
+  `is_del` int(2) NOT NULL COMMENT '是否删除 0可用 1删除',
+  `creater` varchar(32) NOT NULL DEFAULT '' COMMENT '创建人uuid',
+  `updater` varchar(32) NOT NULL DEFAULT '' COMMENT '修改人uuid',
+  `create_time` bigint(11) NOT NULL COMMENT '创建时间戳',
+  `update_time` bigint(11) NOT NULL COMMENT '修改时间戳',
+  `user_uuid` varchar(32) NOT NULL DEFAULT '' COMMENT '用户uuid',
+  `sysuser_uuid` varchar(32) NOT NULL DEFAULT '' COMMENT '后台运营账户唯一标志',
+  `sysuser_user_uuid` varchar(32) NOT NULL DEFAULT '' COMMENT '后台运营账户绑定的前端账户唯一标志',
+  `rel_type` tinyint(2) NOT NULL DEFAULT '0' COMMENT '关联类型，0 后端运营账户一对多关联前端用户 ',
+  `remark` varchar(50) DEFAULT NULL COMMENT '备注信息',
+  PRIMARY KEY (`uuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
