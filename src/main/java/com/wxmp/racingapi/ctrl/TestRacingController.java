@@ -1,8 +1,11 @@
 package com.wxmp.racingapi.ctrl;
 
+import com.wxmp.core.log.CommonLog;
 import com.wxmp.racingapi.service.impl.ComponentServiceImpl;
 import com.wxmp.racingapi.vo.view.BaseView;
 import com.wxmp.racingapi.vo.view.ObjectView;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -43,6 +46,20 @@ public class TestRacingController {
             result = BaseView.FAIL;
         }
         return result;
+    }
+
+    @RequestMapping(value = "/test/ping",  method = RequestMethod.GET)
+    @ResponseBody
+    public BaseView testPing(HttpServletRequest request) {
+        CommonLog.getLogger(TestRacingController.class).info("CommonLog info log");
+        CommonLog.getLogger(TestRacingController.class).error("CommonLog error log");
+        CommonLog.getLogger(TestRacingController.class).debug("CommonLog debug log");
+
+        Logger logger = LoggerFactory.getLogger("liveness");
+        logger.info("CommonLog info log");
+        logger.info("CommonLog error log");
+        logger.info("CommonLog debug log");
+        return null;
     }
 
 

@@ -1,7 +1,7 @@
 package com.wxmp.core.log;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 /**
  * @author xing.sun
@@ -16,7 +16,7 @@ public class CommonLog {
     }
 
     public static CommonLog getLogger(Class clazz){
-        return new CommonLog(LoggerFactory.getLogger(clazz));
+        return new CommonLog(LogManager.getLogger(clazz));
     }
 
     public void error(String msg){

@@ -3,6 +3,7 @@ package com.wxmp.core.interceptor;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.wxmp.core.log.LogTraceUtil;
 import org.apache.log4j.Logger;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -32,6 +33,9 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler) throws Exception {
+		//用于当前线程安装线程traceID
+		LogTraceUtil.setTraceId();
+
 		/** HandlerMethod method = (HandlerMethod)handler;
 		Auth auth = method.getMethod().getAnnotation(Auth.class); **/
 		String requestUrl = request.getRequestURI().replace(request.getContextPath(), "");

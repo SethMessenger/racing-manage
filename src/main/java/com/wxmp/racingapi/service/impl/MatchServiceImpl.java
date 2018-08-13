@@ -1,6 +1,8 @@
 package com.wxmp.racingapi.service.impl;
 
+import com.wxmp.core.log.CommonLog;
 import com.wxmp.core.quartz.AutoMatchJob;
+import com.wxmp.core.util.JSONUtil;
 import com.wxmp.racingapi.service.MatchService;
 import com.wxmp.racingapi.vo.view.MatchDetailResultView;
 import com.wxmp.racingapi.vo.view.MatchDetailView;
@@ -68,6 +70,7 @@ public class MatchServiceImpl implements MatchService{
                 view = new MatchDetailView(type, results, this.autoMatchJob.getNextMatchCount());
             }
         }
+        CommonLog.getLogger(MatchServiceImpl.class).info("MatchServiceImpl queryMatchResults : " + JSONUtil.objectToJson(view));
         return view;
     }
 
