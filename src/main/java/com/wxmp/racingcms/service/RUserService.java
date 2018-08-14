@@ -1,6 +1,8 @@
 package com.wxmp.racingcms.service;
 
 import com.wxmp.racingcms.domain.RUser;
+import com.wxmp.racingcms.vo.view.RUserMatchView;
+import com.wxmp.racingcms.vo.view.RUserView;
 
 import java.util.List;
 
@@ -42,4 +44,18 @@ public interface RUserService {
      * @param entity
      */
     void delete(RUser entity);
+
+    /**
+     * 分页后台查询
+     * @param entity
+     * @return
+     */
+    List<RUserView> viewListForPage(RUser entity);
+
+    /**
+     * 查询用户下注记录
+     * @param searchEntity
+     * @return
+     */
+    List<RUserMatchView> listUserMatchLogs(RUser searchEntity);
 }

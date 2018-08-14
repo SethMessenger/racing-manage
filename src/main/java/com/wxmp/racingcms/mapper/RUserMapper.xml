@@ -18,6 +18,33 @@
       <result column="other" jdbcType="VARCHAR" property="other" />
     </resultMap>
 
+    <resultMap id="ViewResultMap" type="com.wxmp.racingcms.vo.view.RUserView">
+      <result column="uuid" jdbcType="VARCHAR" property="uuid" />
+      <result column="is_del" jdbcType="INTEGER" property="isDel" />
+      <result column="creater" jdbcType="VARCHAR" property="creater" />
+      <result column="updater" jdbcType="VARCHAR" property="updater" />
+      <result column="create_time" jdbcType="BIGINT" property="createTime" />
+      <result column="update_time" jdbcType="BIGINT" property="updateTime" />
+      <result column="user_name" jdbcType="VARCHAR" property="userName" />
+      <result column="user_nickname" jdbcType="VARCHAR" property="userNickname" />
+      <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+      <result column="wechat" jdbcType="VARCHAR" property="wechat" />
+      <result column="email" jdbcType="VARCHAR" property="email" />
+      <result column="password" jdbcType="VARCHAR" property="password" />
+      <result column="open_id" jdbcType="VARCHAR" property="openId" />
+      <result column="other" jdbcType="VARCHAR" property="other" />
+      <result column="total" jdbcType="BIGINT" property="total" />
+    </resultMap>
+
+  <resultMap id="userMatchLogResultMap" type="com.wxmp.racingcms.vo.view.RUserMatchView">
+    <result column="userUuid" jdbcType="VARCHAR" property="userUuid" />
+    <result column="matchResultUuid" jdbcType="VARCHAR" property="matchResultUuid" />
+    <result column="matchResult" jdbcType="VARCHAR" property="matchResult" />
+    <result column="amountTime" jdbcType="BIGINT" property="amountTime" />
+    <result column="counts" jdbcType="BIGINT" property="counts" />
+    <result column="countsIndex" jdbcType="INTEGER" property="countsIndex" />
+  </resultMap>
+
     <insert id="insert" parameterType="com.wxmp.racingcms.domain.RUser">
       insert into r_user (uuid, is_del, creater,
         updater, create_time, update_time,
@@ -59,6 +86,42 @@
           and password = #{filter.password,jdbcType=VARCHAR}
         </if>
     </select>
+
+  <select id="viewListForPage" resultMap="ViewResultMap">
+    select r.uuid, r.is_del, r.creater, r.updater, r.create_time, r.update_time, r.user_name, r.user_nickname,
+    r.mobile, r.wechat, r.email, r.password, r.open_id, r.other, c.total
+    from r_user r
+    LEFT JOIN r_user_coin c ON r.uuid = c.user_uuid AND r.is_del = c.is_del
+    where
+    r.is_del = 0
+    <if test ="filter.userName != null and filter.userName != ''">
+      and user_name = #{filter.userName,jdbcType=VARCHAR}
+    </if>
+    <if test ="filter.userNickname != null and filter.userNickname != ''">
+      and user_nickname = #{filter.userNickname,jdbcType=VARCHAR}
+    </if>
+    <if test ="filter.mobile != null and filter.mobile != ''">
+      and mobile = #{filter.mobile,jdbcType=VARCHAR}
+    </if>
+    <if test ="filter.openId != null and filter.openId != ''">
+      and open_id = #{filter.openId,jdbcType=VARCHAR}
+    </if>
+    <if test ="filter.password != null and filter.password != ''">
+      and password = #{filter.password,jdbcType=VARCHAR}
+    </if>
+  </select>
+
+  <select id="listUserMatchLogs" resultMap="userMatchLogResultMap">
+    select u.uuid userUuid, m.match_result_uuid matchResultUuid, r.create_time amountTime, r.match_result matchResult, m.coin_amount counts, m.coin_index countsIndex
+    from r_user u
+      left join r_match_log m ON u.uuid = m.user_uuid
+      left join r_match_result r ON m.match_result_uuid = r.uuid
+    where
+      r.is_del = 0
+      <if test ="filter.uuid != null and filter.uuid != ''">
+        and u.uuid = #{filter.uuid,jdbcType=VARCHAR}
+      </if>
+  </select>
 
     <update id="update" parameterType="com.wxmp.racingcms.domain.RUser">
       update r_user

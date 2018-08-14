@@ -1,6 +1,8 @@
 package com.wxmp.racingcms.mapper;
 
 import com.wxmp.racingcms.domain.RUser;
+import com.wxmp.racingcms.vo.view.RUserMatchView;
+import com.wxmp.racingcms.vo.view.RUserView;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -28,6 +30,13 @@ public interface RUserMapper {
     List<RUser> listForPage(@Param("filter") RUser filter);
 
     /**
+     * 分页查询
+     * @param filter
+     * @return
+     */
+    List<RUserView> viewListForPage(@Param("filter") RUser filter);
+
+    /**
      * 更新记录
      * @param user
      * @return
@@ -47,4 +56,11 @@ public interface RUserMapper {
      * @return
      */
     RUser getById(@Param("uuid") String uuid);
+
+    /**
+     * 分页查询
+     * @param filter
+     * @return
+     */
+    List<RUserMatchView> listUserMatchLogs(@Param("filter") RUser filter);
 }

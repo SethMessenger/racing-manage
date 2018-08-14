@@ -2,6 +2,8 @@ package com.wxmp.racingcms.ctrl;
 
 import com.wxmp.racingcms.domain.RUser;
 import com.wxmp.racingcms.service.RUserService;
+import com.wxmp.racingcms.vo.view.RUserMatchView;
+import com.wxmp.racingcms.vo.view.RUserView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -30,11 +32,23 @@ public class UserController {
     @RequestMapping(value = "/listForPage")
     public ModelAndView listForPage(@ModelAttribute RUser searchEntity){
         ModelAndView mv = new ModelAndView("/racingcms/userlist");
-        List<RUser> list = rUserService.listForPage(searchEntity);
+        List<RUserView> list = rUserService.viewListForPage(searchEntity);
         mv.addObject("list",list);
         return mv;
     }
 
+    /**
+     * 客户端用户列表查询
+     * @param searchEntity
+     * @return
+     */
+    @RequestMapping(value = "/listUserLogs")
+    public ModelAndView userCoinlogs(@ModelAttribute RUser searchEntity){
+        ModelAndView mv = new ModelAndView("/racingcms/usercoinlogs");
+        List<RUserMatchView> list = rUserService.listUserMatchLogs(searchEntity);
+        mv.addObject("list",list);
+        return mv;
+    }
 
 
 }

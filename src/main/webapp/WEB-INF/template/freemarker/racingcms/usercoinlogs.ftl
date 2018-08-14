@@ -42,11 +42,6 @@
     <script src="/res/news/js/demo/sparkline-demo.min.js"></script>
     <script src="/res/news/js/plugins/sweetalert/sweetalert.min.js"></script>
     <link href="/res/news/css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
-    <script>
-        $(document).ready(function () {
-
-        };
-    </script>
     <!-- 注入腾讯分析服务 http://ta.qq.com/analysis/function -->
 <#--<script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>-->
 
@@ -68,53 +63,36 @@
                         <thead>
                         <tr>
                             <th>序号</th>
-                            <th>用户名</th>
-                            <th>用户昵称</th>
-                            <th>联系电话</th>
-                            <th>电子邮件</th>
-                            <th>账户状态</th>
-                            <th>账户余额</th>
-                            <th>操作</th>
+                            <th>比赛uuid</th>
+                            <th>用户标志</th>
+                            <th>比赛结果</th>
+                            <th>下注时间</th>
+                            <th>下注号码</th>
+                            <th>下注金额</th>
                         </tr>
                         </thead>
                         <tbody>
                         <#list list as item>
                         <tr class="gradeX">
                             <td>${item_index + 1}</td>
-                            <td>${item.userName!}</td>
-                            <td>${item.userNickname!}</td>
-                            <td>${item.mobile!}</td>
-                            <td>${item.email!}</td>
-                            <#if item.isDel == 1>
-                                <td>冻结</td>
-                            <#else >
-                                <td>正常</td>
-                            </#if>
-                            <td>${item.total!}</td>
-                            <td class="text-navy">
-                                <#if item.isDel == 0>
-                                    <button class="btn btn-primary" onclick="frozenUser('${item.uuid}')">冻结</button>
-                                    <button class="btn btn-primary" onclick="toUpdateUserAmount()">人工编辑</button>
-                                <#else >
-                                    <button class="btn btn-primary" disabled = disabled onclick="frozenUser('${item.uuid}')">冻结</button>
-                                    <button class="btn btn-primary" onclick="toUpdateUserAmount()">人工编辑</button>
-                                </#if>
-                                <button class="btn btn-primary" onclick="toUserLogs('${item.uuid}')" data-toggle="modal" data-target="#myModal_${item.uuid}">下注记录</button>
-                            </td>
-
+                            <td>${item.matchResultUuid!}</td>
+                            <td>${item.userUuid!}</td>
+                            <td>${item.matchResult!}</td>
+                            <td>${item.amountTime!}</td>
+                            <td>${item.countsIndex!}</td>
+                            <td>${item.counts!}</td>
                         </tr>
                         </#list>
                         </tbody>
                         <tfoot>
                         <tr>
                             <th>序号</th>
-                            <th>用户名</th>
-                            <th>用户昵称</th>
-                            <th>联系电话</th>
-                            <th>微信号</th>
-                            <th>账户状态</th>
-                            <th>账户余额</th>
-                            <th>操作</th>
+                            <th>比赛uuid</th>
+                            <th>用户标志</th>
+                            <th>比赛结果</th>
+                            <th>下注时间</th>
+                            <th>下注号码</th>
+                            <th>下注金额</th>
                         </tr>
                         </tfoot>
                     </table>
@@ -126,20 +104,5 @@
     </div>
 </div>
 </body>
-
-<script type="text/javascript">
-    function toUserLogs(userUuid) {
-        window.location.href="/racingcms/ruser/listUserLogs?uuid="+userUuid;
-    }
-    function toUpdateUserAmount() {
-        window.location.href="/racingcms/ruser/listForPage";
-    }
-    function frozenUser(useruuid){
-        swal({
-            title: "暂时不支持冻结用户账户",
-            text: "请联系管理员开发此功能！"
-        });
-    }
-</script>
 
 </html>
