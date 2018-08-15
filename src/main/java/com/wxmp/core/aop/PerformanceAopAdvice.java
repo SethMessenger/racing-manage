@@ -2,6 +2,7 @@ package com.wxmp.core.aop;
 
 import com.wxmp.core.log.CommonLog;
 import com.wxmp.core.log.LogTraceUtil;
+import org.apache.commons.lang.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.springframework.util.StopWatch;
 
@@ -30,7 +31,7 @@ public class PerformanceAopAdvice {
             }
         } catch (Throwable e) {
             if(e!=null){
-                CommonLog.getLogger(PerformanceAopAdvice.class).error("performanceAopAdvice aroundMethod exception : ", e);
+                CommonLog.getLogger(PerformanceAopAdvice.class).error( e, StringUtils.EMPTY,"performanceAopAdvice aroundMethod exception : ");
             }
             throw e;
         } finally {

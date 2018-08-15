@@ -49,7 +49,7 @@ public class PayController {
     @ResponseBody
     public BaseView openIdCallback(HttpServletRequest request, HttpServletResponse response, @PathVariable String userUuid){
         BaseView result = BaseView.SUCCESS;
-        CommonLog.getLogger(PayController.class).info("openIdCallback ===>>>> " + request.getRequestURL().toString());
+        CommonLog.getLogger(PayController.class).info(StringUtils.EMPTY, "openIdCallback ===>>>> " + request.getRequestURL().toString());
 
         return result;
     }

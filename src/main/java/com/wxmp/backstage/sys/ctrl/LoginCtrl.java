@@ -80,11 +80,13 @@ public class LoginCtrl {
 			//用户名或者密码错误
 			code = "-1";
 		}else{
+			if(SessionUtilsWeb.getUser(request) != null){
+				code = "-2";
+			}
 			resMap.put("userId", sysUser.getId());
 			SessionUtilsWeb.setUser(request, sysUser);
 		}
 		resMap.put("code", code);
-		log.info("sasaadasdasda");
 		return resMap;
 	}
 

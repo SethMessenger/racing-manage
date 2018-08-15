@@ -57,7 +57,7 @@ public class WebSocketBizServiceImpl implements WebSocketBizService {
                     case MESSAGE_DEFAULT:
                         break;
                     default:
-                        CommonLog.getLogger(WebSocketBizServiceImpl.class).info("handleRequest default null ");
+                        CommonLog.getLogger(WebSocketBizServiceImpl.class).info(StringUtils.EMPTY, "handleRequest default null ");
                 }
                 if(StringUtils.isNotBlank(msg.getUserUuid())){
                     ServerMessage cientLog = ServerMessage.build(MessageEnum.EVENT_SERVER_CLIENTLOG, jsonStr, null);

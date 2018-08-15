@@ -11,6 +11,7 @@ import com.wxmp.racingcms.domain.RMatchType;
 import com.wxmp.racingcms.mapper.RMatchResultMapper;
 import com.wxmp.racingcms.mapper.RMatchTypeMapper;
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -70,7 +71,7 @@ public class MatchServiceImpl implements MatchService{
                 view = new MatchDetailView(type, results, this.autoMatchJob.getNextMatchCount());
             }
         }
-        CommonLog.getLogger(MatchServiceImpl.class).info("MatchServiceImpl queryMatchResults : " + JSONUtil.objectToJson(view));
+        CommonLog.getLogger(MatchServiceImpl.class).info(StringUtils.EMPTY, "MatchServiceImpl queryMatchResults : " + JSONUtil.objectToJson(view));
         return view;
     }
 

@@ -27,11 +27,14 @@ public class RMatchLog {
     private String remark;
     /**  */
     private Integer coinIndex;
+    /** 比赛下注类型  1冠军赛 2冠亚军赛 3竞速赛 */
+    private Integer matchType;
 
     public RMatchLog(){super();}
 
-    public RMatchLog(String matchResultUuid, String userUuid, Integer logType, Long coinAmount, Integer coinIndex, String remark){
+    public RMatchLog(Integer matchType, String matchResultUuid, String userUuid, Integer logType, Long coinAmount, Integer coinIndex, String remark){
         this.uuid = UuidGenerator.getUUID32();
+        this.matchType = matchType;
         this.isDel = 0;
         this.creater = RacingConstants.RACING_SYS_ACCOUNT;
         this.updater = creater;
@@ -43,6 +46,14 @@ public class RMatchLog {
         this.coinAmount = coinAmount;
         this.coinIndex = coinIndex;
         this.remark = remark;
+    }
+
+    public Integer getMatchType() {
+        return matchType;
+    }
+
+    public void setMatchType(Integer matchType) {
+        this.matchType = matchType;
     }
 
     public String getUuid() {

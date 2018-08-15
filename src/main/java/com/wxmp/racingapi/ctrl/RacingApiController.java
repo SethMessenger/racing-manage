@@ -1,16 +1,12 @@
 package com.wxmp.racingapi.ctrl;
 
-import com.wxmp.core.log.CommonLog;
-import com.wxmp.core.util.JSONUtil;
 import com.wxmp.racingapi.common.ErrorCodeEnum;
+import com.wxmp.racingapi.common.MatchTypeEnum;
 import com.wxmp.racingapi.service.MatchService;
 import com.wxmp.racingapi.service.UserCoinService;
 import com.wxmp.racingapi.service.UserService;
-import com.wxmp.racingapi.vo.form.LoginForm;
-import com.wxmp.racingapi.vo.form.MatchForm;
-import com.wxmp.racingapi.vo.form.UserRegisForm;
+import com.wxmp.racingapi.vo.form.*;
 import com.wxmp.racingapi.vo.view.*;
-import com.wxmp.racingapi.vo.form.UserPayForm;
 import com.wxmp.racingapi.vo.vo.UserPayDetailForm;
 import com.wxmp.racingcms.domain.RUser;
 import org.apache.commons.collections.CollectionUtils;
@@ -200,21 +196,59 @@ public class RacingApiController {
     @CrossOrigin(maxAge = 3600)
     @RequestMapping(value = "/coins/{userUuid}",  method = RequestMethod.POST)
     @ResponseBody
+    @Deprecated
     public BaseView payMatch(HttpServletRequest request, @PathVariable String userUuid, @RequestBody UserPayForm form) {
         BaseView result = null;
         try {
             if(StringUtils.isNotEmpty(userUuid) && !CollectionUtils.isEmpty(form.getDetails())){
                 for (UserPayDetailForm detail : form.getDetails()){
-                    CommonLog.getLogger(PayController.class).info("payMatch params ===>>>> " + JSONUtil.objectToJson(form));
                     if(StringUtils.isNotEmpty(detail.getWins()) && detail.getAmount() > 0){
-                        this.userCoinService.payMatch(userUuid, detail.getAmount(), form.getMatchUuid(), Integer.valueOf(detail.getWins()));
-                        CommonLog.getLogger(RacingApiController.class).info(" ===>>>> " + userUuid + " AMOUNT ON " + detail.getWins() + "|| USED ||" + detail.getAmount() + "|| COINS ||" + " CUURENT MATCH IS " + form.getMatchUuid());
+                        this.userCoinService.payMatch(MatchTypeEnum.CHAMPS.getMatchType(), userUuid, detail.getAmount(), form.getMatchUuid(), Integer.valueOf(detail.getWins()));
                     }
                 }
                 result = BaseView.SUCCESS;
             }else {
                 result = BaseView.FAIL;
             }
+        } catch (Exception e){
+            e.printStackTrace();
+            result = BaseView.FAIL;
+        }
+        return result;
+    }
+
+    /**
+     * 集中下注
+     * @param   request
+     * @param   userUuid
+     * @return
+     */
+    @CrossOrigin(maxAge = 3600)
+    @RequestMapping(value = "/coinsall/{userUuid}",  method = RequestMethod.POST)
+    @ResponseBody
+    public BaseView payAllMatch(HttpServletRequest request, @PathVariable String userUuid, @RequestBody UserPayAllForm form) {
+        BaseView result = BaseView.FAIL;
+        if(StringUtils.isEmpty(userUuid)){
+            return new MessageView(ErrorCodeEnum.PARAM_ERROR, "userUuid 不能为空");
+        }
+        if(null == form){
+            return new MessageView(ErrorCodeEnum.PARAM_ERROR, "用户下注金额 不能为空");
+        }else if(CollectionUtils.isEmpty(form.getChamps()) && CollectionUtils.isEmpty(form.getChampSeconds())
+                && CollectionUtils.isEmpty(form.getSpeeds())){
+            return new MessageView(ErrorCodeEnum.PARAM_ERROR, "用户下注金额 不能为空");
+        }else if(StringUtils.isEmpty(form.getAccountUuid())){
+            return new MessageView(ErrorCodeEnum.PARAM_ERROR, "用户账户ID 不能为空");
+        }else if(StringUtils.isEmpty(form.getMatchUuid())){
+            return new MessageView(ErrorCodeEnum.PARAM_ERROR, "指定的赛程 不能为空");
+        }else if(CollectionUtils.isNotEmpty(form.getChampSeconds()) && form.getChampSeconds().size() >= 2){
+            return new MessageView(ErrorCodeEnum.PARAM_ERROR, "冠亚军赛押注数不能超过2");
+        }else if(CollectionUtils.isNotEmpty(form.getSpeeds()) && form.getSpeeds().size() != 2){
+            return new MessageView(ErrorCodeEnum.PARAM_ERROR, "竞速赛必须上传两个赛车记录");
+        }
+        //开始下注
+        try {
+            this.userCoinService.payAllMatch(userUuid,form);
+            result = BaseView.SUCCESS;
         } catch (Exception e){
             e.printStackTrace();
             result = BaseView.FAIL;

@@ -10,6 +10,7 @@ import com.wxmp.racingapi.service.PayService;
 import com.wxmp.racingapi.vo.agent.H5ScencInfo;
 import com.wxmp.racingapi.vo.agent.H5ScencInfo.H5;
 import com.wxmp.racingapi.vo.form.WechatPayOrderForm;
+import org.apache.commons.lang.StringUtils;
 
 import java.io.IOException;
 import java.util.Map;
@@ -51,12 +52,12 @@ public class PayServiceImpl implements PayService{
         String return_code = result.get("return_code");
         String return_msg = result.get("return_msg");
         if (!WxPayUtils.codeIsOK(return_code)) {
-            CommonLog.getLogger(PayServiceImpl.class).info("return_code ===>>>> "+return_code+"return_msg ===>>>> "+return_msg);
+            CommonLog.getLogger(PayServiceImpl.class).info(StringUtils.EMPTY, "return_code ===>>>> "+return_code+"return_msg ===>>>> "+return_msg);
             throw new RuntimeException(return_msg);
         }
         String result_code = result.get("result_code");
         if (!WxPayUtils.codeIsOK(result_code)) {
-            CommonLog.getLogger(PayServiceImpl.class).info("result_code ===>>>> "+return_code+"return_msg ===>>>> "+return_msg);
+            CommonLog.getLogger(PayServiceImpl.class).info(StringUtils.EMPTY, "result_code ===>>>> "+return_code+"return_msg ===>>>> "+return_msg);
             throw new RuntimeException(return_msg);
         }
         // 以下字段在return_code 和result_code都为SUCCESS的时候有返回
@@ -64,7 +65,7 @@ public class PayServiceImpl implements PayService{
         String prepay_id = result.get("prepay_id");
         String mweb_url = result.get("mweb_url");
 
-        CommonLog.getLogger(PayServiceImpl.class).info("prepay_id ===>>>> "+return_code+"mweb_url ===>>>> "+return_msg);
+        CommonLog.getLogger(PayServiceImpl.class).info(StringUtils.EMPTY, "prepay_id ===>>>> "+return_code+"mweb_url ===>>>> "+return_msg);
 //        try {
 //            response.sendRedirect(mweb_url);
 //        } catch (IOException e) {

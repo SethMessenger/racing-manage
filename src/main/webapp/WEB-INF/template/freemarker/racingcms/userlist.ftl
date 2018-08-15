@@ -132,7 +132,10 @@
         window.location.href="/racingcms/ruser/listUserLogs?uuid="+userUuid;
     }
     function toUpdateUserAmount() {
-        window.location.href="/racingcms/ruser/listForPage";
+        swal({
+            title: "暂时不支持直接修改用户账户",
+            text: "请联系管理员开发此功能！"
+        });
     }
     function frozenUser(useruuid){
         swal({

@@ -4,11 +4,14 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.wxmp.backstage.common.RacingConstants;
 import com.wxmp.core.log.CommonLog;
+import com.wxmp.core.util.SpeedUtils;
+import com.wxmp.racingapi.common.MatchTypeEnum;
 import com.wxmp.racingapi.service.ArithmeticService;
 import com.wxmp.racingapi.vo.dto.ArithmeticAwardDTO;
 import com.wxmp.racingcms.domain.RMatchLog;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.MapUtils;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -40,12 +43,17 @@ public class ArithmeticServiceImpl implements ArithmeticService{
         List<ArithmeticAwardDTO> racings = Lists.newArrayList();
         if(CollectionUtils.isNotEmpty(matchLogs)){
             for (RMatchLog log : matchLogs){
-                if(!coinMap.keySet().contains(log.getCoinIndex())){
-                    coinMap.put(log.getCoinIndex(), log.getCoinAmount());
-                    playerMap.put(log.getCoinIndex(), 1L);
+                //冠军赛，冠亚军赛押注点为 记录押注点
+                Integer coinIndex = log.getCoinIndex();
+                if(MatchTypeEnum.SPEEDS.getMatchType() == log.getMatchType()){
+                    coinIndex = SpeedUtils.QueryReadCountOn(log.getCoinIndex());
+                }
+                if(!coinMap.keySet().contains(coinIndex)){
+                    coinMap.put(coinIndex, log.getCoinAmount());
+                    playerMap.put(coinIndex, 1L);
                 }else {
-                    coinMap.put(log.getCoinIndex(), Long.valueOf(coinMap.get(log.getCoinIndex())) + log.getCoinAmount());
-                    playerMap.put(log.getCoinIndex(), playerMap.get(log.getCoinIndex()) + 1L);
+                    coinMap.put(coinIndex, Long.valueOf(coinMap.get(coinIndex)) + log.getCoinAmount());
+                    playerMap.put(coinIndex, playerMap.get(coinIndex) + 1L);
                 }
             }
         }
@@ -58,7 +66,7 @@ public class ArithmeticServiceImpl implements ArithmeticService{
         reslut.add(queryRandom(9999));
         reslut.add(queryRandom(9999));
         List<Integer> finals = Lists.newArrayList();
-        CommonLog.getLogger(ArithmeticServiceImpl.class).info(" caculateMatchResult ===>>>> " + racings.toString());
+        CommonLog.getLogger(ArithmeticServiceImpl.class).info(StringUtils.EMPTY, " caculateMatchResult ===>>>> " + racings.toString());
         Integer champIndex = lottery(racings);
         if(null != champIndex){
             finals.add(champIndex);

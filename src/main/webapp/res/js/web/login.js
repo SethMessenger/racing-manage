@@ -42,11 +42,23 @@ function doLogin(userObj){
 
 	
 	if(result.code == "-1"){
-	  	alert("登录名或密码错误");
-	}else{ 
-		//跳转到主页	
-		var userId = result.userId;
-		window.location.href = "/content/load/wxcms$content/";
+        swal({
+            title: "登录名或密码错误"
+        });
+	}else if(result.code == "-2"){
+        swal({
+            title: "账号只允许单机登录，请重新登录",
+            text: "请联系管理员了解单点登录系统"
+        });
+	}else if(result.code == "0"){
+        //跳转到主页
+        var userId = result.userId;
+        window.location.href = "/content/load/wxcms$content/";
+	}else {
+        swal({
+            title: "系统错误",
+            text: "请联系管理员"
+        });
 	}
 }
 

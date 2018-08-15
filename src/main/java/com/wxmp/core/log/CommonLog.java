@@ -1,7 +1,8 @@
 package com.wxmp.core.log;
 
 import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author xing.sun
@@ -15,55 +16,63 @@ public class CommonLog {
         this.logger = logger;
     }
 
+    private static final String LOG_FORMAT = "{} || {} || ====>>> {} ";
+
     public static CommonLog getLogger(Class clazz){
-        return new CommonLog(LogManager.getLogger(clazz));
+        return new CommonLog(LoggerFactory.getLogger(clazz));
     }
 
-    public void error(String msg){
+    public void error(String format, String... msg){
+        format = LOG_FORMAT + format;
         if(LogTraceUtil.getTraceId()==null){
-            logger.error(Thread.currentThread().getStackTrace()[2].getLineNumber()+" "+msg);
+            logger.error(format, Thread.currentThread().getStackTrace()[2].getLineNumber(), "NULL", msg);
         }else {
-            logger.error(Thread.currentThread().getStackTrace()[2].getLineNumber()+" "+LogTraceUtil.getTraceId()+":"+ msg);
+            logger.error(format, Thread.currentThread().getStackTrace()[2].getLineNumber(), LogTraceUtil.getTraceId(), msg);
         }
     }
 
-    public void error(String msg,Throwable t){
+    public void error(Throwable t,String format, String... msg){
+        format = LOG_FORMAT + format;
         if(LogTraceUtil.getTraceId()==null) {
-            logger.error(Thread.currentThread().getStackTrace()[2].getLineNumber()+" "+msg, t);
+            logger.error(format, Thread.currentThread().getStackTrace()[2].getLineNumber(), "NULL", msg, t);
         }else {
-            logger.error(Thread.currentThread().getStackTrace()[2].getLineNumber()+" "+LogTraceUtil.getTraceId()+":"+ msg,t);
+            logger.error(format, Thread.currentThread().getStackTrace()[2].getLineNumber(), LogTraceUtil.getTraceId(), msg, t);
         }
     }
 
-    public void info(String msg){
+    public void info(String format, String... msg){
+        format = LOG_FORMAT + format;
         if(LogTraceUtil.getTraceId()==null){
-            logger.info(Thread.currentThread().getStackTrace()[2].getLineNumber()+" "+msg);
+            logger.info(format, Thread.currentThread().getStackTrace()[2].getLineNumber(), "NULL", msg);
         }else {
-            logger.info(Thread.currentThread().getStackTrace()[2].getLineNumber()+" "+LogTraceUtil.getTraceId() + ":" + msg);
+            logger.info(format, Thread.currentThread().getStackTrace()[2].getLineNumber(), LogTraceUtil.getTraceId(), msg);
         }
     }
 
-    public void info(String msg,Throwable t){
+    public void info(Throwable t,String format, String... msg){
+        format = LOG_FORMAT + format;
         if(LogTraceUtil.getTraceId()==null) {
-            logger.info(Thread.currentThread().getStackTrace()[2].getLineNumber()+" "+msg, t);
+            logger.info(format, Thread.currentThread().getStackTrace()[2].getLineNumber(), "NULL", msg, t);
         }else {
-            logger.info(Thread.currentThread().getStackTrace()[2].getLineNumber()+" "+LogTraceUtil.getTraceId() + ":" + msg, t);
+            logger.info(format, Thread.currentThread().getStackTrace()[2].getLineNumber(), LogTraceUtil.getTraceId(), msg, t);
         }
     }
 
-    public void debug(String msg){
+    public void debug(String format, String... msg){
+        format = LOG_FORMAT + format;
         if(LogTraceUtil.getTraceId()==null){
-            logger.debug(Thread.currentThread().getStackTrace()[2].getLineNumber()+" "+msg);
+            logger.debug(format, Thread.currentThread().getStackTrace()[2].getLineNumber(), "NULL", msg);
         }else {
-            logger.debug(Thread.currentThread().getStackTrace()[2].getLineNumber()+" "+LogTraceUtil.getTraceId() + ":" + msg);
+            logger.debug(format, Thread.currentThread().getStackTrace()[2].getLineNumber(), LogTraceUtil.getTraceId(), msg);
         }
     }
 
-    public void debug(String msg,Throwable t){
+    public void debug(Throwable t,String format, String... msg){
+        format = LOG_FORMAT + format;
         if(LogTraceUtil.getTraceId()==null) {
-            logger.debug(Thread.currentThread().getStackTrace()[2].getLineNumber()+" "+msg, t);
+            logger.debug(format, Thread.currentThread().getStackTrace()[2].getLineNumber(), "NULL", msg, t);
         }else {
-            logger.debug(Thread.currentThread().getStackTrace()[2].getLineNumber()+" "+LogTraceUtil.getTraceId() + ":" + msg, t);
+            logger.debug(format, Thread.currentThread().getStackTrace()[2].getLineNumber(), LogTraceUtil.getTraceId(), msg, t);
         }
     }
 

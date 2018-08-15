@@ -428,3 +428,9 @@ CREATE TABLE `r_sysuser_user_rel` (
   `remark` varchar(50) DEFAULT NULL COMMENT '备注信息',
   PRIMARY KEY (`uuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- 业务：新增比赛下注类型  1冠军赛 2冠亚军赛 3竞速赛
+-- 作者：SethMessenger
+-- 日期: 2018-08-14
+-- 执行状态： 待执行
+alter table r_match_log add match_type INT(2) not null default 1 COMMENT '比赛下注类型  1冠军赛 2冠亚军赛 3竞速赛';
