@@ -1,4 +1,11 @@
 package com.wxmp.backstage.sys.service.impl;
+import com.wxmp.core.util.SessionUtils;
+import com.wxmp.racingcms.domain.RSysuserUserRel;
+import com.wxmp.racingcms.mapper.RSysuserUserRelMapper;
+import com.wxmp.racingcms.mapper.RUserCoinMapper;
+import com.wxmp.racingcms.mapper.RUserMapper;
+import com.wxmp.racingcms.vo.view.SysUserView;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -7,6 +14,7 @@ import com.wxmp.backstage.sys.domain.SysUser;
 import com.wxmp.backstage.sys.mapper.SysUserDao;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 
 /**
@@ -25,6 +33,12 @@ public class SysUserServiceImpl  implements ISysUserService{
 
 	@Resource
 	private SysUserDao sysUserDao;
+	@Resource
+	private RUserMapper userMapper;
+	@Resource
+	private RUserCoinMapper coinMapper;
+	@Resource
+	private RSysuserUserRelMapper relMapper;
 	
 	
 	
@@ -76,6 +90,40 @@ public class SysUserServiceImpl  implements ISysUserService{
 			// TODO: handle exception
 		}
 		return n;
+	}
+
+	/**
+	 * 系统用户信息管理
+	 *
+	 * @param searchEntity
+	 * @return
+	 */
+	@Override
+	public List<SysUserView> getSysUserList(SysUser searchEntity) {
+		return this.sysUserDao.getSysUserList(searchEntity);
+	}
+
+	/**
+	 * 添加系统运营用户，并且关联账户
+	 *
+	 * @param sysUser
+	 */
+	@Override
+	public void addSysUserInfo(SysUserView sysUser, SysUser sys) {
+		if(null != sysUser && null != sys){
+			if(StringUtils.isNotEmpty(sysUser.getUserUuid())){
+				//TODO 检查当前用户是否已经被关联过
+
+				//添加系统用户，增加关联记录
+				SysUser newSysUser = new SysUser(sysUser);
+				this.sysUserDao.insert(newSysUser);
+				RSysuserUserRel rel = new RSysuserUserRel(sys.getId(), sysUser.getUserUuid(), newSysUser.getId(), (byte)0, "remark");
+				this.relMapper.insert(rel);
+			}else {
+				throw new RuntimeException("userUuid 不能为空");
+			}
+		}
+
 	}
 
 }

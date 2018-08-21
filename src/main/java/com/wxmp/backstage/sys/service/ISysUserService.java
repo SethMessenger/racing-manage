@@ -1,6 +1,9 @@
 package com.wxmp.backstage.sys.service;
 
 import com.wxmp.backstage.sys.domain.SysUser;
+import com.wxmp.racingcms.vo.view.SysUserView;
+
+import java.util.List;
 
 
 /***
@@ -15,9 +18,6 @@ import com.wxmp.backstage.sys.domain.SysUser;
  */
 public interface ISysUserService {
 
-
-	
-
 	/**
 	 * 帐号是否存在
 	 * @param account
@@ -30,5 +30,17 @@ public interface ISysUserService {
 	public SysUser getSysUserById(String userId);
 	
 	public int updateLoginPwd(SysUser sysUser);
-	
+
+	/**
+	 * 系统用户信息管理
+	 * @param searchEntity
+	 * @return
+	 */
+	List<SysUserView> getSysUserList(SysUser searchEntity);
+
+	/**
+	 * 添加系统运营用户，并且关联账户
+	 * @param sysUser
+	 */
+	void addSysUserInfo(SysUserView sysUser, SysUser sys);
 }

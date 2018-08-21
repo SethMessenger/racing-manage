@@ -2,6 +2,34 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://10.20.91.130/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="com.wxmp.backstage.sys.mapper.SysUserDao">
+
+	<resultMap id="sysUserResultMap" type="com.wxmp.racingcms.vo.view.SysUserView">
+		<result column="id" jdbcType="VARCHAR" property="id" />
+		<result column="account" jdbcType="VARCHAR" property="account" />
+		<result column="pwd" jdbcType="VARCHAR" property="pwd" />
+		<result column="sex" jdbcType="VARCHAR" property="sex" />
+		<result column="phone" jdbcType="VARCHAR" property="phone" />
+		<result column="trueName" jdbcType="VARCHAR" property="trueName" />
+		<result column="createTime" jdbcType="VARCHAR" property="createTime" />
+		<result column="updateTime" jdbcType="VARCHAR" property="updateTime" />
+		<result column="flag" jdbcType="VARCHAR" property="flag" />
+		<result column="newpwd" jdbcType="VARCHAR" property="newpwd" />
+
+		<result column="user_uuid" jdbcType="VARCHAR" property="userUuid" />
+		<result column="total" jdbcType="BIGINT" property="total" />
+	</resultMap>
+
+	<insert id="insert" parameterType="com.wxmp.backstage.sys.domain.SysUser">
+		insert into s_sys_user
+		(id, account, pwd,
+		sex, phone, trueName,
+		createTime, updateTime, flag)
+		values
+		(#{id,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, #{pwd,jdbcType=VARCHAR},
+		#{sex,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{trueName,jdbcType=VARCHAR},
+		#{createTime,jdbcType=VARCHAR}, #{updateTime,jdbcType=VARCHAR}, #{flag,jdbcType=VARCHAR})
+	</insert>
+
     <!--根据用户名密码查询-->
     <select id="getSysUser" parameterType="com.wxmp.backstage.sys.domain.SysUser"
     	resultType="com.wxmp.backstage.sys.domain.SysUser">
@@ -26,4 +54,20 @@
 		WHERE id = #{id} 
 		AND pwd = pwd
 	</update>
+
+	<select id="getSysUserList" resultMap="sysUserResultMap">
+		select u.*, l.user_uuid, r.total
+		from s_sys_user u
+		left join r_sysuser_user_rel l ON u.id = l.sysuser_uuid
+		left join r_user_coin r ON l.user_uuid = r.user_uuid
+		where u.id != '82b56edb56d740bbbe9a975c1dcc39f5';
+	</select>
+
+	<select id="getSysUserInfo" resultMap="sysUserResultMap">
+		select u.*, l.user_uuid, r.total
+		from s_sys_user u
+		left join r_sysuser_user_rel l ON u.id = l.sysuser_uuid
+		left join r_user_coin r ON l.user_uuid = r.user_uuid
+		where u.id = #{id};
+	</select>
 </mapper>

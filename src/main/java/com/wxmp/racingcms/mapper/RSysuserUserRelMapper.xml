@@ -10,13 +10,12 @@
     <result column="update_time" jdbcType="BIGINT" property="updateTime" />
     <result column="user_uuid" jdbcType="VARCHAR" property="userUuid" />
     <result column="sysuser_uuid" jdbcType="VARCHAR" property="sysuserUuid" />
-    <result column="sysuser_user_uuid" jdbcType="VARCHAR" property="sysuserUserUuid" />
     <result column="rel_type" jdbcType="TINYINT" property="relType" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
   </resultMap>
   <sql id="Base_Column_List">
     uuid, is_del, creater, updater, create_time, update_time, user_uuid, sysuser_uuid, 
-    sysuser_user_uuid, rel_type, remark
+    rel_type, remark
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
@@ -31,11 +30,11 @@
   <insert id="insert" parameterType="com.wxmp.racingcms.domain.RSysuserUserRel">
     insert into r_sysuser_user_rel (uuid, is_del, creater, 
       updater, create_time, update_time, 
-      user_uuid, sysuser_uuid, sysuser_user_uuid, 
+      user_uuid, sysuser_uuid,
       rel_type, remark)
     values (#{uuid,jdbcType=VARCHAR}, #{isDel,jdbcType=INTEGER}, #{creater,jdbcType=VARCHAR}, 
       #{updater,jdbcType=VARCHAR}, #{createTime,jdbcType=BIGINT}, #{updateTime,jdbcType=BIGINT}, 
-      #{userUuid,jdbcType=VARCHAR}, #{sysuserUuid,jdbcType=VARCHAR}, #{sysuserUserUuid,jdbcType=VARCHAR}, 
+      #{userUuid,jdbcType=VARCHAR}, #{sysuserUuid,jdbcType=VARCHAR},
       #{relType,jdbcType=TINYINT}, #{remark,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.wxmp.racingcms.domain.RSysuserUserRel">
@@ -64,9 +63,6 @@
       </if>
       <if test="sysuserUuid != null">
         sysuser_uuid,
-      </if>
-      <if test="sysuserUserUuid != null">
-        sysuser_user_uuid,
       </if>
       <if test="relType != null">
         rel_type,
@@ -100,9 +96,6 @@
       <if test="sysuserUuid != null">
         #{sysuserUuid,jdbcType=VARCHAR},
       </if>
-      <if test="sysuserUserUuid != null">
-        #{sysuserUserUuid,jdbcType=VARCHAR},
-      </if>
       <if test="relType != null">
         #{relType,jdbcType=TINYINT},
       </if>
@@ -135,9 +128,6 @@
       <if test="sysuserUuid != null">
         sysuser_uuid = #{sysuserUuid,jdbcType=VARCHAR},
       </if>
-      <if test="sysuserUserUuid != null">
-        sysuser_user_uuid = #{sysuserUserUuid,jdbcType=VARCHAR},
-      </if>
       <if test="relType != null">
         rel_type = #{relType,jdbcType=TINYINT},
       </if>
@@ -156,7 +146,6 @@
       update_time = #{updateTime,jdbcType=BIGINT},
       user_uuid = #{userUuid,jdbcType=VARCHAR},
       sysuser_uuid = #{sysuserUuid,jdbcType=VARCHAR},
-      sysuser_user_uuid = #{sysuserUserUuid,jdbcType=VARCHAR},
       rel_type = #{relType,jdbcType=TINYINT},
       remark = #{remark,jdbcType=VARCHAR}
     where uuid = #{uuid,jdbcType=VARCHAR}

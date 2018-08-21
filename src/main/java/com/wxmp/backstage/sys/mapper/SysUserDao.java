@@ -1,6 +1,10 @@
 package com.wxmp.backstage.sys.mapper;
 
 import com.wxmp.backstage.sys.domain.SysUser;
+import com.wxmp.racingcms.vo.view.SysUserView;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /** 
  * @title : 
@@ -22,7 +26,7 @@ public interface SysUserDao {
     
 	/**
 	 * 根据用户名密码查询
-	 * @param sysUser
+	 * @param userId
 	 * @return
 	 */
     public SysUser getSysUserById(String userId);
@@ -32,4 +36,24 @@ public interface SysUserDao {
      * @param sysUser
      */
     public void updateLoginPwd(SysUser sysUser);
+
+	/**
+	 *
+	 * @param searchEntity
+	 * @return
+	 */
+	List<SysUserView> getSysUserList(@Param("condition") SysUser searchEntity);
+
+	/**
+	 * 查询用户信息
+	 * @param id
+	 * @return
+	 */
+	SysUserView getSysUserInfo(@Param("id") String id);
+
+	/**
+	 * 添加系统用户
+	 * @param newSysUser
+	 */
+	void insert(SysUser newSysUser);
 }

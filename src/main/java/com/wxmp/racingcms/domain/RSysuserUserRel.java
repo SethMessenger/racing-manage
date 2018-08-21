@@ -1,5 +1,8 @@
 package com.wxmp.racingcms.domain;
 
+import com.wxmp.backstage.common.RacingConstants;
+import com.wxmp.core.util.UuidGenerator;
+
 public class RSysuserUserRel {
     private String uuid;
 
@@ -17,11 +20,23 @@ public class RSysuserUserRel {
 
     private String sysuserUuid;
 
-    private String sysuserUserUuid;
-
     private Byte relType;
 
     private String remark;
+
+    public RSysuserUserRel(String creater, String userUuid, String sysuserUuid, Byte relType, String remark) {
+        this.uuid = UuidGenerator.getUUID32();
+        this.isDel = 0;
+        this.creater = creater;
+        this.updater = creater;
+        this.createTime = System.currentTimeMillis();
+        this.updateTime = this.createTime;
+
+        this.userUuid = userUuid;
+        this.sysuserUuid = sysuserUuid;
+        this.relType = relType;
+        this.remark = remark;
+    }
 
     public String getUuid() {
         return uuid;
@@ -85,14 +100,6 @@ public class RSysuserUserRel {
 
     public void setSysuserUuid(String sysuserUuid) {
         this.sysuserUuid = sysuserUuid == null ? null : sysuserUuid.trim();
-    }
-
-    public String getSysuserUserUuid() {
-        return sysuserUserUuid;
-    }
-
-    public void setSysuserUserUuid(String sysuserUserUuid) {
-        this.sysuserUserUuid = sysuserUserUuid == null ? null : sysuserUserUuid.trim();
     }
 
     public Byte getRelType() {

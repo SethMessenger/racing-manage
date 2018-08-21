@@ -1,6 +1,13 @@
 package com.wxmp.backstage.sys.domain;
 
-/** 
+import com.wxmp.core.util.DateUtil;
+import com.wxmp.core.util.UuidGenerator;
+import com.wxmp.core.util.wx.MD5Util;
+import com.wxmp.racingcms.vo.view.SysUserView;
+
+import java.util.Date;
+
+/**
  * @title : 系统管理用户
  * @description : 
  * @author : SethMessenger
@@ -15,7 +22,7 @@ public class SysUser {
 	/** 密码 */
 	private String pwd;
 	/** 性别 0男 1女 */
-	private String sex;
+	private String sex = "0";
 	/** 手机号 */
 	private String phone;
 	/** 姓名 */
@@ -29,7 +36,23 @@ public class SysUser {
 	
 	/** 新登录密码 */
 	private String newpwd;
-	
+
+	public SysUser() {
+	}
+
+	public SysUser(SysUserView view) {
+		this.id = UuidGenerator.getUUID32();
+		this.account = view.getAccount();
+		this.pwd = MD5Util.getMD5Code(view.getPwd());
+		this.sex = "1";
+		this.phone = view.getPhone();
+		this.trueName = "trueName";
+		this.createTime = DateUtil.COMMON_FULL.getDateText(new Date());
+		this.updateTime = createTime;
+		this.flag = "1";
+		this.newpwd = view.getNewpwd();
+	}
+
 	/**
 	 * @return the id
 	 */

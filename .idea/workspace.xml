@@ -7,35 +7,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="19b9147e-8b7f-4b2e-913d-00f75ee4bf3f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/wxmp/core/util/SpeedUtils.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/common/MatchTypeEnum.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/vo/form/UserPayAllForm.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/vo/view/MessageView.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/vo/view/RankView.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/vo/view/UserRankDetailView.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/wxmp/racingcms/ctrl/SysUserController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/wxmp/racingcms/vo/view/SysUserView.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/template/freemarker/racingcms/matchdetailresult.ftl" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/template/freemarker/racingcms/matchresult.ftl" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/template/freemarker/racingcms/sysuserlist.ftl" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/racing.sql" afterPath="$PROJECT_DIR$/doc/racing.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wxmp/backstage/common/RacingConstants.java" afterPath="$PROJECT_DIR$/src/main/java/com/wxmp/backstage/common/RacingConstants.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wxmp/backstage/sys/ctrl/LoginCtrl.java" afterPath="$PROJECT_DIR$/src/main/java/com/wxmp/backstage/sys/ctrl/LoginCtrl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wxmp/core/aop/PerformanceAopAdvice.java" afterPath="$PROJECT_DIR$/src/main/java/com/wxmp/core/aop/PerformanceAopAdvice.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wxmp/core/log/CommonLog.java" afterPath="$PROJECT_DIR$/src/main/java/com/wxmp/core/log/CommonLog.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wxmp/core/quartz/AutoMatchJob.java" afterPath="$PROJECT_DIR$/src/main/java/com/wxmp/core/quartz/AutoMatchJob.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/ctrl/PayController.java" afterPath="$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/ctrl/PayController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/ctrl/RacingApiController.java" afterPath="$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/ctrl/RacingApiController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/ctrl/TestRacingController.java" afterPath="$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/ctrl/TestRacingController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/netty/service/WebSocketBizServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/netty/service/WebSocketBizServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/service/UserCoinService.java" afterPath="$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/service/UserCoinService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/service/impl/ArithmeticServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/service/impl/ArithmeticServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/service/impl/MatchServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/service/impl/MatchServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/service/impl/PayServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/service/impl/PayServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/service/impl/UserCoinServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/service/impl/UserCoinServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wxmp/racingcms/domain/RMatchLog.java" afterPath="$PROJECT_DIR$/src/main/java/com/wxmp/racingcms/domain/RMatchLog.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wxmp/racingcms/mapper/RMatchLogMapper.xml" afterPath="$PROJECT_DIR$/src/main/java/com/wxmp/racingcms/mapper/RMatchLogMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/log4j.properties" afterPath="$PROJECT_DIR$/src/main/resources/log4j.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/template/freemarker/racingcms/userlist.ftl" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/template/freemarker/racingcms/userlist.ftl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wxmp/backstage/sys/domain/SysUser.java" afterPath="$PROJECT_DIR$/src/main/java/com/wxmp/backstage/sys/domain/SysUser.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wxmp/backstage/sys/mapper/SysUserDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/wxmp/backstage/sys/mapper/SysUserDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wxmp/backstage/sys/mapper/SysUserMapper.xml" afterPath="$PROJECT_DIR$/src/main/java/com/wxmp/backstage/sys/mapper/SysUserMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wxmp/backstage/sys/service/ISysUserService.java" afterPath="$PROJECT_DIR$/src/main/java/com/wxmp/backstage/sys/service/ISysUserService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wxmp/backstage/sys/service/impl/SysUserServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/wxmp/backstage/sys/service/impl/SysUserServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wxmp/racingcms/domain/RSysuserUserRel.java" afterPath="$PROJECT_DIR$/src/main/java/com/wxmp/racingcms/domain/RSysuserUserRel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wxmp/racingcms/mapper/RSysuserUserRelMapper.xml" afterPath="$PROJECT_DIR$/src/main/java/com/wxmp/racingcms/mapper/RSysuserUserRelMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/template/freemarker/wxcms/content.ftl" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/template/freemarker/wxcms/content.ftl" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/back_template/tabs_panels.html" afterPath="$PROJECT_DIR$/src/main/webapp/back_template/tabs_panels.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/login.html" afterPath="$PROJECT_DIR$/src/main/webapp/login.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/res/js/web/login.js" afterPath="$PROJECT_DIR$/src/main/webapp/res/js/web/login.js" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -49,108 +36,72 @@
     <favorites_list name="CodeIris Favorites" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="userlist.ftl" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/template/freemarker/racingcms/userlist.ftl">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="262">
-              <caret line="91" column="34" lean-forward="true" selection-start-line="91" selection-start-column="34" selection-end-line="91" selection-end-column="34" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AutoMatchJob.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/wxmp/core/quartz/AutoMatchJob.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="74" column="24" lean-forward="false" selection-start-line="74" selection-start-column="24" selection-end-line="74" selection-end-column="24" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SessionUtilsWeb.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/wxmp/core/util/SessionUtilsWeb.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="93" column="26" lean-forward="false" selection-start-line="93" selection-start-column="26" selection-end-line="93" selection-end-column="26" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LoginCtrl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/wxmp/backstage/sys/ctrl/LoginCtrl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
-              <caret line="80" column="24" lean-forward="true" selection-start-line="80" selection-start-column="24" selection-end-line="80" selection-end-column="24" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="menu.ftl" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/template/freemarker/wxcms/menu.ftl">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1551">
-              <caret line="149" column="50" lean-forward="false" selection-start-line="149" selection-start-column="50" selection-end-line="149" selection-end-column="50" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="content.ftl" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/template/freemarker/wxcms/content.ftl">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="364">
-              <caret line="85" column="40" lean-forward="true" selection-start-line="85" selection-start-column="40" selection-end-line="85" selection-end-column="40" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tabs_panels.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/back_template/tabs_panels.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="610">
-              <caret line="362" column="65" lean-forward="false" selection-start-line="362" selection-start-column="65" selection-end-line="362" selection-end-column="65" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AuthInterceptor.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/wxmp/core/interceptor/AuthInterceptor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="397">
-              <caret line="55" column="28" lean-forward="false" selection-start-line="55" selection-start-column="28" selection-end-line="55" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CommonLog.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/wxmp/core/log/CommonLog.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="33" column="38" lean-forward="false" selection-start-line="33" selection-start-column="38" selection-end-line="33" selection-end-column="38" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TestRacingController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/ctrl/TestRacingController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="25" column="13" lean-forward="false" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.8675373">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file leaf-file-name="content.ftl" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/template/freemarker/wxcms/content.ftl">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="108">
+                  <caret line="68" column="36" lean-forward="true" selection-start-line="68" selection-start-column="36" selection-end-line="68" selection-end-column="36" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="userlist.ftl" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/template/freemarker/racingcms/userlist.ftl">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="333">
+                  <caret line="83" column="33" lean-forward="true" selection-start-line="83" selection-start-column="33" selection-end-line="83" selection-end-column="33" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="SysUserController.java" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/main/java/com/wxmp/racingcms/ctrl/SysUserController.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="141">
+                  <caret line="31" column="32" lean-forward="true" selection-start-line="31" selection-start-column="32" selection-end-line="31" selection-end-column="32" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="SysUserView.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/com/wxmp/racingcms/vo/view/SysUserView.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="195">
+                  <caret line="16" column="22" lean-forward="false" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="SysUser.java" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/main/java/com/wxmp/backstage/sys/domain/SysUser.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="270">
+                  <caret line="18" column="22" lean-forward="true" selection-start-line="18" selection-start-column="22" selection-end-line="18" selection-end-column="22" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                    <element signature="e#1294#1295#0" expanded="true" />
+                    <element signature="e#1313#1314#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -162,36 +113,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>guan'j</find>
-      <find>log</find>
-      <find>format += LOG_FORMAT;</find>
-      <find>Random</find>
-      <find>冠军赛</find>
-      <find>===&gt;&gt;&gt;&gt;</find>
-      <find>CommonLog.getLogger</find>
-      <find>5.7D</find>
-      <find>mutiAmount</find>
-      <find>logs</find>
-      <find>champIndex</find>
-      <find>log.getCoinIndex()</find>
-      <find>coinindex</find>
-      <find>userCoins</find>
-      <find>compare1</find>
-      <find>matchCoins</find>
-      <find>resultList</find>
-      <find>selectByCondition&quot;</find>
-      <find>coi</find>
-      <find>nextTime autoMatchResult</find>
-      <find>踢出用户</find>
-      <find>/checkLogin</find>
-      <find>result</find>
-      <find>alert</find>
-      <find>sweet</find>
-      <find>swal</find>
-      <find>toUpdateUserAmount</find>
-      <find>accountmenugroup/</find>
-      <find>&quot;collapse&quot;</find>
-      <find>collapseOne</find>
+      <find>打开登录</find>
+      <find>您可以</find>
+      <find>验证通过</find>
+      <find>e-mail</find>
+      <find>请再次输入您的密码</find>
+      <find>this.uuid = UuidGenerator.getUUID32();</find>
+      <find>sysuserdao&quot;</find>
+      <find>confirm_password</find>
+      <find>trueName</find>
+      <find>session_user_web&quot;</find>
+      <find>session_user_web</find>
+      <find>$.parseJSON(</find>
+      <find>user_uuid</find>
+      <find>insert</find>
+      <find>sysuserUuid</find>
+      <find>sysuserUserUuid</find>
+      <find>sysuser_user_uuid</find>
+      <find>checklogin&quot;</find>
+      <find>getSysUserList</find>
+      <find>getSysUserList&quot;</find>
+      <find>用户名或</find>
+      <find>t_wxcms_sys_user</find>
+      <find>content&quot;</find>
+      <find>load</find>
+      <find>content/load</find>
+      <find>welcom</find>
+      <find>if</find>
+      <find>&lt;</find>
+      <find>&lt;#if</find>
+      <find>退出</find>
     </findStrings>
     <replaceStrings>
       <replace>StringUtils</replace>
@@ -213,21 +164,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/netty/ClientMessage.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/netty/ClientQuene.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/netty/MessageEnum.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/netty/WebSocketServerHandler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/netty/service/WebSocketService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/netty/service/WebSocketBizServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/websocket.html" />
-        <option value="$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/netty/service/WebSocketServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/wxmp/batisgenerator/README.md" />
-        <option value="$PROJECT_DIR$/src/main/java/com/wxmp/core/interceptor/AuthInterceptor.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/spring-mvc.cfg.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/wxmp/core/aop/performanceAopAdvice.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/service/impl/MatchServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/ehcache-local.xml" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/ctrl/TestRacingController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/wxmp/racingcms/vo/RUserView.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/wxmp/racingcms/vo/view/RUserView.java" />
@@ -242,7 +178,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/vo/form/UserPayAllForm.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/vo/view/BaseView.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/vo/view/MessageView.java" />
-        <option value="$PROJECT_DIR$/doc/racing.sql" />
         <option value="$PROJECT_DIR$/src/main/java/com/wxmp/racingcms/mapper/RMatchLogMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/wxmp/racingcms/domain/RMatchLog.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/common/MatchTypeEnum.java" />
@@ -264,6 +199,22 @@
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/template/freemarker/racingcms/userlist.ftl" />
         <option value="$PROJECT_DIR$/src/main/webapp/res/js/web/login.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/back_template/tabs_panels.html" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/template/freemarker/racingcms/matchresult.ftl" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/template/freemarker/racingcms/matchdetailresult.ftl" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wxmp/racingcms/vo/view/SysUserView.java" />
+        <option value="$PROJECT_DIR$/doc/racing.sql" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/template/freemarker/racingcms/sysUserAdd.ftl" />
+        <option value="$PROJECT_DIR$/src/main/webapp/back_template/form_validate.html" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wxmp/backstage/sys/service/ISysUserService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wxmp/backstage/sys/mapper/SysUserDao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wxmp/racingcms/domain/RSysuserUserRel.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wxmp/backstage/sys/service/impl/SysUserServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/template/freemarker/racingcms/sysuserlist.ftl" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wxmp/racingcms/mapper/RSysuserUserRelMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wxmp/backstage/sys/domain/SysUser.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wxmp/backstage/sys/mapper/SysUserMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wxmp/racingcms/ctrl/SysUserController.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/template/freemarker/wxcms/content.ftl" />
       </list>
     </option>
   </component>
@@ -316,7 +267,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -398,6 +348,17 @@
               <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
               <item name="template" type="462c0819:PsiDirectoryNode" />
               <item name="freemarker" type="462c0819:PsiDirectoryNode" />
+              <item name="racingcms" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="racing-manage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="racing-manage" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="template" type="462c0819:PsiDirectoryNode" />
+              <item name="freemarker" type="462c0819:PsiDirectoryNode" />
               <item name="wxcms" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -406,10 +367,11 @@
       </pane>
       <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="SearchEverywhereHistoryKey" value="user.f&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/webapp/WEB-INF/template/freemarker/racingcms/userlist.ftl&#10;testc&#9;PSI&#9;JAVA://com.wxmp.racingapi.ctrl.TestRacingController&#10;matchty&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/racingapi/common/MatchTypeEnum.java&#10;racingapi&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/racingapi/ctrl/RacingApiController.java&#10;log4j&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/resources/log4j.properties&#10;auto&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/core/quartz/AutoMatchJob.java&#10;rmatchlog&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/racingcms/domain/RMatchLog.java&#10;rmatchinfomapper&#9;PSI&#9;JAVA://com.wxmp.racingcms.mapper.RMatchInfoMapper&#10;rmatchlogma&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/racingcms/mapper/RMatchLogMapper.xml&#10;log4&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/resources/log4j.properties&#10;RUserMapper.xml&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/racingcms/mapper/RUserMapper.xml&#10;rusercoin&#9;PSI&#9;JAVA://com.wxmp.racingcms.domain.RUserCoin&#10;web.xml&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/webapp/WEB-INF/web.xml&#10;pom.x&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/pom.xml&#10;racingap&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/racingapi/ctrl/RacingApiController.java&#10;sprin&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/resources/spring-mvc.cfg.xml&#10;commonlo&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/core/log/CommonLog.java&#10;pom.xml&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/pom.xml&#10;spring-mvc&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/resources/spring-mvc.cfg.xml&#10;interce&#9;PSI&#9;JAVA://com.wxmp.core.interceptor.AuthInterceptor&#10;webs.html&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/webapp/websocket.html&#10;message&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/racingapi/netty/MessageEnum.java&#10;clientmess&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/racingapi/netty/ClientMessage.java&#10;spring-mv&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/resources/spring-mvc.cfg.xml&#10;spring-&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/resources/spring-mvc.cfg.xml&#10;logutil&#9;PSI&#9;JAVA://com.wxmp.core.util.wx.LogUtils&#10;Navigate&#9;ACTION&#9;GoToMenu&#10;plugin&#9;ACTION&#9;WelcomeScreen.Plugins&#10;ChannelInboundHandlerAdapter&#9;FILE&#9;jar:///Users/user/.m2/repository/io/netty/netty-all/4.0.24.Final/netty-all-4.0.24.Final-sources.jar!/io/netty/channel/ChannelInboundHandlerAdapter.java&#10;ServletContextListener&#9;PSI&#9;JAVA://javax.servlet.ServletContextListener&#10;jsonutil&#9;PSI&#9;JAVA://com.wxmp.core.util.JSONUtil&#10;interc&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/core/interceptor/AuthInterceptor.java&#10;paycon&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/racingapi/ctrl/PayController.java&#10;racingco&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/racingapi/ctrl/RacingApiController.java&#10;racingcons&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/backstage/common/RacingConstants.java&#10;rusercoinlog&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/racingcms/domain/RUserCoinLog.java&#10;RUserCoinLogMapper&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/racingcms/mapper/RUserCoinLogMapper.xml&#10;auth&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/core/interceptor/AuthInterceptor.java&#10;InvokerInvocationHandler&#9;FILE&#9;jar:///Users/user/.m2/repository/com/alibaba/dubbo/2.5.3/dubbo-2.5.3.jar!/com/alibaba/dubbo/rpc/proxy/InvokerInvocationHandler.class&#10;javassistproxyfa&#9;FILE&#9;jar:///Users/user/.m2/repository/com/alibaba/dubbo/2.5.3/dubbo-2.5.3-sources.jar!/com/alibaba/dubbo/rpc/proxy/javassist/JavassistProxyFactory.java&#10;ReferenceConfig&#9;PSI&#9;JAVA://com.alibaba.dubbo.config.ReferenceConfig&#10;javassistproxyfactory&#9;FILE&#9;jar:///Users/user/.m2/repository/com/alibaba/dubbo/2.5.3/dubbo-2.5.3.jar!/com/alibaba/dubbo/rpc/proxy/javassist/JavassistProxyFactory.class&#10;open&#9;ACTION&#9;OpenFile&#10;javassis&#9;PSI&#9;JAVA://org.apache.ibatis.executor.loader.javassist.JavassistProxyFactory&#10;inter&#9;PSI&#9;JAVA://com.wxmp.core.interceptor.AuthInterceptor&#10;racingconsta&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/backstage/common/RacingConstants.java&#10;racingcon&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/backstage/common/RacingConstants.java&#10;constan&#9;PSI&#9;JAVA://com.wxmp.backstage.common.RacingConstants&#10;usercoinservice&#9;PSI&#9;JAVA://com.wxmp.racingapi.service.impl.UserCoinServiceImpl&#10;payservice&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/racingapi/service/impl/PayServiceImpl.java" />
+    <property name="SearchEverywhereHistoryKey" value="contentcon&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/wxcms/ctrl/ContentController.java&#10;web.xml&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/webapp/WEB-INF/web.xml&#10;racing&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/doc/racing.sql&#10;ruserrelmapp&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/racingcms/mapper/RSysuserUserRelMapper.xml&#10;form_va&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/webapp/back_template/form_validate.html&#10;racin&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/doc/racing.sql&#10;sysuser.xml&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/backstage/sys/mapper/SysUserMapper.xml&#10;sysuser&#9;PSI&#9;JAVA://com.wxmp.backstage.sys.domain.SysUser&#10;user.f&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/webapp/WEB-INF/template/freemarker/racingcms/userlist.ftl&#10;testc&#9;PSI&#9;JAVA://com.wxmp.racingapi.ctrl.TestRacingController&#10;matchty&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/racingapi/common/MatchTypeEnum.java&#10;racingapi&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/racingapi/ctrl/RacingApiController.java&#10;log4j&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/resources/log4j.properties&#10;auto&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/core/quartz/AutoMatchJob.java&#10;rmatchlog&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/racingcms/domain/RMatchLog.java&#10;rmatchinfomapper&#9;PSI&#9;JAVA://com.wxmp.racingcms.mapper.RMatchInfoMapper&#10;rmatchlogma&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/racingcms/mapper/RMatchLogMapper.xml&#10;log4&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/resources/log4j.properties&#10;RUserMapper.xml&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/racingcms/mapper/RUserMapper.xml&#10;rusercoin&#9;PSI&#9;JAVA://com.wxmp.racingcms.domain.RUserCoin&#10;pom.x&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/pom.xml&#10;racingap&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/racingapi/ctrl/RacingApiController.java&#10;sprin&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/resources/spring-mvc.cfg.xml&#10;commonlo&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/core/log/CommonLog.java&#10;pom.xml&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/pom.xml&#10;spring-mvc&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/resources/spring-mvc.cfg.xml&#10;interce&#9;PSI&#9;JAVA://com.wxmp.core.interceptor.AuthInterceptor&#10;webs.html&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/webapp/websocket.html&#10;message&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/racingapi/netty/MessageEnum.java&#10;clientmess&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/racingapi/netty/ClientMessage.java&#10;spring-mv&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/resources/spring-mvc.cfg.xml&#10;spring-&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/resources/spring-mvc.cfg.xml&#10;logutil&#9;PSI&#9;JAVA://com.wxmp.core.util.wx.LogUtils&#10;Navigate&#9;ACTION&#9;GoToMenu&#10;plugin&#9;ACTION&#9;WelcomeScreen.Plugins&#10;ChannelInboundHandlerAdapter&#9;FILE&#9;jar:///Users/user/.m2/repository/io/netty/netty-all/4.0.24.Final/netty-all-4.0.24.Final-sources.jar!/io/netty/channel/ChannelInboundHandlerAdapter.java&#10;ServletContextListener&#9;PSI&#9;JAVA://javax.servlet.ServletContextListener&#10;jsonutil&#9;PSI&#9;JAVA://com.wxmp.core.util.JSONUtil&#10;interc&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/core/interceptor/AuthInterceptor.java&#10;paycon&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/racingapi/ctrl/PayController.java&#10;racingco&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/racingapi/ctrl/RacingApiController.java&#10;racingcons&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/backstage/common/RacingConstants.java&#10;rusercoinlog&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/racingcms/domain/RUserCoinLog.java&#10;RUserCoinLogMapper&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/racingcms/mapper/RUserCoinLogMapper.xml&#10;auth&#9;FILE&#9;file:///Users/user/Desktop/racing-manage/src/main/java/com/wxmp/core/interceptor/AuthInterceptor.java&#10;InvokerInvocationHandler&#9;FILE&#9;jar:///Users/user/.m2/repository/com/alibaba/dubbo/2.5.3/dubbo-2.5.3.jar!/com/alibaba/dubbo/rpc/proxy/InvokerInvocationHandler.class&#10;javassistproxyfa&#9;FILE&#9;jar:///Users/user/.m2/repository/com/alibaba/dubbo/2.5.3/dubbo-2.5.3-sources.jar!/com/alibaba/dubbo/rpc/proxy/javassist/JavassistProxyFactory.java&#10;ReferenceConfig&#9;PSI&#9;JAVA://com.alibaba.dubbo.config.ReferenceConfig&#10;javassistproxyfactory&#9;FILE&#9;jar:///Users/user/.m2/repository/com/alibaba/dubbo/2.5.3/dubbo-2.5.3.jar!/com/alibaba/dubbo/rpc/proxy/javassist/JavassistProxyFactory.class&#10;open&#9;ACTION&#9;OpenFile" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
@@ -420,11 +382,11 @@
       <recent name="com.wxmp.racingapi.vo.agent" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/webapp/WEB-INF/template/freemarker/racingcms" />
       <recent name="$PROJECT_DIR$/src/main/java/com/wxmp/batisgenerator" />
       <recent name="$PROJECT_DIR$/src/main/java/com/wxmp" />
       <recent name="$PROJECT_DIR$/src/main/java/com/wxmp/racingcms/mapper" />
       <recent name="$PROJECT_DIR$/src/main/java/com/wxmp/racingcms/domain" />
-      <recent name="$PROJECT_DIR$/src/main/java/com/wxmp/core/log" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -581,7 +543,6 @@
     <configuration name="racingAPI" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="local_elong_8080" ALTERNATIVE_JRE_ENABLED="false">
       <option name="OPEN_IN_BROWSER" value="false" />
       <option name="SHOW_DIALOG_ON_UPDATE" value="false" />
-      <option name="UPDATING_POLICY" value="update-resources" />
       <deployment>
         <artifact name="wxmp:war exploded">
           <settings>
@@ -691,12 +652,13 @@
       <workItem from="1533627276950" duration="3114000" />
       <workItem from="1533658491735" duration="30239000" />
       <workItem from="1533925227774" duration="46070000" />
-      <workItem from="1534247193768" duration="32266000" />
+      <workItem from="1534247193768" duration="36985000" />
+      <workItem from="1534695829864" duration="14844000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="210401000" />
+    <option name="totallyTimeSpent" value="229964000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -722,7 +684,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24892704" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973376" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.47014925" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40298507" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Code Iris" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960597" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -746,7 +708,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24892704" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973376" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.47014925" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.40298507" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Code Iris" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960597" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -831,8 +793,20 @@
           <properties />
           <option name="timeStamp" value="126" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/wxmp/racingcms/ctrl/SysUserController.java</url>
+          <line>63</line>
+          <properties />
+          <option name="timeStamp" value="191" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/wxmp/backstage/sys/service/impl/SysUserServiceImpl.java</url>
+          <line>112</line>
+          <properties />
+          <option name="timeStamp" value="192" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="189" />
+      <option name="time" value="195" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -841,266 +815,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxmp/racingcms/service/RUserService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="12" column="3" lean-forward="true" selection-start-line="12" selection-start-column="3" selection-end-line="12" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/mybatis/mybatis/3.2.8/mybatis-3.2.8.jar!/org/apache/ibatis/reflection/wrapper/BeanWrapper.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="143" column="0" lean-forward="false" selection-start-line="143" selection-start-column="0" selection-end-line="143" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxmp/core/util/DateUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="47" column="0" lean-forward="false" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
-          <folding>
-            <element signature="e#1309#1310#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxmp/racingcms/vo/view/RUserMatchView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="50" column="5" lean-forward="true" selection-start-line="50" selection-start-column="5" selection-end-line="50" selection-end-column="5" />
-          <folding>
-            <element signature="e#1177#1178#0" expanded="true" />
-            <element signature="e#1210#1211#0" expanded="true" />
-            <element signature="e#1262#1263#0" expanded="true" />
-            <element signature="e#1306#1307#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxmp/racingcms/mapper/RUserMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="101" column="9" lean-forward="true" selection-start-line="101" selection-start-column="9" selection-end-line="101" selection-end-column="9" />
-          <folding>
-            <marker date="1534250669000" expanded="true" signature="3131:3766" ph="insert into r_user... " />
-            <marker date="1534250669000" expanded="true" signature="3842:4004" ph="select uuid,... r_user" />
-            <marker date="1534250669000" expanded="true" signature="6147:6474" ph="select u.uui... r_user" />
-            <marker date="1534250669000" expanded="true" signature="6693:8078" ph="update r_use... " />
-            <marker date="1534250669000" expanded="true" signature="8162:8263" ph="update r_use... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxmp/racingcms/service/impl/RUserServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="314">
-          <caret line="98" column="13" lean-forward="true" selection-start-line="98" selection-start-column="13" selection-end-line="98" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/template/freemarker/racingcms/usercoinlogs.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxmp/racingcms/ctrl/UserController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="398">
-          <caret line="44" column="42" lean-forward="false" selection-start-line="44" selection-start-column="30" selection-end-line="44" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/vo/form/UserPayForm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="12" column="26" lean-forward="true" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/vo/view/MatchDetailView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/vo/view/ObjectView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="16" column="35" lean-forward="false" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/vo/view/MessageView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="8" lean-forward="true" selection-start-line="6" selection-start-column="8" selection-end-line="6" selection-end-column="8" />
-          <folding>
-            <element signature="e#264#265#0" expanded="true" />
-            <element signature="e#291#292#0" expanded="true" />
-            <element signature="e#321#322#0" expanded="true" />
-            <element signature="e#347#348#0" expanded="true" />
-            <element signature="e#385#386#0" expanded="true" />
-            <element signature="e#415#416#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/vo/view/BaseView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="31" column="6" lean-forward="true" selection-start-line="31" selection-start-column="6" selection-end-line="31" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxmp/racingcms/mapper/RMatchLogMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="577">
-          <caret line="54" column="55" lean-forward="true" selection-start-line="54" selection-start-column="55" selection-end-line="54" selection-end-column="55" />
-          <folding>
-            <marker date="1534271796000" expanded="true" signature="1329:1940" ph="insert into r_match_log... " />
-            <marker date="1534271796000" expanded="true" signature="2009:2183" ph="select uuid,... r_match_log" />
-            <marker date="1534271796000" expanded="true" signature="2260:3302" ph="select uuid,... r_match_log" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxmp/racingcms/mapper/RMatchInfoMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="5" column="33" lean-forward="false" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/common/ErrorCodeEnum.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="3" lean-forward="true" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_152.jdk/Contents/Home/src.zip!/java/lang/String.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1137">
-          <caret line="116" column="37" lean-forward="true" selection-start-line="116" selection-start-column="37" selection-end-line="116" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/service/UserCoinService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="14" column="34" lean-forward="true" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/vo/view/RankView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="31" lean-forward="true" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="31" />
-          <folding>
-            <element signature="e#1141#1142#0" expanded="true" />
-            <element signature="e#1176#1177#0" expanded="true" />
-            <element signature="e#1232#1233#0" expanded="true" />
-            <element signature="e#1280#1281#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/vo/view/UserRankDetailView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="21" column="9" lean-forward="true" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_152.jdk/Contents/Home/src.zip!/java/util/Random.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="76" column="12" lean-forward="false" selection-start-line="76" selection-start-column="6" selection-end-line="76" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxmp/core/aop/PerformanceAopAdvice.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="337">
-          <caret line="33" column="67" lean-forward="false" selection-start-line="33" selection-start-column="67" selection-end-line="33" selection-end-column="67" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/log4j.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-213">
-          <caret line="42" column="0" lean-forward="true" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxmp/backstage/common/RacingConstants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxmp/racingcms/domain/RMatchResult.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="502">
-          <caret line="120" column="31" lean-forward="false" selection-start-line="120" selection-start-column="18" selection-end-line="120" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxmp/racingcms/domain/RMatchLog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1515">
-          <caret line="150" column="16" lean-forward="false" selection-start-line="150" selection-start-column="16" selection-end-line="150" selection-end-column="16" />
-          <folding>
-            <element signature="e#3549#3550#0" expanded="false" />
-            <element signature="e#3591#3592#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxmp/racingapi/vo/form/UserPayAllForm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/4.3.5.RELEASE/spring-context-4.3.5.RELEASE.jar!/org/springframework/scheduling/support/ScheduledMethodRunnable.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_152.jdk/Contents/Home/src.zip!/java/util/ArrayList.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
@@ -1125,9 +839,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="54">
           <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1136,8 +847,8 @@
         <state relative-caret-position="75">
           <caret line="5" column="16" lean-forward="false" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
           <folding>
-            <element signature="e#731#732#0" expanded="true" />
-            <element signature="e#763#764#0" expanded="true" />
+            <element signature="e#731#732#0" expanded="false" />
+            <element signature="e#763#764#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1190,30 +901,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/doc/racing.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="425" column="27" lean-forward="false" selection-start-line="425" selection-start-column="27" selection-end-line="425" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="61" lean-forward="true" selection-start-line="19" selection-start-column="61" selection-end-line="19" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/template/freemarker/wxcms/first_page.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="615">
-          <caret line="41" column="67" lean-forward="true" selection-start-line="41" selection-start-column="67" selection-end-line="41" selection-end-column="67" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/wxmp/core/quartz/AutoMatchJob.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -1234,7 +921,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="397">
           <caret line="55" column="28" lean-forward="false" selection-start-line="55" selection-start-column="28" selection-end-line="55" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1246,51 +932,319 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/res/js/web/login.js">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/template/freemarker/racingcms/usercoinlogs.ftl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="28" column="12" lean-forward="true" selection-start-line="28" selection-start-column="12" selection-end-line="28" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxmp/backstage/sys/ctrl/LoginCtrl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="80" column="24" lean-forward="true" selection-start-line="80" selection-start-column="24" selection-end-line="80" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/template/freemarker/wxcms/menu.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1551">
-          <caret line="149" column="50" lean-forward="false" selection-start-line="149" selection-start-column="50" selection-end-line="149" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/template/freemarker/wxcms/content.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="85" column="40" lean-forward="true" selection-start-line="85" selection-start-column="40" selection-end-line="85" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/template/freemarker/racingcms/userlist.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="91" column="34" lean-forward="true" selection-start-line="91" selection-start-column="34" selection-end-line="91" selection-end-column="34" />
+        <state relative-caret-position="100">
+          <caret line="53" column="43" lean-forward="true" selection-start-line="53" selection-start-column="43" selection-end-line="53" selection-end-column="43" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/back_template/tabs_panels.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="610">
-          <caret line="362" column="65" lean-forward="false" selection-start-line="362" selection-start-column="65" selection-end-line="362" selection-end-column="65" />
+        <state relative-caret-position="70">
+          <caret line="304" column="46" lean-forward="true" selection-start-line="304" selection-start-column="46" selection-end-line="304" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/template/freemarker/racingcms/matchresult.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="59" column="40" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="128" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/template/freemarker/racingcms/matchdetailresult.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="81" column="27" lean-forward="false" selection-start-line="81" selection-start-column="27" selection-end-line="81" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/back_template/form_basic.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="113">
+          <caret line="88" column="37" lean-forward="true" selection-start-line="88" selection-start-column="37" selection-end-line="88" selection-end-column="37" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/template/freemarker/racingcms/cardAdd.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/template/freemarker/racingcms/sysUserAdd.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="229">
+          <caret line="381" column="70" lean-forward="false" selection-start-line="381" selection-start-column="66" selection-end-line="381" selection-end-column="70" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/back_template/form_validate.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="179" column="63" lean-forward="false" selection-start-line="179" selection-start-column="47" selection-end-line="179" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxmp/racingcms/mapper/RMatchInfoMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="31" lean-forward="false" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="31" />
+          <folding>
+            <marker date="1531128643000" expanded="true" signature="1117:1610" ph="insert into r_match_info... " />
+            <marker date="1531128643000" expanded="true" signature="1679:1823" ph="select uuid,... r_match_info" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxmp/backstage/sys/service/ISysUserService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="18" column="17" lean-forward="false" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxmp/core/util/SessionUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="16" column="3" lean-forward="true" selection-start-line="16" selection-start-column="3" selection-end-line="16" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/4.3.5.RELEASE/spring-web-4.3.5.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="129" column="0" lean-forward="false" selection-start-line="129" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxmp/racingcms/vo/view/SysUserView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="16" column="22" lean-forward="false" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxmp/core/util/DateUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="33" column="33" lean-forward="false" selection-start-line="33" selection-start-column="33" selection-end-line="33" selection-end-column="33" />
+          <folding>
+            <element signature="e#1271#1272#0" expanded="true" />
+            <element signature="e#1309#1310#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/mybatis/mybatis/3.2.8/mybatis-3.2.8.jar!/org/apache/ibatis/binding/MapperProxy.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxmp/racingcms/domain/RSysuserUserRel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="20" column="30" lean-forward="false" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxmp/racingcms/mapper/RSysuserUserRelMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="49" lean-forward="false" selection-start-line="8" selection-start-column="49" selection-end-line="8" selection-end-column="49" />
+          <folding>
+            <marker date="1534840674000" expanded="true" signature="1269:1387" ph="select from r_sysuser_user_rel" />
+            <marker date="1534840674000" expanded="true" signature="1472:1544" ph="delete from " />
+            <marker date="1534840674000" expanded="true" signature="1642:2119" ph="insert into r_sysuser_user_rel... " />
+            <marker date="1534840674000" expanded="true" signature="3996:4949" ph="update r_sys... " />
+            <marker date="1534840674000" expanded="true" signature="5059:5552" ph="update r_sys... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxmp/core/util/wx/MD5Util.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="42" column="25" lean-forward="false" selection-start-line="42" selection-start-column="25" selection-end-line="42" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/doc/racing.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="562">
+          <caret line="385" column="53" lean-forward="false" selection-start-line="385" selection-start-column="43" selection-end-line="385" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/template/freemarker/wxcms/menu.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="149" column="50" lean-forward="false" selection-start-line="149" selection-start-column="50" selection-end-line="149" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxmp/backstage/sys/ctrl/LoginCtrl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="690">
+          <caret line="66" column="21" lean-forward="true" selection-start-line="66" selection-start-column="21" selection-end-line="66" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxmp/racingcms/ctrl/RacingCmsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="19" column="13" lean-forward="false" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxmp/racingcms/ctrl/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="26" column="7" lean-forward="true" selection-start-line="26" selection-start-column="7" selection-end-line="26" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/template/freemarker/wxcms/first_page.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="398">
+          <caret line="43" column="39" lean-forward="true" selection-start-line="43" selection-start-column="39" selection-end-line="43" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="296">
+          <caret line="74" column="40" lean-forward="true" selection-start-line="74" selection-start-column="40" selection-end-line="74" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxmp/backstage/sys/service/impl/SysUserServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="292">
+          <caret line="102" column="45" lean-forward="false" selection-start-line="102" selection-start-column="31" selection-end-line="102" selection-end-column="45" />
+          <folding>
+            <element signature="e#2129#2130#0" expanded="true" />
+            <element signature="e#2187#2188#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxmp/backstage/sys/mapper/SysUserDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="44" column="22" lean-forward="false" selection-start-line="44" selection-start-column="22" selection-end-line="44" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxmp/backstage/sys/mapper/SysUserMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="134">
+          <caret line="34" column="59" lean-forward="true" selection-start-line="34" selection-start-column="59" selection-end-line="34" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/res/js/web/login.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" column="13" lean-forward="true" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="29" column="35" lean-forward="false" selection-start-line="29" selection-start-column="35" selection-end-line="29" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/template/freemarker/racingcms/sysuserlist.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="153" column="5" lean-forward="true" selection-start-line="153" selection-start-column="5" selection-end-line="153" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/template/freemarker/racingcms/userlist.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="333">
+          <caret line="83" column="33" lean-forward="true" selection-start-line="83" selection-start-column="33" selection-end-line="83" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxmp/backstage/sys/domain/SysUser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="22" lean-forward="true" selection-start-line="18" selection-start-column="22" selection-end-line="18" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1294#1295#0" expanded="true" />
+            <element signature="e#1313#1314#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxmp/wxcms/ctrl/ContentController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="107">
+          <caret line="19" column="23" lean-forward="false" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/template/freemarker/wxcms/content.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="68" column="36" lean-forward="true" selection-start-line="68" selection-start-column="36" selection-end-line="68" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxmp/racingcms/ctrl/SysUserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="31" column="32" lean-forward="true" selection-start-line="31" selection-start-column="32" selection-end-line="31" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

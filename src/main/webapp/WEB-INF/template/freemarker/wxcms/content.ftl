@@ -72,40 +72,38 @@
                             <span class="fa arrow"></span>
                         </a>
                         <ul class="nav nav-second-level">
-                            <li>
-                                <a class="J_menuItem" href="/racingcms/ruser/listForPage" data-index="0">用户列表</a>
-                            </li>
-                            <li>
-                                <a class="J_menuItem" href="/racingcms/accountMenuGroup/paginationEntity/">赛程列表</a>
-                            </li>
-                            <li>
-                                <a class="J_menuItem" href="#">赛程管理</a>
-                            </li>
-                            <#--<li>-->
-                                <#--<a class="J_menuItem" href="#">图文管理</a>-->
-                            <#--</li>-->
-                            <#--<li>-->
-                                <#--<a href="#" target="_blank">发送消息</a>-->
-                            <#--</li>-->
-                            <#--<li>-->
-                                <#--<a href="#" target="_blank">发送图文消息</a>-->
-                            <#--</li>-->
-                            <#--<li>-->
-                                <#--<a class="J_menuItem" href="#">粉丝管理</a>-->
-                            <#--</li>-->
+                            <#if (account) == 'admin'>
+                                <li>
+                                    <a class="J_menuItem" href="/racingcms/ruser/listForPage" data-index="0">用户列表</a>
+                                </li>
+                                <li>
+                                    <a class="J_menuItem" href="/racingcms/sysuser/listForPage">运营用户管理</a>
+                                </li>
+                                <!-- root用户不可参与操作 -->
+                                <#--<li>-->
+                                    <#--<a class="J_menuItem" href="/racingcms/sysuser/info">我的信息管理</a>-->
+                                <#--</li>-->
+                            <#else>
+                                <li>
+                                    <a class="J_menuItem" href="/racingcms/sysuser/info">我的信息管理</a>
+                                </li>
+                            </#if>
                         </ul>
 
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-edit"></i>
-                            <span class="nav-label">原始UI（开发者使用）</span>
-                            <span class="fa arrow"></span>
-                        </a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="http://localhost:8083/back_template/index.html" target="_blank">跳转观测</a>
-                            </li>
-                        <ul/>
+                        <#if (account) == 'admin'>
+                            <a href="#"><i class="fa fa-edit"></i>
+                                <span class="nav-label">原始UI（开发者使用）</span>
+                                <span class="fa arrow"></span>
+                            </a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="http://localhost:8083/back_template/index.html" target="_blank">跳转观测</a>
+                                </li>
+                            <ul/>
+                        <#else >
+                        </#if>
                     </li>
                 </ul>
             </div>
