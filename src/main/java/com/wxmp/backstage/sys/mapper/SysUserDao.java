@@ -39,10 +39,10 @@ public interface SysUserDao {
 
 	/**
 	 *
-	 * @param searchEntity
+	 * @param relType
 	 * @return
 	 */
-	List<SysUserView> getSysUserList(@Param("condition") SysUser searchEntity);
+	List<SysUserView> getSysUserList(@Param("relType") int relType);
 
 	/**
 	 * 查询用户信息

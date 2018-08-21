@@ -58,9 +58,13 @@
 	<select id="getSysUserList" resultMap="sysUserResultMap">
 		select u.*, l.user_uuid, r.total
 		from s_sys_user u
-		left join r_sysuser_user_rel l ON u.id = l.sysuser_uuid
-		left join r_user_coin r ON l.user_uuid = r.user_uuid
-		where u.id != '82b56edb56d740bbbe9a975c1dcc39f5';
+		left join r_sysuser_user_rel l
+			ON u.id = l.sysuser_uuid
+			and rel_type = #{relType}
+		left join r_user_coin r
+			ON l.user_uuid = r.user_uuid
+		where
+			u.id != '1';
 	</select>
 
 	<select id="getSysUserInfo" resultMap="sysUserResultMap">

@@ -34,9 +34,10 @@ public interface ISysUserService {
 	/**
 	 * 系统用户信息管理
 	 * @param searchEntity
+	 * @param relType
 	 * @return
 	 */
-	List<SysUserView> getSysUserList(SysUser searchEntity);
+	List<SysUserView> getSysUserList(SysUser searchEntity, Integer relType);
 
 	/**
 	 * 添加系统运营用户，并且关联账户

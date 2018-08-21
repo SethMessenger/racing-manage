@@ -1,5 +1,6 @@
 package com.wxmp.racingcms.mapper;
 
+import com.wxmp.racingapi.vo.dto.SysUserRelDTO;
 import com.wxmp.racingcms.domain.RUser;
 import com.wxmp.racingcms.vo.view.RUserMatchView;
 import com.wxmp.racingcms.vo.view.RUserView;
@@ -63,4 +64,11 @@ public interface RUserMapper {
      * @return
      */
     List<RUserMatchView> listUserMatchLogs(@Param("filter") RUser filter);
+
+    /**
+     * 查询用户的关联关系
+     * @param sysUserUuids
+     * @return
+     */
+    List<SysUserRelDTO> selectRelUsers(@Param("sysUserUuids")List<String> sysUserUuids);
 }

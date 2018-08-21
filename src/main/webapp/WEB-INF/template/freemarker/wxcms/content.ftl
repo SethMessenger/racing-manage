@@ -85,7 +85,7 @@
                                 <#--</li>-->
                             <#else>
                                 <li>
-                                    <a class="J_menuItem" href="/racingcms/sysuser/info">我的信息管理</a>
+                                    <a class="J_menuItem" href="/racingcms/sysuser/info/${account}">我的信息管理</a>
                                 </li>
                             </#if>
                         </ul>

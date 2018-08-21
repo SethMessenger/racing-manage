@@ -1,11 +1,19 @@
 package com.wxmp.backstage.sys.service.impl;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import com.wxmp.core.util.BeanUtil;
 import com.wxmp.core.util.SessionUtils;
+import com.wxmp.racingapi.vo.dto.SysUserRelDTO;
 import com.wxmp.racingcms.domain.RSysuserUserRel;
+import com.wxmp.racingcms.domain.RUser;
 import com.wxmp.racingcms.mapper.RSysuserUserRelMapper;
 import com.wxmp.racingcms.mapper.RUserCoinMapper;
 import com.wxmp.racingcms.mapper.RUserMapper;
 import com.wxmp.racingcms.vo.view.SysUserView;
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +23,7 @@ import com.wxmp.backstage.sys.mapper.SysUserDao;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -99,8 +108,28 @@ public class SysUserServiceImpl  implements ISysUserService{
 	 * @return
 	 */
 	@Override
-	public List<SysUserView> getSysUserList(SysUser searchEntity) {
-		return this.sysUserDao.getSysUserList(searchEntity);
+	public List<SysUserView> getSysUserList(SysUser searchEntity, Integer relType) {
+		List<SysUserView> userList = Lists.newArrayList();
+		userList = this.sysUserDao.getSysUserList(relType);
+		List<String> sysUserUuids = Lists.newArrayList();
+		if(CollectionUtils.isNotEmpty(userList)){
+			for (SysUserView view : userList){
+				sysUserUuids.add(view.getId());
+			}
+			List<SysUserRelDTO> relUsersAll = this.userMapper.selectRelUsers(sysUserUuids);
+			for (SysUserView view : userList){
+				for (SysUserRelDTO rel : relUsersAll){
+					if(CollectionUtils.isEmpty(view.getUsers())){
+						view.setUsers(Lists.newArrayList());
+					}
+					List<RUser> relUsers = view.getUsers();
+					RUser newUser = new RUser();
+					BeanUtils.copyProperties(rel, newUser);
+					relUsers.add(newUser);
+				}
+			}
+		}
+		return userList;
 	}
 
 	/**

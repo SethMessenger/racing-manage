@@ -18,6 +18,25 @@
       <result column="other" jdbcType="VARCHAR" property="other" />
     </resultMap>
 
+    <resultMap id="userRelResultMap" type="com.wxmp.racingapi.vo.dto.SysUserRelDTO">
+      <result column="uuid" jdbcType="VARCHAR" property="uuid" />
+      <result column="is_del" jdbcType="INTEGER" property="isDel" />
+      <result column="creater" jdbcType="VARCHAR" property="creater" />
+      <result column="updater" jdbcType="VARCHAR" property="updater" />
+      <result column="create_time" jdbcType="BIGINT" property="createTime" />
+      <result column="update_time" jdbcType="BIGINT" property="updateTime" />
+      <result column="user_name" jdbcType="VARCHAR" property="userName" />
+      <result column="user_nickname" jdbcType="VARCHAR" property="userNickname" />
+      <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+      <result column="wechat" jdbcType="VARCHAR" property="wechat" />
+      <result column="email" jdbcType="VARCHAR" property="email" />
+      <result column="password" jdbcType="VARCHAR" property="password" />
+      <result column="open_id" jdbcType="VARCHAR" property="openId" />
+      <result column="other" jdbcType="VARCHAR" property="other" />
+
+      <result column="sysUserUuid" jdbcType="VARCHAR" property="sysUserUuid" />
+    </resultMap>
+
     <resultMap id="ViewResultMap" type="com.wxmp.racingcms.vo.view.RUserView">
       <result column="uuid" jdbcType="VARCHAR" property="uuid" />
       <result column="is_del" jdbcType="INTEGER" property="isDel" />
@@ -188,4 +207,18 @@
       </if>
     </select>
 
+    <select id="selectRelUsers" resultMap="userRelResultMap">
+      select s.id sysUserUuid, r.*
+      from s_sys_user s
+        left join r_sysuser_user_rel l ON s.id = l.sysuser_uuid and l.rel_type = 1
+        left join r_user r ON l.user_uuid = r.uuid
+      where
+        r.uuid is not null
+        <if test ="sysUserUuids != null">
+          and s.id IN
+          <foreach collection="sysUserUuids" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+          </foreach>
+        </if>
+    </select>
 </mapper>
