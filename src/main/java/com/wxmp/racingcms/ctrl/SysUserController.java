@@ -3,6 +3,7 @@ package com.wxmp.racingcms.ctrl;
 import com.google.common.collect.Maps;
 import com.wxmp.backstage.sys.domain.SysUser;
 import com.wxmp.backstage.sys.service.ISysUserService;
+import com.wxmp.core.util.DateUtil;
 import com.wxmp.core.util.SessionUtilsWeb;
 import com.wxmp.racingcms.domain.RUser;
 import com.wxmp.racingcms.mapper.RUserMapper;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -70,6 +72,9 @@ public class SysUserController {
                 iSysUserService.addSysUserInfo(sysUser, user);
                 resultMap.put("errorCode", "0");
                 resultMap.put("errorMsg", "添加成功");
+            }else {
+                resultMap.put("errorCode", "999");
+                resultMap.put("errorMsg", "绑定的用户不存在");
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -79,9 +84,14 @@ public class SysUserController {
         return resultMap;
     }
 
+    /**
+     * 查询当前用户信息
+     * @param sysUserUuid
+     * @return
+     */
     @RequestMapping(value = "/info/{sysUserUuid}")
     public ModelAndView sysUserInfo(@PathVariable String sysUserUuid){
-        ModelAndView mv = new ModelAndView("/racingcms/sysuserlist");
+        ModelAndView mv = new ModelAndView("/racingcms/sysUserInfo");
         SysUser searchEntity = new SysUser();
         searchEntity.setId(sysUserUuid);
         List<SysUserView> list = iSysUserService.getSysUserList(searchEntity, 1);
@@ -92,4 +102,36 @@ public class SysUserController {
         return mv;
     }
 
+    /**
+     * 新增系统管理用户
+     * @param sysUser
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "/updatePwd")
+    @ResponseBody
+    public Map<String, String> sysUserUpdate(@ModelAttribute SysUserView sysUser, HttpServletRequest request){
+        Map<String, String> resultMap = Maps.newHashMap();
+        try {
+            SysUser user = SessionUtilsWeb.getUser(request);
+            String rel_phone = request.getParameter("rel_phone");
+            RUser filter = new RUser();
+            filter.setMobile(rel_phone);
+            List<RUser> users = this.userMapper.listForPage(filter);
+            if(CollectionUtils.isNotEmpty(users)){
+                RUser u = users.get(0);
+                String userUuid = u.getUuid();
+                sysUser.setUserUuid(userUuid);
+                sysUser.setUpdateTime(DateUtil.COMMON_FULL.getDateText(new Date()));
+                iSysUserService.updateLoginPwd(new SysUser());
+                resultMap.put("errorCode", "0");
+                resultMap.put("errorMsg", "更新密码成功");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            resultMap.put("errorCode", "999");
+            resultMap.put("errorMsg", "系统错误，请联系管理员");
+        }
+        return resultMap;
+    }
 }

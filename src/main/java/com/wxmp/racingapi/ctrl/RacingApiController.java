@@ -188,6 +188,7 @@ public class RacingApiController {
 
     /**
      * 下注
+     *
      * @param   request
      * @param   userUuid
      * @POST    {"accountUuid":"accountUuid", "amount":100, "matchUuid":"matchUuid", "wins":"winsId"}
@@ -240,10 +241,6 @@ public class RacingApiController {
             return new MessageView(ErrorCodeEnum.PARAM_ERROR, "用户账户ID 不能为空");
         }else if(StringUtils.isEmpty(form.getMatchUuid())){
             return new MessageView(ErrorCodeEnum.PARAM_ERROR, "指定的赛程 不能为空");
-        }else if(CollectionUtils.isNotEmpty(form.getChampSeconds()) && form.getChampSeconds().size() >= 2){
-            return new MessageView(ErrorCodeEnum.PARAM_ERROR, "冠亚军赛押注数不能超过2");
-        }else if(CollectionUtils.isNotEmpty(form.getSpeeds()) && form.getSpeeds().size() != 2){
-            return new MessageView(ErrorCodeEnum.PARAM_ERROR, "竞速赛必须上传两个赛车记录");
         }
         //开始下注
         try {

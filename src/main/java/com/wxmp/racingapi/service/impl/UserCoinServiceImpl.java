@@ -12,6 +12,7 @@ import com.wxmp.racingapi.vo.form.UserPayAllForm;
 import com.wxmp.racingapi.vo.view.RankView;
 import com.wxmp.racingapi.vo.view.UserRankDetailView;
 import com.wxmp.racingapi.vo.vo.UserPayDetailForm;
+import com.wxmp.racingapi.vo.vo.UserPaySpeedDetailForm;
 import com.wxmp.racingcms.domain.RMatchLog;
 import com.wxmp.racingcms.domain.RUser;
 import com.wxmp.racingcms.domain.RUserCoinLog;
@@ -97,14 +98,14 @@ public class UserCoinServiceImpl implements UserCoinService{
             }
         }
         /** 竞速赛 */
-        List<Integer> userCoins = Lists.newArrayList();
-        for (UserPayDetailForm item : form.getSpeeds()){
-            userCoins.add(Integer.valueOf(item.getWins()));
-        }
-        for (UserPayDetailForm item : form.getSpeeds()){
+        for (UserPaySpeedDetailForm item : form.getSpeeds()){
             try {
-                this.payMatch(MatchTypeEnum.SPEEDS.getMatchType(), userUuid, item.getAmount(), matchUuid,
-                        SpeedUtils.createMatchCoins(Integer.valueOf(item.getWins()), userCoins.get(0), userCoins.get(1)));
+                //押注冠军
+                this.payMatch(MatchTypeEnum.SPEEDS.getMatchType(), userUuid, item.getFirst().getAmount(), matchUuid,
+                        SpeedUtils.createMatchCoins(Integer.valueOf(item.getFirst().getWins()), Integer.valueOf(item.getFirst().getWins()), Integer.valueOf(item.getSecond().getWins())));
+                //押注亚军
+                this.payMatch(MatchTypeEnum.SPEEDS.getMatchType(), userUuid, item.getSecond().getAmount(), matchUuid,
+                        SpeedUtils.createMatchCoins(Integer.valueOf(item.getSecond().getWins()), Integer.valueOf(item.getFirst().getWins()), Integer.valueOf(item.getSecond().getWins())));
             }catch (Exception e){
                 logger.error(e, " {} : ", " payAllMatch ");
                 continue;

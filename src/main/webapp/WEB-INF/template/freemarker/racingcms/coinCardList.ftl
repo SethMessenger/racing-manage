@@ -53,39 +53,56 @@
         <div class="col-sm-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>运营用户管理</h5>
+                    <h5>卡券列表</h5>
                     <div class="ibox-tools">
-                        <button class="btn btn-primary" href="form_basic.html#modal-form" data-toggle="modal" >新增运营用户</button>
+                        <button class="btn btn-primary" href="form_basic.html#modal-form" data-toggle="modal" >新发卡券</button>
                     </div>
                 </div>
                 <div class="ibox-content">
-
-                    <table class="table table-striped table-bordered table-hover dataTables-example">
-                        <thead>
-                        <tr>
-                            <th>序号</th>
-                            <th>用户名</th>
-                            <th>联系电话</th>
-                            <th>账户余额</th>
-                            <th>操作</th>
-                        </tr>
-                        </thead>
-                        <tbody>
+                <table class="table table-striped table-bordered table-hover dataTables-example">
+                <#if (list)??>
+                    <thead>
+                    <tr>发型卡券管理</tr>
+                    <tr>
+                        <th>序号</th>
+                        <th>卡券编号</th>
+                        <th>卡券类型</th>
+                        <th>卡券面值</th>
+                        <th>状态</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
                         <#list list as item>
                         <tr class="gradeX">
                             <td>${item_index + 1}</td>
-                            <td>${item.account!}</td>
-                            <td>${item.phone!}</td>
-                            <td>${item.total!}</td>
+                            <td>${item.cardNo!}</td>
+                            <td>${item.amount!}</td>
+                            <td>${item.type!}</td>
+                            <td>暂不提供查询</td>
                             <td class="text-navy">
-                                <#--<button class="btn btn-primary" onclick="toUpdateUserAmount()">编辑</button>-->
-                                <button class="btn btn-primary" onclick="toCardLogs('${item.id}')">卡券列表</button>
+                            <#--<button class="btn btn-primary" onclick="toUpdateUserAmount()">编辑</button>-->
+                                <button class="btn btn-primary" onclick="toUserInfo('${item.uuid}')">详情</button>
                             </td>
 
                         </tr>
                         </#list>
-                        </tbody>
-                    </table>
+                    </tbody>
+                <#else>
+                    <thead>
+                    <tr>关联用户管理</tr>
+                    <tr>
+                        <th>序号</th>
+                        <th>卡券编号</th>
+                        <th>卡券类型</th>
+                        <th>卡券面值</th>
+                        <th>状态</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+                </#if>
 
                 </div>
             </div>
@@ -97,44 +114,21 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-sm-6 b-r">
-                            <h3 class="m-t-none m-b">添加运营账户</h3>
-
-                            <p>运营账户细则如右(⊙o⊙)</p>
-
-                            <form id="addSysForm" role="form" action="#" method="post">
-                                <div class="form-group">
-                                    <label>账户：</label>
-                                    <input type="number" placeholder="请输入用户名" class="form-control" name="account">
-                                    <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 请使用手机号码</span>
-                                </div>
+                            <h3 class="m-t-none m-b">创建新卡券</h3>
+                            <form id="addForm" role="form" action="#" method="post">
                                 <div class="form-group">
                                     <label>密码：</label>
                                     <input type="password" placeholder="请输入密码" class="form-control" name="pwd">
                                 </div>
                                 <div class="form-group">
-                                    <label>重复密码：</label>
-                                    <input type="password" placeholder="请重复输入密码" class="form-control" name="confirm_password">
-                                    <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 请再次输入您的密码</span>
-                                </div>
-                                <div class="form-group">
-                                    <label>联系电话：</label>
-                                    <input type="number" placeholder="请输入您的联系方式" class="form-control" name="phone">
-                                </div>
-                                <div class="form-group">
-                                    <label>关联账户手机号：</label>
-                                    <input type="number" placeholder="请输入关联账户手机号" class="form-control" name="rel_phone">
+                                    <label>面值：</label>
+                                    <input type="number" placeholder="请输入您创建充值卡券的面值" class="form-control" name="amount">
                                 </div>
                                 <div>
                                     <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="button" onclick="checkForm();"><strong>确认添加</strong>
                                     </button>
                                 </div>
                             </form>
-                        </div>
-                        <div class="col-sm-6">
-                            <h4>运营账户细则</h4>
-                            <p>1、运营账户需要管理员进行添加</p>
-                            <p>2、运营账户只有关联客户端用户后才生效</p>
-                            <p>3、营运账户权限限于后台进行金币充值，充值数量不能超过关联客户端用户的金币数量</p>
                         </div>
                     </div>
                 </div>
@@ -145,37 +139,25 @@
 </body>
 
 <script type="text/javascript">
-    function toCardLogs(userUuid) {
+    function toUserInfo(userUuid) {
         //window.location.href="/racingcms/ruser/listUserLogs?uuid="+userUuid;
         swal({
-            title: "二级分销卡券功能待开放",
-            text: "请联系管理员开发此功能！"
-        });
-    }
-    function toUpdateUserAmount() {
-        swal({
-            title: "暂时不支持直接修改用户账户",
-            text: "请联系管理员开发此功能！"
-        });
-    }
-    function addSysUserCard(useruuid){
-        swal({
-            title: "二级分销卡券充值功能待开放",
+            title: "关联客户端用户信息查询",
             text: "请联系管理员开发此功能！"
         });
     }
     function checkForm(){
         $.ajax({
-            url:"/racingcms/sysuser/add",
-            data:$("#addSysForm").serialize(),
+            url:"/racingcms/syscard/add",
+            data:$("#addForm").serialize(),
             type:"post",
             dataType : "json",
             success:function(data){//ajax返回的数据
                 if("0" == data.errorCode){
-                    alert("添加成功");
+                    alert(data.errorMsg);
                     location.reload();
                 }else {
-                    alert("添加失败");
+                    alert(data.errorMsg);
                 }
             }
         });

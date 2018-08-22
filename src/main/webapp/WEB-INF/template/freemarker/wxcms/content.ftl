@@ -87,6 +87,9 @@
                                 <li>
                                     <a class="J_menuItem" href="/racingcms/sysuser/info/${account}">我的信息管理</a>
                                 </li>
+                                <li>
+                                    <a class="J_menuItem" href="/racingcms/syscard/listForPage">我的卡券管理</a>
+                                </li>
                             </#if>
                         </ul>
 

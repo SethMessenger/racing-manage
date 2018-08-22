@@ -53,39 +53,53 @@
         <div class="col-sm-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>运营用户管理</h5>
+                    <h5>我的信息</h5>
                     <div class="ibox-tools">
-                        <button class="btn btn-primary" href="form_basic.html#modal-form" data-toggle="modal" >新增运营用户</button>
+                        <button class="btn btn-primary" href="form_basic.html#modal-form" data-toggle="modal" >更新用户信息</button>
                     </div>
                 </div>
                 <div class="ibox-content">
-
                     <table class="table table-striped table-bordered table-hover dataTables-example">
-                        <thead>
-                        <tr>
-                            <th>序号</th>
-                            <th>用户名</th>
-                            <th>联系电话</th>
-                            <th>账户余额</th>
-                            <th>操作</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <#list list as item>
-                        <tr class="gradeX">
-                            <td>${item_index + 1}</td>
-                            <td>${item.account!}</td>
-                            <td>${item.phone!}</td>
-                            <td>${item.total!}</td>
-                            <td class="text-navy">
-                                <#--<button class="btn btn-primary" onclick="toUpdateUserAmount()">编辑</button>-->
-                                <button class="btn btn-primary" onclick="toCardLogs('${item.id}')">卡券列表</button>
-                            </td>
+                        <#if (user.users)??>
+                            <thead>
+                            <tr>关联用户管理</tr>
+                            <tr>
+                                <th>序号</th>
+                                <th>关联用户名</th>
+                                <th>联系电话</th>
+                                <th>账户余额</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <#list user.users as item>
+                            <tr class="gradeX">
+                                <td>${item_index + 1}</td>
+                                <td>${item.userName!}</td>
+                                <td>${item.mobile!}</td>
+                                <td>暂不提供查询</td>
+                                <td class="text-navy">
+                                    <#--<button class="btn btn-primary" onclick="toUpdateUserAmount()">编辑</button>-->
+                                    <button class="btn btn-primary" onclick="toUserInfo('${item.uuid}')">详情</button>
+                                </td>
 
-                        </tr>
-                        </#list>
-                        </tbody>
-                    </table>
+                            </tr>
+                            </#list>
+                            </tbody>
+                        <#else>
+                            <thead>
+                            <tr>关联用户管理</tr>
+                            <tr>
+                                <th>序号</th>
+                                <th>关联用户名</th>
+                                <th>联系电话</th>
+                                <th>账户余额</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                        </#if>
 
                 </div>
             </div>
@@ -100,11 +114,16 @@
                             <h3 class="m-t-none m-b">添加运营账户</h3>
 
                             <p>运营账户细则如右(⊙o⊙)</p>
-
-                            <form id="addSysForm" role="form" action="#" method="post">
+                            <form id="updatePwdForm" role="form" action="#" method="post">
+                                <input type="hidden" class="form-control" name="id" value="${user.id}">
+                                <input type="hidden" class="form-control" name="sex" value="${user.sex}">
+                                <input type="hidden" class="form-control" name="trueName" value="${user.trueName}">
+                                <input type="hidden" class="form-control" name="createTime" value="${user.createTime}">
+                                <input type="hidden" class="form-control" name="flag" value="${user.flag}">
+                                <input type="hidden" class="form-control" name="rel_phone">
                                 <div class="form-group">
                                     <label>账户：</label>
-                                    <input type="number" placeholder="请输入用户名" class="form-control" name="account">
+                                    <input type="number" placeholder="请输入用户名" class="form-control" name="account" value="${user.account}" disabled="true">
                                     <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 请使用手机号码</span>
                                 </div>
                                 <div class="form-group">
@@ -112,17 +131,8 @@
                                     <input type="password" placeholder="请输入密码" class="form-control" name="pwd">
                                 </div>
                                 <div class="form-group">
-                                    <label>重复密码：</label>
-                                    <input type="password" placeholder="请重复输入密码" class="form-control" name="confirm_password">
-                                    <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 请再次输入您的密码</span>
-                                </div>
-                                <div class="form-group">
                                     <label>联系电话：</label>
-                                    <input type="number" placeholder="请输入您的联系方式" class="form-control" name="phone">
-                                </div>
-                                <div class="form-group">
-                                    <label>关联账户手机号：</label>
-                                    <input type="number" placeholder="请输入关联账户手机号" class="form-control" name="rel_phone">
+                                    <input type="number" placeholder="请输入您的联系方式" class="form-control" name="phone" value="${user.phone}" disabled="true">
                                 </div>
                                 <div>
                                     <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="button" onclick="checkForm();"><strong>确认添加</strong>
@@ -145,29 +155,17 @@
 </body>
 
 <script type="text/javascript">
-    function toCardLogs(userUuid) {
+    function toUserInfo(userUuid) {
         //window.location.href="/racingcms/ruser/listUserLogs?uuid="+userUuid;
         swal({
-            title: "二级分销卡券功能待开放",
-            text: "请联系管理员开发此功能！"
-        });
-    }
-    function toUpdateUserAmount() {
-        swal({
-            title: "暂时不支持直接修改用户账户",
-            text: "请联系管理员开发此功能！"
-        });
-    }
-    function addSysUserCard(useruuid){
-        swal({
-            title: "二级分销卡券充值功能待开放",
+            title: "关联客户端用户信息查询",
             text: "请联系管理员开发此功能！"
         });
     }
     function checkForm(){
         $.ajax({
-            url:"/racingcms/sysuser/add",
-            data:$("#addSysForm").serialize(),
+            url:"/racingcms/sysuser/updatePwd",
+            data:$("#updatePwdForm").serialize(),
             type:"post",
             dataType : "json",
             success:function(data){//ajax返回的数据

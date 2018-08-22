@@ -63,6 +63,7 @@
             <property name="allowBaseUrls">
                 <list>
                     <value>/racing</value>
+                    <value>/racingcms</value>
                     <value>/socket</value>
                     <value>/websocket</value>
                     <value>/pay</value>

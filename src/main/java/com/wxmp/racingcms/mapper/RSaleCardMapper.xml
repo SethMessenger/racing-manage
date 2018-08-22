@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wxmp.racingcms.mapper.RSaleCardMapper">
+  <resultMap id="BaseResultMap" type="com.wxmp.racingcms.domain.RSaleCard">
+    <id column="uuid" jdbcType="VARCHAR" property="uuid" />
+    <result column="is_del" jdbcType="INTEGER" property="isDel" />
+    <result column="creater" jdbcType="VARCHAR" property="creater" />
+    <result column="updater" jdbcType="VARCHAR" property="updater" />
+    <result column="create_time" jdbcType="BIGINT" property="createTime" />
+    <result column="update_time" jdbcType="BIGINT" property="updateTime" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="type" jdbcType="TINYINT" property="type" />
+    <result column="amount" jdbcType="INTEGER" property="amount" />
+    <result column="create_sysuser_uuid" jdbcType="VARCHAR" property="createSysuserUuid" />
+    <result column="sale_user_uuid" jdbcType="VARCHAR" property="saleUserUuid" />
+    <result column="sale_time" jdbcType="BIGINT" property="saleTime" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="card_no" jdbcType="VARCHAR" property="cardNo" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    uuid, is_del, creater, updater, create_time, update_time, status, type, amount, create_sysuser_uuid, 
+    sale_user_uuid, sale_time, remark, card_no
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from r_sale_card
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from r_sale_card
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.wxmp.racingcms.domain.RSaleCard">
+    insert into r_sale_card (uuid, is_del, creater, 
+      updater, create_time, update_time, 
+      status, type, amount, 
+      create_sysuser_uuid, sale_user_uuid, sale_time, 
+      remark, card_no)
+    values (#{uuid,jdbcType=VARCHAR}, #{isDel,jdbcType=INTEGER}, #{creater,jdbcType=VARCHAR}, 
+      #{updater,jdbcType=VARCHAR}, #{createTime,jdbcType=BIGINT}, #{updateTime,jdbcType=BIGINT}, 
+      #{status,jdbcType=TINYINT}, #{type,jdbcType=TINYINT}, #{amount,jdbcType=INTEGER}, 
+      #{createSysuserUuid,jdbcType=VARCHAR}, #{saleUserUuid,jdbcType=VARCHAR}, #{saleTime,jdbcType=BIGINT}, 
+      #{remark,jdbcType=VARCHAR}, #{cardNo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wxmp.racingcms.domain.RSaleCard">
+    insert into r_sale_card
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uuid != null">
+        uuid,
+      </if>
+      <if test="isDel != null">
+        is_del,
+      </if>
+      <if test="creater != null">
+        creater,
+      </if>
+      <if test="updater != null">
+        updater,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+      <if test="createSysuserUuid != null">
+        create_sysuser_uuid,
+      </if>
+      <if test="saleUserUuid != null">
+        sale_user_uuid,
+      </if>
+      <if test="saleTime != null">
+        sale_time,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="cardNo != null">
+        card_no,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uuid != null">
+        #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="isDel != null">
+        #{isDel,jdbcType=INTEGER},
+      </if>
+      <if test="creater != null">
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updater != null">
+        #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=BIGINT},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=INTEGER},
+      </if>
+      <if test="createSysuserUuid != null">
+        #{createSysuserUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="saleUserUuid != null">
+        #{saleUserUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="saleTime != null">
+        #{saleTime,jdbcType=BIGINT},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="cardNo != null">
+        #{cardNo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wxmp.racingcms.domain.RSaleCard">
+    update r_sale_card
+    <set>
+      <if test="isDel != null">
+        is_del = #{isDel,jdbcType=INTEGER},
+      </if>
+      <if test="creater != null">
+        creater = #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updater != null">
+        updater = #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=BIGINT},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="amount != null">
+        amount = #{amount,jdbcType=INTEGER},
+      </if>
+      <if test="createSysuserUuid != null">
+        create_sysuser_uuid = #{createSysuserUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="saleUserUuid != null">
+        sale_user_uuid = #{saleUserUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="saleTime != null">
+        sale_time = #{saleTime,jdbcType=BIGINT},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="cardNo != null">
+        card_no = #{cardNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wxmp.racingcms.domain.RSaleCard">
+    update r_sale_card
+    set is_del = #{isDel,jdbcType=INTEGER},
+      creater = #{creater,jdbcType=VARCHAR},
+      updater = #{updater,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=BIGINT},
+      status = #{status,jdbcType=TINYINT},
+      type = #{type,jdbcType=TINYINT},
+      amount = #{amount,jdbcType=INTEGER},
+      create_sysuser_uuid = #{createSysuserUuid,jdbcType=VARCHAR},
+      sale_user_uuid = #{saleUserUuid,jdbcType=VARCHAR},
+      sale_time = #{saleTime,jdbcType=BIGINT},
+      remark = #{remark,jdbcType=VARCHAR},
+      card_no = #{cardNo,jdbcType=VARCHAR}
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </update>
+
+  <select id="listForPage" resultMap="BaseResultMap">
+    SELECT *
+    FROM r_sale_card
+    WHERE
+      is_del = 0
+      <if test="sysUserUuid != null">
+        AND create_sysuser_uuid = #{sysUserUuid,jdbcType=VARCHAR}
+      </if>
+  </select>
+</mapper>

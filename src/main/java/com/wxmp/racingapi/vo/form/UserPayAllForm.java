@@ -1,6 +1,7 @@
 package com.wxmp.racingapi.vo.form;
 
 import com.wxmp.racingapi.vo.vo.UserPayDetailForm;
+import com.wxmp.racingapi.vo.vo.UserPaySpeedDetailForm;
 
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class UserPayAllForm {
     /** 冠亚军赛下注明细 */
     private List<UserPayDetailForm> champSeconds;
     /** 竞速赛下注明细 */
-    private List<UserPayDetailForm> speeds;
+    private List<UserPaySpeedDetailForm> speeds;
 
     public String getAccountUuid() {
         return accountUuid;
@@ -54,11 +55,11 @@ public class UserPayAllForm {
         this.champSeconds = champSeconds;
     }
 
-    public List<UserPayDetailForm> getSpeeds() {
+    public List<UserPaySpeedDetailForm> getSpeeds() {
         return speeds;
     }
 
-    public void setSpeeds(List<UserPayDetailForm> speeds) {
+    public void setSpeeds(List<UserPaySpeedDetailForm> speeds) {
         this.speeds = speeds;
     }
 }
