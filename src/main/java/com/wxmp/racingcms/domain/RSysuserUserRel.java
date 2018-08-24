@@ -1,6 +1,5 @@
 package com.wxmp.racingcms.domain;
 
-import com.wxmp.backstage.common.RacingConstants;
 import com.wxmp.core.util.UuidGenerator;
 
 public class RSysuserUserRel {
@@ -20,6 +19,7 @@ public class RSysuserUserRel {
 
     private String sysuserUuid;
 
+    /** 关联类型，0 后端运营账户一对多关联前端用户 1 运营用户关联客户端分销 */
     private Byte relType;
 
     private String remark;

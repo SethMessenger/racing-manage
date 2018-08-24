@@ -24,4 +24,11 @@ public interface RSaleCardMapper {
      * @return
      */
     List<RSaleCard> listForPage(@Param("sysUserUuid") String sysUserUuid);
+
+    /**
+     * 根据卡号查询充值卡
+     * @param cardNo
+     * @return
+     */
+    RSaleCard selectByCardNo(@Param("cardNo") String cardNo);
 }

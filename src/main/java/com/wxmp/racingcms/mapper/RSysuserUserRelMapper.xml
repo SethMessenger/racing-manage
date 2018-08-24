@@ -150,4 +150,20 @@
       remark = #{remark,jdbcType=VARCHAR}
     where uuid = #{uuid,jdbcType=VARCHAR}
   </update>
+  <select id="selectByCondition" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from r_sysuser_user_rel
+    where
+    is_del = 0
+    <if test="userUuid != null">
+      AND user_uuid = #{userUuid,jdbcType=VARCHAR}
+    </if>
+    <if test="sysUserUuid != null">
+      AND sysuser_uuid = #{sysUserUuid,jdbcType=VARCHAR}
+    </if>
+    <if test="relType != null">
+      AND rel_type = #{relType,jdbcType=INTEGER}
+    </if>
+  </select>
 </mapper>

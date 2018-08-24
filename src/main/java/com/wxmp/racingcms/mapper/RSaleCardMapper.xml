@@ -206,4 +206,13 @@
         AND create_sysuser_uuid = #{sysUserUuid,jdbcType=VARCHAR}
       </if>
   </select>
+  <select id="selectByCardNo" resultMap="BaseResultMap">
+    SELECT *
+    FROM r_sale_card
+    WHERE
+    is_del = 0
+    <if test="cardNo != null">
+      AND card_no = #{cardNo,jdbcType=INTEGER}
+    </if>
+  </select>
 </mapper>

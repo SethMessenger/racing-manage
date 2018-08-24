@@ -38,6 +38,33 @@ public class RacingApiController {
     private MatchService matchService;
 
     /**
+     * 充值卡充值
+     * @param request
+     * @param cardNo
+     * @return
+     */
+    @CrossOrigin(maxAge = 3600)
+    @RequestMapping(value = "/recharge/{cardNo}",  method = RequestMethod.GET)
+    @ResponseBody
+    public BaseView rechargeByCard(HttpServletRequest request, @PathVariable String cardNo) {
+        UserAccountView resultUser = null;
+        try {
+            String userUuid = request.getParameter("userUuid");
+            if(StringUtils.isEmpty(userUuid) || StringUtils.isEmpty(cardNo)){
+                return BaseView.PARAM_ERROR;
+            }
+            resultUser = this.userService.rechargeByCard(userUuid, cardNo);
+        }catch (RuntimeException e){
+            return new MessageView(ErrorCodeEnum.FAIL, e.getMessage());
+        }
+        if(null != resultUser){
+            return new ObjectView<>(resultUser);
+        }
+        return BaseView.FAIL;
+    }
+
+
+    /**
      * 使用找回码，重新设置密码
      * @param request
      * @param user

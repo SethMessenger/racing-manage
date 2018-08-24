@@ -75,4 +75,12 @@ public interface UserService {
      * @return
      */
     RUser login(LoginForm form);
+
+    /**
+     * 充值卡充值
+     * @param userUuid
+     * @param cardNo
+     * @return
+     */
+    UserAccountView rechargeByCard(String userUuid, String cardNo);
 }

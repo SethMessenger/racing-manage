@@ -3,12 +3,17 @@ package com.wxmp.racingapi.service.impl;
 import com.wxmp.backstage.common.RacingConstants;
 import com.wxmp.core.util.MD5Utils;
 import com.wxmp.racingapi.service.ComponentService;
+import com.wxmp.racingapi.service.UserCoinService;
 import com.wxmp.racingapi.service.UserService;
 import com.wxmp.racingapi.vo.form.LoginForm;
 import com.wxmp.racingapi.vo.form.UserRegisForm;
 import com.wxmp.racingapi.vo.view.UserAccountView;
+import com.wxmp.racingcms.domain.RSaleCard;
+import com.wxmp.racingcms.domain.RSysuserUserRel;
 import com.wxmp.racingcms.domain.RUser;
 import com.wxmp.racingcms.domain.RUserCoin;
+import com.wxmp.racingcms.mapper.RSaleCardMapper;
+import com.wxmp.racingcms.mapper.RSysuserUserRelMapper;
 import com.wxmp.racingcms.mapper.RUserCoinMapper;
 import com.wxmp.racingcms.service.RUserService;
 import org.apache.commons.collections.CollectionUtils;
@@ -17,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
@@ -36,6 +42,12 @@ public class UserServiceImpl implements UserService{
     private RUserCoinMapper rUserCoinMapper;
     @Autowired
     private ComponentService componentService;
+    @Autowired
+    private RSaleCardMapper saleCardMapper;
+    @Autowired
+    private RSysuserUserRelMapper relMapper;
+    @Autowired
+    private UserCoinService userCoinService;
 
     /** 验证码池,验证码 ： 手机号 */
     private ConcurrentHashMap<String, String> codePool = new ConcurrentHashMap<String, String>();
@@ -240,6 +252,43 @@ public class UserServiceImpl implements UserService{
             return users.get(0);
         }
         return null;
+    }
+
+    /**
+     * 充值卡充值
+     *
+     * @param userUuid
+     * @param cardNo
+     * @return
+     */
+    @Override
+    public UserAccountView rechargeByCard(String userUuid, String cardNo) {
+        RSaleCard card = this.saleCardMapper.selectByCardNo(cardNo);
+        if(null != card){
+            //判断当前用户是否属可以添加二级分销
+            List<RSysuserUserRel> rels = this.relMapper.selectByCondition(userUuid, null, 1);
+            if(CollectionUtils.isNotEmpty(rels) && rels.size() > 0){
+                throw new RuntimeException("您已经绑定过充值商");
+            }else if(rels.size() == 1 && rels.get(0).getSysuserUuid().equalsIgnoreCase(card.getCreateSysuserUuid())){
+                //进行充值
+                this.userCoinService.withdrawAmount(userUuid, new BigDecimal(card.getAmount()));
+            }else {
+                card.setSaleUserUuid(userUuid);
+                card.setSaleTime(System.currentTimeMillis());
+                this.saleCardMapper.updateByPrimaryKey(card);
+                RSysuserUserRel rel = new RSysuserUserRel(RacingConstants.RACING_SYS_ACCOUNT, userUuid, card.getCreateSysuserUuid(), (byte)1, "充值卡充值" + card.getAmount());
+                this.relMapper.insert(rel);
+                //进行充值
+                this.userCoinService.withdrawAmount(userUuid, new BigDecimal(card.getAmount()));
+            }
+        }else {
+            throw new RuntimeException("充值卡不存在");
+        }
+        RUser user = this.rUserService.getById(userUuid);
+        RUserCoin userCoinCondition = new RUserCoin();
+        userCoinCondition.setUserUuid(userUuid);
+        List<RUserCoin> coinAccount = this.rUserCoinMapper.selectByCondition(userCoinCondition);
+        return new UserAccountView(user, coinAccount.get(0));
     }
 
     /****************************** 私有工具 ******************************/
