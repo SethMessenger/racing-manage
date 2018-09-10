@@ -1,26 +1,21 @@
-package com.wxmp.threads;
+package com.wxmp.threads.thread;
 
 import com.wxmp.threads.exception.ChildThreadException;
 
 import java.util.concurrent.CountDownLatch;
 
 /**
- * @author xunbo.xu
- * @desc
+ * @author  xunbo.xu
+ * @desc    多线程实例上下文
  * @date 18/8/24
  */
 public class MultiParallelContext {
-    /**
-     * 运行的任务
-     */
+
+    /** 运行的任务 */
     private Runnable task;
-    /**
-     * 子线程倒计数锁
-     */
+    /** 子线程倒计数锁 */
     private CountDownLatch childLatch;
-    /**
-     * 子线程异常
-     */
+    /** 子线程异常 */
     private ChildThreadException childException;
 
     public MultiParallelContext() {
@@ -51,4 +46,5 @@ public class MultiParallelContext {
     public void setChildException(ChildThreadException childException) {
         this.childException = childException;
     }
+
 }

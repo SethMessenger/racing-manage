@@ -2,8 +2,10 @@ package com.wxmp.racingapi.service;
 
 import com.wxmp.racingapi.vo.form.UserPayAllForm;
 import com.wxmp.racingapi.vo.view.RankView;
+import com.wxmp.racingapi.vo.view.UserMatchLogView;
 
 import java.math.BigDecimal;
+import java.sql.Time;
 import java.util.List;
 import java.util.Map;
 
@@ -13,6 +15,15 @@ import java.util.Map;
  * @date 18/7/11
  */
 public interface UserCoinService {
+
+    /**
+     * 查询参赛记录
+     * @param userUuid
+     * @param startTime
+     * @param endTime
+     * @return
+     */
+    List<UserMatchLogView> queryUserMatchLogs(String userUuid, long startTime, long endTime);
 
     /**
      * 查询今日排名

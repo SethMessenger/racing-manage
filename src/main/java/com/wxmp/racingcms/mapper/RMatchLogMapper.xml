@@ -16,6 +16,28 @@
     <result column="coin_index" jdbcType="INTEGER" property="coinIndex" />
     <result column="match_type" jdbcType="INTEGER" property="matchType" />
   </resultMap>
+  <resultMap id="userMatchLogResultMap" type="com.wxmp.racingapi.vo.dto.UserMatchLogDTO">
+    <result column="logUuid" jdbcType="VARCHAR" property="logUuid" />
+    <result column="createTime" jdbcType="BIGINT" property="createTime" />
+    <result column="matchResultUuid" jdbcType="VARCHAR" property="matchResultUuid" />
+    <result column="coinAmount" jdbcType="BIGINT" property="coinAmount" />
+    <result column="coinIndex" jdbcType="INTEGER" property="coinIndex" />
+    <result column="matchType" jdbcType="INTEGER" property="matchType" />
+    <result column="mutiAmount" jdbcType="DOUBLE" property="mutiAmount" />
+    <result column="matchResult" jdbcType="VARCHAR" property="matchResult" />
+  </resultMap>
+  <select id="queryUserMatchLogs" resultMap="userMatchLogResultMap">
+    select l.uuid as logUuid, l.create_time as createTime, l.match_result_uuid as matchResultUuid,
+           l.coin_amount as coinAmount, l.coin_index as coinIndex, l.match_type as matchType,
+           r.uuid as ruuid, r.muti_amount as mutiAmount, r.match_result as matchResult
+    from r_match_log l
+    left join r_match_result r ON l.match_result_uuid = r.uuid
+    where l.log_type = 0
+          and user_uuid = #{userUuid,jdbcType=VARCHAR}
+          and l.create_time
+          between #{startTime,jdbcType=BIGINT} and #{endTime,jdbcType=BIGINT}
+    ORDER BY l.create_time DESC;
+  </select>
   <insert id="insert" parameterType="com.wxmp.racingcms.domain.RMatchLog">
     insert into r_match_log (uuid, is_del, creater, 
       updater, create_time, update_time, 

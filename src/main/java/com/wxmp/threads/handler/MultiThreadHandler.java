@@ -1,4 +1,4 @@
-package com.wxmp.threads;
+package com.wxmp.threads.handler;
 
 import com.wxmp.threads.exception.ChildThreadException;
 

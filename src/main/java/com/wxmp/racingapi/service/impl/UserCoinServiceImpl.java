@@ -4,13 +4,18 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.wxmp.backstage.common.RacingConstants;
 import com.wxmp.core.log.CommonLog;
+import com.wxmp.core.util.DateUtil;
 import com.wxmp.core.util.JSONUtil;
 import com.wxmp.core.util.SpeedUtils;
 import com.wxmp.racingapi.common.MatchTypeEnum;
+import com.wxmp.racingapi.common.RacingRankInstance;
 import com.wxmp.racingapi.service.UserCoinService;
+import com.wxmp.racingapi.vo.dto.UserMatchLogDTO;
 import com.wxmp.racingapi.vo.form.UserPayAllForm;
 import com.wxmp.racingapi.vo.view.RankView;
+import com.wxmp.racingapi.vo.view.UserMatchLogView;
 import com.wxmp.racingapi.vo.view.UserRankDetailView;
+import com.wxmp.racingapi.vo.view.UserRankView;
 import com.wxmp.racingapi.vo.vo.UserPayDetailForm;
 import com.wxmp.racingapi.vo.vo.UserPaySpeedDetailForm;
 import com.wxmp.racingcms.domain.RMatchLog;
@@ -27,6 +32,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -50,23 +56,52 @@ public class UserCoinServiceImpl implements UserCoinService{
     @Autowired
     private RUserMapper rUserMapper;
 
+    /**
+     * 查询参赛记录
+     *
+     * @param userUuid
+     * @param startTime
+     * @param endTime
+     * @return
+     */
+    @Override
+    public List<UserMatchLogView> queryUserMatchLogs(String userUuid, long startTime, long endTime) {
+        List<UserMatchLogView> views = Lists.newArrayList();
+        List<UserMatchLogDTO> dtos = this.rMatchLogMapper.queryUserMatchLogs(userUuid, startTime, endTime);
+        System.out.println(startTime + " : " + endTime);
+        if(CollectionUtils.isNotEmpty(dtos)){
+            for(UserMatchLogDTO item : dtos){
+                String matchResultUuid = item.getMatchResultUuid();
+                Integer matchType = item.getMatchType();
+                long amount = item.getCoinAmount();
+                Integer wins = item.getCoinIndex();
+                Long matchTimeLong = item.getCreateTime();
+                String matchTime = DateUtil.COMMON_FULL.getDateText(new Date(matchTimeLong));
+                UserMatchLogView view = new UserMatchLogView(matchResultUuid, matchType, amount, wins, matchTime);
+                views.add(view);
+            }
+        }
+        return views;
+    }
+
     @Override
     public RankView queryUserMatchRank(String userUuid){
         RankView result = new RankView();
         List<UserRankDetailView> todays = Lists.newArrayList();
-        List<UserRankDetailView> yesterdays = Lists.newArrayList();
         RUser user = this.rUserMapper.getById(userUuid);
         if(null != user){
-            result.setUserNickName(user.getUserNickname());
-            result.setYesterdaysRank(256);
-            result.setTodaysRank(128);
-            for (int i=0; i < 100; i++){
-                UserRankDetailView view = new UserRankDetailView(i+1, null, "nick"+i , 50000-i);
-                todays.add(view);
-                yesterdays.add(view);
+            //TODO 查询当前所有用户的押注记录
+
+            List<UserRankView> ranks = RacingRankInstance.getRacingRank(Lists.newArrayList());
+            int index = 1;
+            for (UserRankView view : ranks){
+                UserRankDetailView v = new UserRankDetailView(index, view.getIcon(), view.getName(), view.getRank());
+                todays.add(v);
+                index++;
             }
             result.setTodays(todays);
-            result.setYesterdays(yesterdays);
+            result.setUserNickName(user.getUserNickname());
+            //result.setTodaysRank();
         }
         return result;
     }
@@ -81,34 +116,40 @@ public class UserCoinServiceImpl implements UserCoinService{
         logger.info(" {} : ", " payAllMatch ", JSONUtil.objectToJson(form));
         //校验在contr层已经完毕
         String matchUuid = form.getMatchUuid();
-        for (UserPayDetailForm item : form.getChamps()){
-            try {
-                this.payMatch(MatchTypeEnum.CHAMPS.getMatchType(), userUuid, item.getAmount(), matchUuid, Integer.valueOf(item.getWins()));
-            }catch (Exception e){
-                logger.error(e, " {} : ", " payAllMatch ");
-                continue;
+        if(CollectionUtils.isNotEmpty(form.getChampSeconds())){
+            for (UserPayDetailForm item : form.getChamps()){
+                try {
+                    this.payMatch(MatchTypeEnum.CHAMPS.getMatchType(), userUuid, item.getAmount(), matchUuid, Integer.valueOf(item.getWins()));
+                }catch (Exception e){
+                    logger.error(e, " {} : ", " payAllMatch ");
+                    continue;
+                }
             }
         }
-        for (UserPayDetailForm item : form.getChampSeconds()){
-            try {
-                this.payMatch(MatchTypeEnum.CHAMP_SECONDS.getMatchType(), userUuid, item.getAmount(), matchUuid, Integer.valueOf(item.getWins()));
-            }catch (Exception e){
-                logger.error(e, " {} : ", " payAllMatch ");
-                continue;
+        if(CollectionUtils.isNotEmpty(form.getChampSeconds())){
+            for (UserPayDetailForm item : form.getChampSeconds()){
+                try {
+                    this.payMatch(MatchTypeEnum.CHAMP_SECONDS.getMatchType(), userUuid, item.getAmount(), matchUuid, Integer.valueOf(item.getWins()));
+                }catch (Exception e){
+                    logger.error(e, " {} : ", " payAllMatch ");
+                    continue;
+                }
             }
         }
         /** 竞速赛 */
-        for (UserPaySpeedDetailForm item : form.getSpeeds()){
-            try {
-                //押注冠军
-                this.payMatch(MatchTypeEnum.SPEEDS.getMatchType(), userUuid, item.getFirst().getAmount(), matchUuid,
-                        SpeedUtils.createMatchCoins(Integer.valueOf(item.getFirst().getWins()), Integer.valueOf(item.getFirst().getWins()), Integer.valueOf(item.getSecond().getWins())));
-                //押注亚军
-                this.payMatch(MatchTypeEnum.SPEEDS.getMatchType(), userUuid, item.getSecond().getAmount(), matchUuid,
-                        SpeedUtils.createMatchCoins(Integer.valueOf(item.getSecond().getWins()), Integer.valueOf(item.getFirst().getWins()), Integer.valueOf(item.getSecond().getWins())));
-            }catch (Exception e){
-                logger.error(e, " {} : ", " payAllMatch ");
-                continue;
+        if(CollectionUtils.isNotEmpty(form.getSpeeds())){
+            for (UserPaySpeedDetailForm item : form.getSpeeds()){
+                try {
+                    //押注冠军
+                    this.payMatch(MatchTypeEnum.SPEEDS.getMatchType(), userUuid, item.getFirst().getAmount(), matchUuid,
+                            SpeedUtils.createMatchCoins(Integer.valueOf(item.getFirst().getWins()), Integer.valueOf(item.getFirst().getWins()), Integer.valueOf(item.getSecond().getWins())));
+                    //押注亚军
+                    this.payMatch(MatchTypeEnum.SPEEDS.getMatchType(), userUuid, item.getSecond().getAmount(), matchUuid,
+                            SpeedUtils.createMatchCoins(Integer.valueOf(item.getSecond().getWins()), Integer.valueOf(item.getFirst().getWins()), Integer.valueOf(item.getSecond().getWins())));
+                }catch (Exception e){
+                    logger.error(e, " {} : ", " payAllMatch ");
+                    continue;
+                }
             }
         }
     }

@@ -29,7 +29,8 @@ public class SignUtil {
 		String ciphertext = null;
 		try {
 			MessageDigest md = MessageDigest.getInstance("SHA-1");
-			byte[] digest = md.digest(sb.toString().getBytes());// 对接后的字符串进行sha1加密
+			// 对接后的字符串进行sha1加密
+			byte[] digest = md.digest(sb.toString().getBytes());
 			ciphertext = byteToStr(digest);
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();

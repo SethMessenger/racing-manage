@@ -1,9 +1,13 @@
-package com.wxmp.threads;
+package com.wxmp.threads.demo;
 
+import com.google.common.util.concurrent.ThreadFactoryBuilder;
+import com.wxmp.threads.handler.MultiThreadHandler;
+import com.wxmp.threads.thread.ParallelTaskWithThreadPool;
 import com.wxmp.threads.exception.ChildThreadException;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.*;
 
 /**
  * @author xunbo.xu
@@ -40,13 +44,18 @@ public class ThreadTestCase implements Runnable{
 
         System.out.println("main begin \t=================");
         Map<String, Object> resultMap = new HashMap<String, Object>(8, 1);
-        MultiThreadHandler handler = new MultiParallelThreadHandler();
-//		ExecutorService service = Executors.newFixedThreadPool(3);
-//		MultiThreadHandler handler = new ParallelTaskWithThreadPool(service);
+        //MultiThreadHandler handler = new MultiParallelThreadHandler();
+		//ExecutorService service = Executors.newFixedThreadPool(3);
+        ThreadFactory namedThreadFactory = new ThreadFactoryBuilder().setNameFormat("thread-call-runner-%d").build();
+        int size = 5;
+        ExecutorService executorService = new ThreadPoolExecutor(size,size,0L,TimeUnit.MILLISECONDS,new LinkedBlockingQueue<Runnable>(),namedThreadFactory);
+
+        //TODO @IMPORTENT  处理器为单例，可以在spring加载器中进行 默认加载
+        MultiThreadHandler handler = new ParallelTaskWithThreadPool(executorService);
         ThreadTestCase task = null;
         // 启动5个子线程作为要处理的并行任务，共同完成结果集resultMap
         for(int i=1; i<=5 ; i++){
-            task = new ThreadTestCase("" + i, resultMap);
+            task = new ThreadTestCase(" testCaseName " + i, resultMap);
             handler.addTask(task);
         }
         try {

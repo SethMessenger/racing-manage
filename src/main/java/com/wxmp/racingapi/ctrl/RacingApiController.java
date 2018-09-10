@@ -1,5 +1,7 @@
 package com.wxmp.racingapi.ctrl;
 
+import com.google.common.collect.Lists;
+import com.wxmp.core.util.DateUtil;
 import com.wxmp.racingapi.common.ErrorCodeEnum;
 import com.wxmp.racingapi.common.MatchTypeEnum;
 import com.wxmp.racingapi.service.MatchService;
@@ -18,6 +20,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
+import java.util.List;
 
 /**
  * @author xunbo.xu
@@ -36,6 +40,57 @@ public class RacingApiController {
     private UserCoinService userCoinService;
     @Autowired
     private MatchService matchService;
+
+    /**
+     * 用户参赛记录
+     * @param request
+     * @param userUuid
+     * @param date
+     * @return
+     */
+    @CrossOrigin(maxAge = 3600)
+    @RequestMapping(value = "/userMatchLog/{userUuid}",  method = RequestMethod.GET)
+    @ResponseBody
+    public BaseView userMatchLog(HttpServletRequest request, @PathVariable String userUuid,
+                                 @RequestParam(required = false) String date) {
+        //默认当天
+        if(StringUtils.isEmpty(date)){
+            date = DateUtil.COMMON.getDateText(new Date());
+        }
+        //查询时间戳
+        long startTime = 0L;
+        long endTime = 0L;
+        try {
+            Date d = DateUtil.COMMON.getTextDate(date);
+            startTime = DateUtil.getStartTime(d).getTime();
+            endTime = DateUtil.getEndTime(d).getTime();
+        }catch (Exception e){
+            e.printStackTrace();
+            return new MessageView(ErrorCodeEnum.PARAM_ERROR, "日期格式错误");
+        }
+        List<UserMatchLogView> view = this.userCoinService.queryUserMatchLogs(userUuid, startTime, endTime);
+        if(CollectionUtils.isNotEmpty(view)){
+            return new ObjectView<List<UserMatchLogView>>(view);
+        }else {
+            return new ObjectView<List>(Lists.newArrayList());
+        }
+    }
+
+    /**
+     * 排行榜
+     * @param request
+     * @return
+     */
+    @CrossOrigin(maxAge = 3600)
+    @RequestMapping(value = "/ranks/{userUuid}",  method = RequestMethod.GET)
+    @ResponseBody
+    public BaseView ranks(HttpServletRequest request, @PathVariable String userUuid) {
+        if(StringUtils.isNotEmpty(userUuid)){
+            RankView view = this.userCoinService.queryUserMatchRank(userUuid);
+            return new ObjectView<RankView>(view);
+        }
+        return BaseView.PARAM_ERROR;
+    }
 
     /**
      * 充值卡充值

@@ -81,10 +81,11 @@ public class DateUtil {
 		calendar.setTime(date);
 		int w = calendar.get(Calendar.DAY_OF_WEEK);
 		int ret;
-		if (w == Calendar.SUNDAY)
+		if (w == Calendar.SUNDAY) {
 			ret = 7;
-		else
+		} else {
 			ret = w - 1;
+		}
 		return ret;
 	}
 	/**
@@ -99,7 +100,36 @@ public class DateUtil {
 		long afterTime = after.getTime();
 		return (afterTime - beforeTime) / (1000 * 60 * 60 * 24);
 	}
-	
+
+	/**
+	 * 当天起始时间
+	 * @param date
+	 * @return
+	 */
+	public static Date getStartTime(Date date) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		calendar.set(Calendar.HOUR, 0);
+		calendar.set(Calendar.MINUTE, 0);
+		calendar.set(Calendar.SECOND, 0);
+		calendar.set(Calendar.MILLISECOND, 0);
+		return calendar.getTime();
+	}
+
+	/**
+	 * 当天结束时间
+	 * @param date
+	 * @return
+	 */
+	public static Date getEndTime(Date date) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		calendar.set(Calendar.HOUR, 23);
+		calendar.set(Calendar.MINUTE, 59);
+		calendar.set(Calendar.SECOND, 59);
+		calendar.set(Calendar.MILLISECOND, 999);
+		return calendar.getTime();
+	}
 	
 }
 

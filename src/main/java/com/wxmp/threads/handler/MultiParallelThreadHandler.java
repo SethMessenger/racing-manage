@@ -1,12 +1,13 @@
-package com.wxmp.threads;
+package com.wxmp.threads.handler;
 
+import com.wxmp.threads.thread.MultiParallelContext;
+import com.wxmp.threads.thread.MultiParallelRunnable;
 import com.wxmp.threads.exception.ChildThreadException;
-
 import java.util.concurrent.CountDownLatch;
 
 /**
- * @author xunbo.xu
- * @desc
+ * @author  xunbo.xu
+ * @desc    多线程处理器，如果需要复用业务，与本类类似实现AbstractMultiParallelThreadHandler的标准，将业务代码置于run防范中进行实现即可完成
  * @date 18/8/24
  */
 public class MultiParallelThreadHandler extends AbstractMultiParallelThreadHandler {
@@ -26,8 +27,10 @@ public class MultiParallelThreadHandler extends AbstractMultiParallelThreadHandl
         if (null == taskList || taskList.size() == 0) {
             return;
         } else if (taskList.size() == 1) {
+            //无需新开线程进行处理，直接在当前线程中进行请求
             runWithoutNewThread();
         } else if (taskList.size() > 1) {
+            //多任务的情况下，新开线程将数据进行多线程处理
             runInNewThread();
         }
     }
@@ -38,14 +41,20 @@ public class MultiParallelThreadHandler extends AbstractMultiParallelThreadHandl
      * @throws ChildThreadException
      */
     private void runInNewThread() throws ChildThreadException {
+        //开始计数
         childLatch = new CountDownLatch(taskList.size());
+        System.out.println("runInNewThread START childLatch.getCount() = " + childLatch.getCount());
+        //清理之前的异常信息
         childThreadException.clearExceptionList();
+
         for (Runnable task : taskList) {
+            System.out.println("runInNewThread DOING childLatch.getCount() = " + childLatch.getCount());
             invoke(new MultiParallelRunnable(new MultiParallelContext(task, childLatch, childThreadException)));
         }
         taskList.clear();
         try {
             childLatch.await();
+            System.out.println("runInNewThread END childLatch.getCount() = " + childLatch.getCount());
         } catch (InterruptedException e) {
             childThreadException.addException(e);
         }

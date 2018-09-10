@@ -45,7 +45,7 @@ import org.slf4j.LoggerFactory;
  */
 public class HttpUtil{
 
-	protected static Logger logger = LoggerFactory.getLogger(HttpUtil.class);
+	//protected static Logger logger = LoggerFactory.getLogger(HttpUtil.class);
 
 	private static PoolingHttpClientConnectionManager connMgr;
 	private static RequestConfig requestConfig;
@@ -101,7 +101,7 @@ public class HttpUtil{
 			HttpGet httpGet = new HttpGet(apiUrl);
 			response = httpclient.execute(httpGet);
 			int statusCode = response.getStatusLine().getStatusCode();
-			logger.debug("<<<===== SoundCloudAPI requestHeaders %%{}%% with params %%{}%% has responseCode %%{}%% =====>>>", url, params, statusCode);
+//			logger.debug("<<<===== SoundCloudAPI requestHeaders %%{}%% with params %%{}%% has responseCode %%{}%% =====>>>", url, params, statusCode);
 			headers = response.getAllHeaders();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -139,7 +139,7 @@ public class HttpUtil{
 			HttpGet httpGet = new HttpGet(apiUrl);
 			response = httpclient.execute(httpGet);
 			int statusCode = response.getStatusLine().getStatusCode();
-			logger.debug("<<<===== SoundCloudAPI request %%{}%% with params %%{}%% has responseCode %%{}%% =====>>>", url, params, statusCode);
+//			logger.debug("<<<===== SoundCloudAPI request %%{}%% with params %%{}%% has responseCode %%{}%% =====>>>", url, params, statusCode);
 			HttpEntity entity = response.getEntity();
 			if (entity != null) {
 				// InputStream instream = entity.getContent();
@@ -384,6 +384,7 @@ public class HttpUtil{
 		try {
 			SSLContext sslContext = new SSLContextBuilder().loadTrustMaterial(null, new TrustStrategy() {
 
+				@Override
 				public boolean isTrusted(X509Certificate[] chain, String authType) throws CertificateException {
 					return true;
 				}
@@ -399,6 +400,7 @@ public class HttpUtil{
 		try {
 			SSLContext sslContext = new SSLContextBuilder().loadTrustMaterial(null, new TrustStrategy() {
 				// 信任所有
+				@Override
 				public boolean isTrusted(X509Certificate[] chain, String authType) throws CertificateException {
 					return true;
 				}
